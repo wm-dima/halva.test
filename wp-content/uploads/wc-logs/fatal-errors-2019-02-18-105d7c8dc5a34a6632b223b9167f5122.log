@@ -1,0 +1,111 @@
+2019-02-18T11:06:39+00:00 CRITICAL syntax error, unexpected 'die' (T_EXIT) в C:\OpenServer\domains\halva.test\wp-content\themes\halva\functions.php на строке 42
+
+2019-02-18T11:06:40+00:00 CRITICAL syntax error, unexpected 'die' (T_EXIT) в C:\OpenServer\domains\halva.test\wp-content\themes\halva\functions.php на строке 42
+
+2019-02-18T11:13:15+00:00 CRITICAL Uncaught Error: Call to undefined function get_the_post_thumbnail_uri() in C:\OpenServer\domains\halva.test\wp-content\themes\halva\index.php:162
+Stack trace:
+#0 C:\OpenServer\domains\halva.test\wp-includes\template-loader.php(74): include()
+#1 C:\OpenServer\domains\halva.test\wp-blog-header.php(19): require_once('C:\\OpenServer\\d...')
+#2 C:\OpenServer\domains\halva.test\index.php(17): require('C:\\OpenServer\\d...')
+#3 {main}
+  thrown в C:\OpenServer\domains\halva.test\wp-content\themes\halva\index.php на строке 162
+
+2019-02-18T11:13:17+00:00 CRITICAL Uncaught Error: Call to undefined function get_the_post_thumbnail_uri() in C:\OpenServer\domains\halva.test\wp-content\themes\halva\index.php:162
+Stack trace:
+#0 C:\OpenServer\domains\halva.test\wp-includes\template-loader.php(74): include()
+#1 C:\OpenServer\domains\halva.test\wp-blog-header.php(19): require_once('C:\\OpenServer\\d...')
+#2 C:\OpenServer\domains\halva.test\index.php(17): require('C:\\OpenServer\\d...')
+#3 {main}
+  thrown в C:\OpenServer\domains\halva.test\wp-content\themes\halva\index.php на строке 162
+
+2019-02-18T11:13:25+00:00 CRITICAL Uncaught Error: Call to a member function get_price_html() on null in C:\OpenServer\domains\halva.test\wp-content\themes\halva\index.php:182
+Stack trace:
+#0 C:\OpenServer\domains\halva.test\wp-includes\template-loader.php(74): include()
+#1 C:\OpenServer\domains\halva.test\wp-blog-header.php(19): require_once('C:\\OpenServer\\d...')
+#2 C:\OpenServer\domains\halva.test\index.php(17): require('C:\\OpenServer\\d...')
+#3 {main}
+  thrown в C:\OpenServer\domains\halva.test\wp-content\themes\halva\index.php на строке 182
+
+2019-02-18T12:22:58+00:00 CRITICAL syntax error, unexpected ''/assets/images/no_image.png'' (T_CONSTANT_ENCAPSED_STRING), expecting ';' в C:\OpenServer\domains\halva.test\wp-content\themes\halva\functions.php на строке 52
+
+2019-02-18T20:52:11+00:00 CRITICAL Uncaught Error: Cannot use object of type YITH_Woocompare as array in C:\OpenServer\domains\halva.test\wp-content\themes\halva\index.php:10
+Stack trace:
+#0 C:\OpenServer\domains\halva.test\wp-includes\template-loader.php(74): include()
+#1 C:\OpenServer\domains\halva.test\wp-blog-header.php(19): require_once('C:\\OpenServer\\d...')
+#2 C:\OpenServer\domains\halva.test\index.php(17): require('C:\\OpenServer\\d...')
+#3 {main}
+  thrown в C:\OpenServer\domains\halva.test\wp-content\themes\halva\index.php на строке 10
+
+2019-02-18T20:52:13+00:00 CRITICAL Uncaught Error: Cannot use object of type YITH_Woocompare as array in C:\OpenServer\domains\halva.test\wp-content\themes\halva\index.php:10
+Stack trace:
+#0 C:\OpenServer\domains\halva.test\wp-includes\template-loader.php(74): include()
+#1 C:\OpenServer\domains\halva.test\wp-blog-header.php(19): require_once('C:\\OpenServer\\d...')
+#2 C:\OpenServer\domains\halva.test\index.php(17): require('C:\\OpenServer\\d...')
+#3 {main}
+  thrown в C:\OpenServer\domains\halva.test\wp-content\themes\halva\index.php на строке 10
+
+2019-02-18T22:23:54+00:00 CRITICAL syntax error, unexpected 'var_dump' (T_STRING) в C:\OpenServer\domains\halva.test\wp-content\themes\halva\index.php на строке 4
+
+2019-02-18T22:41:43+00:00 CRITICAL Uncaught ArgumentCountError: Too few arguments to function TInvWL_Product::product_data(), 0 passed in C:\OpenServer\domains\halva.test\wp-content\themes\halva\index.php on line 4 and at least 1 expected in C:\OpenServer\domains\halva.test\wp-content\plugins\ti-woocommerce-wishlist\includes\product.helper.php:401
+Stack trace:
+#0 C:\OpenServer\domains\halva.test\wp-content\themes\halva\index.php(4): TInvWL_Product->product_data()
+#1 C:\OpenServer\domains\halva.test\wp-includes\template-loader.php(74): include('C:\\OpenServer\\d...')
+#2 C:\OpenServer\domains\halva.test\wp-blog-header.php(19): require_once('C:\\OpenServer\\d...')
+#3 C:\OpenServer\domains\halva.test\index.php(17): require('C:\\OpenServer\\d...')
+#4 {main}
+  thrown в C:\OpenServer\domains\halva.test\wp-content\plugins\ti-woocommerce-wishlist\includes\product.helper.php на строке 401
+
+2019-02-18T22:49:09+00:00 CRITICAL Uncaught ArgumentCountError: Too few arguments to function TInvWL_View::ajax(), 0 passed in C:\OpenServer\domains\halva.test\wp-content\themes\halva\index.php on line 6 and at least 1 expected in C:\OpenServer\domains\halva.test\wp-content\plugins\ti-woocommerce-wishlist\includes\view.helper.php:266
+Stack trace:
+#0 C:\OpenServer\domains\halva.test\wp-content\themes\halva\index.php(6): TInvWL_View::ajax()
+#1 C:\OpenServer\domains\halva.test\wp-includes\template-loader.php(74): include('C:\\OpenServer\\d...')
+#2 C:\OpenServer\domains\halva.test\wp-blog-header.php(19): require_once('C:\\OpenServer\\d...')
+#3 C:\OpenServer\domains\halva.test\index.php(17): require('C:\\OpenServer\\d...')
+#4 {main}
+  thrown в C:\OpenServer\domains\halva.test\wp-content\plugins\ti-woocommerce-wishlist\includes\view.helper.php на строке 266
+
+2019-02-18T22:49:21+00:00 CRITICAL Uncaught ArgumentCountError: Too few arguments to function TInvWL_View::render(), 0 passed in C:\OpenServer\domains\halva.test\wp-content\themes\halva\index.php on line 6 and at least 1 expected in C:\OpenServer\domains\halva.test\wp-content\plugins\ti-woocommerce-wishlist\includes\view.helper.php:294
+Stack trace:
+#0 C:\OpenServer\domains\halva.test\wp-content\themes\halva\index.php(6): TInvWL_View::render()
+#1 C:\OpenServer\domains\halva.test\wp-includes\template-loader.php(74): include('C:\\OpenServer\\d...')
+#2 C:\OpenServer\domains\halva.test\wp-blog-header.php(19): require_once('C:\\OpenServer\\d...')
+#3 C:\OpenServer\domains\halva.test\index.php(17): require('C:\\OpenServer\\d...')
+#4 {main}
+  thrown в C:\OpenServer\domains\halva.test\wp-content\plugins\ti-woocommerce-wishlist\includes\view.helper.php на строке 294
+
+2019-02-18T22:49:34+00:00 CRITICAL Uncaught ArgumentCountError: Too few arguments to function TInvWL_View::view(), 0 passed in C:\OpenServer\domains\halva.test\wp-content\themes\halva\index.php on line 6 and at least 1 expected in C:\OpenServer\domains\halva.test\wp-content\plugins\ti-woocommerce-wishlist\includes\view.helper.php:309
+Stack trace:
+#0 C:\OpenServer\domains\halva.test\wp-content\themes\halva\index.php(6): TInvWL_View::view()
+#1 C:\OpenServer\domains\halva.test\wp-includes\template-loader.php(74): include('C:\\OpenServer\\d...')
+#2 C:\OpenServer\domains\halva.test\wp-blog-header.php(19): require_once('C:\\OpenServer\\d...')
+#3 C:\OpenServer\domains\halva.test\index.php(17): require('C:\\OpenServer\\d...')
+#4 {main}
+  thrown в C:\OpenServer\domains\halva.test\wp-content\plugins\ti-woocommerce-wishlist\includes\view.helper.php на строке 309
+
+2019-02-18T22:51:50+00:00 CRITICAL Uncaught ArgumentCountError: Too few arguments to function TInvWL_Public_AddToWishlist::__construct(), 0 passed in C:\OpenServer\domains\halva.test\wp-content\themes\halva\index.php on line 7 and exactly 1 expected in C:\OpenServer\domains\halva.test\wp-content\plugins\ti-woocommerce-wishlist\public\addtowishlist.class.php:80
+Stack trace:
+#0 C:\OpenServer\domains\halva.test\wp-content\themes\halva\index.php(7): TInvWL_Public_AddToWishlist->__construct()
+#1 C:\OpenServer\domains\halva.test\wp-includes\template-loader.php(74): include('C:\\OpenServer\\d...')
+#2 C:\OpenServer\domains\halva.test\wp-blog-header.php(19): require_once('C:\\OpenServer\\d...')
+#3 C:\OpenServer\domains\halva.test\index.php(17): require('C:\\OpenServer\\d...')
+#4 {main}
+  thrown в C:\OpenServer\domains\halva.test\wp-content\plugins\ti-woocommerce-wishlist\public\addtowishlist.class.php на строке 80
+
+2019-02-18T22:53:20+00:00 CRITICAL Uncaught ArgumentCountError: Too few arguments to function TInvWL_Public_AddToWishlist::__construct(), 0 passed in C:\OpenServer\domains\halva.test\wp-content\themes\halva\index.php on line 7 and exactly 1 expected in C:\OpenServer\domains\halva.test\wp-content\plugins\ti-woocommerce-wishlist\public\addtowishlist.class.php:80
+Stack trace:
+#0 C:\OpenServer\domains\halva.test\wp-content\themes\halva\index.php(7): TInvWL_Public_AddToWishlist->__construct()
+#1 C:\OpenServer\domains\halva.test\wp-includes\template-loader.php(74): include('C:\\OpenServer\\d...')
+#2 C:\OpenServer\domains\halva.test\wp-blog-header.php(19): require_once('C:\\OpenServer\\d...')
+#3 C:\OpenServer\domains\halva.test\index.php(17): require('C:\\OpenServer\\d...')
+#4 {main}
+  thrown в C:\OpenServer\domains\halva.test\wp-content\plugins\ti-woocommerce-wishlist\public\addtowishlist.class.php на строке 80
+
+2019-02-18T22:53:29+00:00 CRITICAL Uncaught ArgumentCountError: Too few arguments to function TInvWL_Public_AddToWishlist::__construct(), 0 passed in C:\OpenServer\domains\halva.test\wp-content\themes\halva\index.php on line 7 and exactly 1 expected in C:\OpenServer\domains\halva.test\wp-content\plugins\ti-woocommerce-wishlist\public\addtowishlist.class.php:80
+Stack trace:
+#0 C:\OpenServer\domains\halva.test\wp-content\themes\halva\index.php(7): TInvWL_Public_AddToWishlist->__construct()
+#1 C:\OpenServer\domains\halva.test\wp-includes\template-loader.php(74): include('C:\\OpenServer\\d...')
+#2 C:\OpenServer\domains\halva.test\wp-blog-header.php(19): require_once('C:\\OpenServer\\d...')
+#3 C:\OpenServer\domains\halva.test\index.php(17): require('C:\\OpenServer\\d...')
+#4 {main}
+  thrown в C:\OpenServer\domains\halva.test\wp-content\plugins\ti-woocommerce-wishlist\public\addtowishlist.class.php на строке 80
+

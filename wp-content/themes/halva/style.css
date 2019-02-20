@@ -1,0 +1,203 @@
+/*
+Theme Name: halva
+*/
+
+.item-logo{
+    position: relative;
+    width: 100%;
+}
+
+.item-logo > div.img-padding{
+    padding-bottom: 75%;
+}
+
+.item-logo > div.img-padding > img{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    top: 0;
+    left: 0;
+}
+
+.wm-ad-dto-wishlist img {
+    width: 28px !important;
+    height: 26px !important;
+    display: none;
+}
+
+.tinvwl_add_to_wishlist_button {
+    padding: 0 !important;
+}
+
+.tinvwl_add_to_wishlist_button > img {
+    width: 28px !important;
+    height: 26px !important;
+    max-width: 28px !important;
+    max-height: 26px !important;
+}
+
+.filter-price form .price_slider_amount{
+    display: flex;
+}
+
+.filter-price li{
+    list-style: none;
+}
+    
+.filter-price form input{
+    width: 145px;
+    height: 47px;
+    background-color: #dddddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+    border: 0;
+    outline: 0;
+    padding: 0 18px;
+    font-family: 'Museo Sans Cyrl 300';
+    font-weight: 300;
+    font-size: 17px;
+    display: block !important;
+}
+
+.filter-price form input:nth-child(1){
+    margin-right: 10px
+}
+
+.filter-price form button,
+.filter-price form .price_label{
+    display: none !important;
+}
+
+.filter-manufactures li {
+  cursor: pointer;
+}
+
+.woocommerce-widget-layered-nav-list a {
+    font-family: 'Museo Sans Cyrl 300';
+    font-weight: 300;
+    font-size: 17px;
+    color: black;
+    align-items: center;
+    margin-bottom: 10px;
+    margin-left: 36px;
+}
+
+.woocommerce-widget-layered-nav-list li {
+    list-style: none;
+}
+.woocommerce-widget-layered-nav-list li.chosen a{
+    color: #ff9c00;
+}
+
+.woocommerce-widget-layered-nav-list li {
+    margin-bottom: 10px;
+    height: 22px;
+}
+
+.wm-filter-title > img.img-rotate {
+    margin: 0 5px 4px 0;
+    position: relative;
+    left: -3px;
+}
+
+div.filter-price> .wm-filter-title,
+div.filter-manufactures > .wm-filter-title {
+    font-family: 'Museo Sans Cyrl 300';
+    font-weight: 300;
+    font-size: 20px;
+    color: black;
+}
+
+.woocommerce-widget-layered-nav-list,
+.filter .filter-price form {
+    height: 0;
+    opacity: 0;
+    display: none;
+}
+.wm-show-filter-class { 
+    animation: show_filter 0.4s;
+    animation-fill-mode: forwards;
+    display: block !important;
+}
+
+@keyframes show_filter {
+  0%   { height: 0; opacity: 0; display: block !important;}
+  30%   { opacity: 0;}
+  100% { height: auto; opacity: 1; display: block !important;}
+}
+
+div.filter-manufactures.wm-filter--active > .wm-filter-title > img ,
+div.filter-price.wm-filter--active > .wm-filter-title > img {
+  transform: rotate( 0deg);
+  transition-duration: 0.4s;
+}
+
+div.filter-manufactures > .wm-filter-title > img,
+div.filter-price > .wm-filter-title > img {
+  transform: rotate( 180deg);
+  transition-duration: 0.6s;
+}
+
+.filter-manufactures > .wm-filter-title,
+.filter-price > .wm-filter-title {
+  margin: 0;
+  padding: 10px 0;
+  display: block;
+  border-bottom: 0;
+}
+
+#catalog-body > div.catalog > div > div > div.catalog-main > div.filter > div.wm-filters-wrap > div.filter-manufactures.wm-filter--active > ul > li:nth-child(1) > a:li:before{
+  content: ' ';
+  width: 20px;
+  height: 20px;
+  border: 1px solid black;
+}
+
+.filter li.chosen::before {
+    width: 28px;
+    content: " ";
+    background-image: url(./assets/images/filter--chcked.png);
+    height:23px;
+    display: block;
+}
+
+.filter li::before {
+    width: 28px;
+    content: " ";
+    background-image: url(./assets/images/filter--not-chcked.png);
+    height: 22px;
+    display: block;
+    position: relative;
+    top: 20px;
+}
+
+.filter-manufactures li:last-child{
+  padding-bottom: 25px
+}
+
+.wm-hid {
+    display: none !important;
+}
+
+.out-of-stock{
+    width: 100%;
+    height: 60px;
+    background-color: #9a9894;
+    text-transform: uppercase;
+    font-family: 'Museo Sans Cyrl 700';
+    font-weight: 700;
+    font-style: normal;
+    border: 0;
+    outline: 0;
+    font-size: 14px;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.out-of-stock p {
+    margin-bottom: 0;
+}
