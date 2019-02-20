@@ -4,17 +4,13 @@
 */
 ?>
 <?php get_header(); ?>
-        </div>
             <div class="wrapper">
                 <div class="search sc-faq">
                     <a href="">
                         <img src="<?php echo get_template_directory_uri(); ?>/assets/images/catalog.png" alt="">
                         Каталог товаров
                     </a>
-                    <form action="">
-                        <input type="text" placeholder="Поиск" required>
-                        <button>Найти</button>
-                    </form>
+                    <?php get_search_form(); ?>
                 </div>
             </div>
             <div class="wrapper">
