@@ -194,8 +194,29 @@ function wm_render_only_stock_form(){
 }
 
 function wm_prod_per_page(){
-    $page = get_query_var('page');
-    var_dump($page);
-    $count = 0;
-    return 'Товары 1-' . $count .' из';
+    $per_page = 20;
+    $total = wc_get_loop_prop( 'total' );
+    $page_pos = strripos($_SERVER['REQUEST_URI'], 'page');
+    if (!$page_pos) {
+        $page = 1;
+    } else {
+        $expl = explode ( '/', $_SERVER['REQUEST_URI']);
+        $page = $expl[ array_search ('page', $expl) + 1];
+    }
+    // var_dump($total, $)
+    if ($total < $per_page) {
+        return 'Товары 1 -' . $total .' из';
+    } else {
+        if ($page == 1) {
+            return 'Товары 1 - 20 из';
+        } else {
+            $start_from = ( $page - 1 ) * $per_page;
+            if ($total > $start_from + 20) {
+                return 'Товары ' . $start_from . ' - ' . $start_from + 20 . ' из';
+            } else {
+                return 'Товары ' . $start_from . ' - ' . $total . ' из';
+            }
+        }
+     
+    }
 }

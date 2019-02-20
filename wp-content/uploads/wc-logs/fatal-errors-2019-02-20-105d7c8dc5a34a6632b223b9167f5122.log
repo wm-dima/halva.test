@@ -12,3 +12,5 @@
 
 2019-02-20T13:26:57+00:00 CRITICAL syntax error, unexpected '{' в C:\OpenServer\domains\halva.test\wp-content\themes\halva\functions.php на строке 181
 
+2019-02-20T15:58:43+00:00 CRITICAL syntax error, unexpected ')' в C:\OpenServer\domains\halva.test\wp-content\themes\halva\functions.php на строке 211
+
