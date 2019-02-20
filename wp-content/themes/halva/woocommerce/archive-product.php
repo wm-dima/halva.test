@@ -1,46 +1,5 @@
 <?php get_header();?>
-        <div class="menu-wrapper">
-            <div class="second-menu">
-                <div class="logo"></div>
-                <div class="phones">
-                    <ul>
-                        <li><img src="<?php echo get_template_directory_uri(); ?>/assets/images/phone.png" alt=""><span class="phone-number"><a href="tel:+88007007363">8 (800) 700-73-63</a></span></li>
-                        <li><img src="<?php echo get_template_directory_uri(); ?>/assets/images/phone.png" alt=""><span class="phone-number"><a href="tel:+88007007363">8-800-700-73-63</a></span></li>
-                    </ul>
-                </div>
-                <div class="call-back">
-                    <ul>
-                        <li>ПН-ВС: 6:00–16:00 (МСК)</li>
-                        <li>
-                            <a href="">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/callback.png" alt="">
-                                Обратный звонок
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="shop-icons">
-                    <div class="accept">
-                        <div class="shop-icon">
-                            <div class="number"><?php echo count($yith_woocompare->obj->products_list); ?></div>
-                        </div>
-                        <p>Сравнение</p>
-                    </div>
-                    <div class="likes">
-                        <div class="shop-icon">
-                            <div class="number"><?php echo wm_get_wishlist_count(); ?></div>
-                        </div>
-                        <p>Желание</p>
-                    </div>
-                    <div class="basket">
-                        <div class="shop-icon">
-                            <div class="number"><?php echo $woocommerce->cart->cart_contents_count; ?></div>
-                        </div>
-                        <p>Корзина</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+
     <div class="catalog">
         <div class="wrapper">
             <div class="inside-catalog">
