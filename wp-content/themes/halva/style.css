@@ -273,3 +273,13 @@ div.filter-price > .wm-filter-title > img {
 .price-value del span {
     font-size: 20px !important;
 }
+
+.item-like{
+    background-image: none !important;
+    background-repeat: no-repeat !important;
+}
+
+
+.item-balance {
+    background-repeat: no-repeat !important;
+}
