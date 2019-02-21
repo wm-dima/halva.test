@@ -30,6 +30,7 @@ Theme Name: halva
     padding: 0 !important;
 }
 
+[data-tinv-wl-action="remove"],
 .tinvwl_add_to_wishlist_button > img {
     width: 28px !important;
     height: 26px !important;
@@ -37,6 +38,17 @@ Theme Name: halva
     max-height: 26px !important;
 }
 
+[data-tinv-wl-action="remove"] {
+    background-image: url(./assets/images/item-like.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: -33px -6px;
+    zoom: 1.7;
+}
+
+[data-tinv-wl-action="remove"] img{
+    display: none !important;
+}
 .filter-price form .price_slider_amount{
     display: flex;
 }

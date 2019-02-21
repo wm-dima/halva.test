@@ -251,3 +251,14 @@ function wm_get_shipping_methods(){
     $html .= '</ul>';
     return $html;
 }
+
+// echo "<pre>";
+
+// var_dump($sitepress);
+
+// var_dump( $yith_woocompare->obj->list_products_html());
+// echo "<hr>";
+// var_dump( $yith_woocompare->obj->get_products_list() );
+// echo "<hr>";
+// var_dump( get_class_methods($yith_woocompare->obj));
+// die;

@@ -88,6 +88,8 @@ if( !class_exists( 'YITH_Woocompare_Frontend' ) ) {
          */
         public $action_reload = 'yith-woocompare-reload-product';
 
+        public $wm_get_prods = 'wm-get-prods';
+
         /**
          * The standard fields
          *
@@ -124,11 +126,14 @@ if( !class_exists( 'YITH_Woocompare_Frontend' ) ) {
                 add_action( 'wc_ajax_' . $this->action_add, array( $this, 'add_product_to_compare_ajax' ) );
                 add_action( 'wc_ajax_' . $this->action_remove, array( $this, 'remove_product_from_compare_ajax' ) );
                 add_action( 'wc_ajax_' . $this->action_reload, array( $this, 'reload_widget_list_ajax' ) );
+                add_action( 'wc_ajax_' . $this->wm_get_prods, array( $this, 'wm_get_prods' ) );
+
             }
             else {
                 add_action( 'wp_ajax_' . $this->action_add, array( $this, 'add_product_to_compare_ajax' ) );
                 add_action( 'wp_ajax_' . $this->action_remove, array( $this, 'remove_product_from_compare_ajax' ) );
                 add_action( 'wp_ajax_' . $this->action_reload, array( $this, 'reload_widget_list_ajax' ) );
+                add_action( 'wc_ajax_' . $this->wm_get_prods, array( $this, 'wm_get_prods' ) );
             }
             // no priv
             add_action( 'wp_ajax_nopriv_' . $this->action_add, array( $this, 'add_product_to_compare_ajax' ) );
@@ -239,6 +244,11 @@ if( !class_exists( 'YITH_Woocompare_Frontend' ) ) {
             if ( is_active_widget( false, false, 'yith-woocompare-widget', true ) && ! is_admin() ) {
                 wp_enqueue_style( 'yith-woocompare-widget', YITH_WOOCOMPARE_ASSETS_URL . '/css/widget.css' );
             }
+        }
+
+        public function wm_get_prods(){
+            var_dump($this->products_list);
+            die();
         }
 
         /**
@@ -579,7 +589,6 @@ if( !class_exists( 'YITH_Woocompare_Frontend' ) ) {
          * The action called by AJAX
          */
         public function add_product_to_compare_ajax() {
-
             if( ! isset( $_REQUEST['id'] ) || ! isset( $_REQUEST['action'] ) || $_REQUEST['action'] != $this->action_add ){
                 die();
             }
