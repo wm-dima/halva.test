@@ -201,3 +201,75 @@ div.filter-price > .wm-filter-title > img {
 .out-of-stock p {
     margin-bottom: 0;
 }
+
+.quantity-basket .quantity-main{
+    width: 69px;
+    height: 53px;
+    border: 3px solid #ff9c00;
+    outline: 0;
+    border-radius: 18px;
+    text-align: center;
+    font-family: 'Museo Sans Cyrl 500';
+    font-size: 18px;
+    margin: 0px 21px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+}
+
+.wm-image-wrap{
+    position: relative;
+    width: 50px;
+}
+
+.wm-image-wrap .padding-bottom {
+    padding-bottom: 50%;
+}
+
+.wm-image-wrap .padding-bottom img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    top: 0;
+    left: 0;   
+}
+
+.wm-additional--remove{
+    zoom: 3;
+    text-align: center;
+}
+.wm-additional {
+    display: flex;
+    flex-direction: column;
+    opacity: 0 !important;
+    transition-property: all;
+    transition: all ease 0.8s;
+}
+.basket-item:hover .wm-additional {
+    opacity: 1  !important;
+    transition-property: all;
+    transition: all ease 1s;
+}
+
+.wm-additional [data-wm-not-active]{
+    -webkit-filter: grayscale(100%);  
+}
+
+.wm-additional--update {
+  cursor: pointer;
+}
+
+.wm-additional--update[data-wm-not-active]{
+  cursor: not-allowed;
+}
+
+.price-value ins {
+    color: red;
+    text-decoration: none !important;
+}
+
+.price-value del span {
+    font-size: 20px !important;
+}

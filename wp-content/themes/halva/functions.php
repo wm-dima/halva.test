@@ -52,7 +52,7 @@ function my_them_load_css_and_js() {
     wp_enqueue_script( 'select', get_template_directory_uri() . '/assets/js/select.js', array('jquery'), null, true );
     wp_enqueue_script( 'swiper', get_template_directory_uri() . '/assets/js/swiper.min.js', array('jquery'), null, true );
 
-    wp_enqueue_script( 'wm-filter', get_template_directory_uri() . '/assets/js/wm_filters.js',[], null, true );
+    // wp_enqueue_script( 'wm-filter', get_template_directory_uri() . '/assets/js/wm_filters.js',[], null, true );
 }
 
 
@@ -220,3 +220,4 @@ function wm_prod_per_page(){
      
     }
 }
+

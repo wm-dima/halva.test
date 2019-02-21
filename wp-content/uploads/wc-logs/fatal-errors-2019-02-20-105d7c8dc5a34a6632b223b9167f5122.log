@@ -14,3 +14,15 @@
 
 2019-02-20T15:58:43+00:00 CRITICAL syntax error, unexpected ')' в C:\OpenServer\domains\halva.test\wp-content\themes\halva\functions.php на строке 211
 
+2019-02-20T22:19:03+00:00 CRITICAL Uncaught Error: Call to a member function get_price_html() on null in C:\OpenServer\domains\halva.test\wp-content\themes\halva\woocommerce\cart\cart.php:70
+Stack trace:
+#0 C:\OpenServer\domains\halva.test\wp-includes\template.php(690): require()
+#1 C:\OpenServer\domains\halva.test\wp-includes\template.php(647): load_template('C:\\OpenServer\\d...', false)
+#2 C:\OpenServer\domains\halva.test\wp-includes\general-template.php(155): locate_template(Array, true, false)
+#3 C:\OpenServer\domains\halva.test\wp-content\themes\halva\cart.php(61): get_template_part('woocommerce/car...')
+#4 C:\OpenServer\domains\halva.test\wp-includes\template-loader.php(74): include('C:\\OpenServer\\d...')
+#5 C:\OpenServer\domains\halva.test\wp-blog-header.php(19): require_once('C:\\OpenServer\\d...')
+#6 C:\OpenServer\domains\halva.test\index.php(17): require('C:\\OpenServer\\d...')
+#7 {main}
+  thrown в C:\OpenServer\domains\halva.test\wp-content\themes\halva\woocommerce\cart\cart.php на строке 70
+

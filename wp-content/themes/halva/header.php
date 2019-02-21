@@ -3,17 +3,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-  <!--   <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/assets/css/style.css">
-    <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/assets/css/normalize.css">
-    <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/assets/fonts/museo.css">
-    <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/assets/css/swiper.min.css">
-    <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/assets/css/media.css"> -->
-    <!-- <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script> -->
     <?php wp_head(); ?>  
-    <title>Akula каталог</title>
 </head>
 <body id="catalog-body">
+<?php global $woocommerce; ?>
     <header>
         <div class="inside-header">
             <div class="menu" onclick="$('.menu-mob').toggleClass('menu-mob-show');$('body').css('overflow','hidden');;$('.body-black').toggleClass('bodyBlackShow')">
@@ -138,10 +131,14 @@
                     <p>Желание</p>
                 </div>
                 <div class="basket">
-                    <div class="shop-icon">
-                        <div class="number"><?php echo $woocommerce->cart->cart_contents_count; ?></div>
-                    </div>
-                    <p>Корзина</p>
+                    <a href="<?php echo get_permalink( 6 ); ?>">
+                        <div class="shop-icon">
+                            <div class="number"><?php echo $woocommerce->cart->cart_contents_count; ?></div>
+                        </div>
+                    </a>
+                    <a href="<?php echo get_permalink( 6 ); ?>">
+                        <p>Корзина</p>
+                    </a>
                 </div>
             </div>
         </div>
