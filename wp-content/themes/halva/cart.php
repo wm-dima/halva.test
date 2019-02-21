@@ -58,7 +58,7 @@
                 <div class="wrapper">
                     <div class="inside-basket-main">
                         <div class="basket-left">
-                            
+
                             <?php get_template_part('woocommerce/cart/cart'); ?>
 
                             <div class="basket-info">
@@ -78,6 +78,7 @@
                             <div class="delivery-method">
                                 <p class="dm-p">Способ доставки</p>
                                 <p class="d-method-main">Не выбран</p>
+                                <?php echo wm_get_shipping_methods(); ?>
                             </div>
                             <div class="pay-method">
                                 <p class="dm-p">Способ оплаты</p>

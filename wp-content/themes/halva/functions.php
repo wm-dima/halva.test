@@ -52,7 +52,7 @@ function my_them_load_css_and_js() {
     wp_enqueue_script( 'select', get_template_directory_uri() . '/assets/js/select.js', array('jquery'), null, true );
     wp_enqueue_script( 'swiper', get_template_directory_uri() . '/assets/js/swiper.min.js', array('jquery'), null, true );
 
-    // wp_enqueue_script( 'wm-filter', get_template_directory_uri() . '/assets/js/wm_filters.js',[], null, true );
+    wp_enqueue_script( 'wm-main', get_template_directory_uri() . '/assets/js/main.js',[], null, true );
 }
 
 
@@ -79,8 +79,14 @@ function wm_get_main_img($id){
 }
 
 function wm_geet_compare_link($text){
-    $compare_link = explode ( '</a>', do_shortcode('[yith_compare_button]') );
-    return  $compare_link[0] . $text . $compare_link[1];
+    // return;
+    // if ( $stock == 'outofstock' ) {
+    //     $compare_link = explode ( '</a>', do_shortcode('[yith_compare_button]') );
+    //     return  $compare_link[0] . $text . '</a>' . $compare_link[1];
+    // } else {
+        $compare_link = explode ( '</a>', do_shortcode('[yith_compare_button]') );
+        return $compare_link[0] . $text . '</a>' . $compare_link[1];
+    // }
 }
 
 function wm_get_wishlist_count(){
@@ -221,3 +227,27 @@ function wm_prod_per_page(){
     }
 }
 
+function wm_get_shipping_methods(){
+    global $wpdb;
+    $methods_id = $wpdb->get_results( 'SELECT * from ' . $wpdb->prefix . 'woocommerce_shipping_zone_methods where is_enabled = 1' );
+    $where_clause = 'WHERE ';
+    foreach ($methods_id as $key => $value) {
+        $where_clause .= 'option_name like "%' . $value->method_id . '_' . $value->instance_id . '%" OR ';
+    }
+    $where_clause = substr($where_clause, 0, strlen($where_clause) - 3);
+
+    $option_values = $wpdb->get_results( 'SELECT option_value FROM `' . $wpdb->prefix . 'options` ' . $where_clause );
+
+    $html = '<ul class="shipping-list">';
+    foreach ($option_values as $key => $value) {
+        $shipping = unserialize($value->option_value);
+        $html .= '<li>';
+        $html .= '<span class="title">' . $shipping['title'] . '<span>';
+        if ( $shipping['cost'] != '0' && $shipping['cost'] != '' ) {
+            $html .= '<span class="cost"> (' . $shipping['cost'] . ') руб.<span>';
+        }
+        $html .= '</li>';
+    }
+    $html .= '</ul>';
+    return $html;
+}

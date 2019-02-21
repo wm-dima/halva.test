@@ -283,3 +283,10 @@ div.filter-price > .wm-filter-title > img {
 .item-balance {
     background-repeat: no-repeat !important;
 }
+.catalog-item.hi-1{
+    position: relative;
+}
+
+.in-basket .added_to_cart.wc-forward {
+    display: none;
+}
