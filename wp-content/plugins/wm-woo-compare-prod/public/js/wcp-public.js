@@ -9,6 +9,7 @@ document.querySelector('body').addEventListener('compare_was_added', wcp_state_t
 function wcp_state_to_remove(){
 	alert('Пробукт был добавлен!');
 	document.querySelector('[data-wm-prod-id="' + last_added_product + '"] [data-wm-wcp]').setAttribute('data-wm-wcp', 'remove');
+	document.querySelector('.shop-icons .accept .number').innerText = document.querySelector('.shop-icons .accept .number').innerText * 1 + 1;
 }
 
 document.querySelector('body').addEventListener('compare_was_removed', wcp_state_to_add);
@@ -16,26 +17,7 @@ document.querySelector('body').addEventListener('compare_was_removed', wcp_state
 function wcp_state_to_add(){
 	alert('Пробукт был удален!');
 	document.querySelector('[data-wm-prod-id="' + last_removed_product + '"] [data-wm-wcp]').setAttribute('data-wm-wcp', 'add');
-}
-
-function rm_id(id){
-	// if (typeof( getCookie('wcp_compare') ) == 'undefined') {
-	// 	return;
-	// }
-	// var ids = getCookie('wcp_compare').split('+');
-	// var new_ids = '';
-	// ids.forEach(function(item, i){
-	// 	if (item == id){
-	// 		ids.splice(i);
-	// 	} else if (item){
-	// 		new_ids += '+'+item;
-	// 	}
-	// });
-	// setCookie( 
-	// 	'wcp_compare',
-	// 	new_ids, 
-	// 	new Date(new Date().getTime() + 60 * 1000 * 60 * 24 * 380) 
-	// );
+	document.querySelector('.shop-icons .accept .number').innerText = document.querySelector('.shop-icons .accept .number').innerText * 1 - 1;
 }
 
 function compare_controller(e){

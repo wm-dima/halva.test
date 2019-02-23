@@ -185,11 +185,10 @@ class Wcp {
 
 
 		$this->loader->add_shortcode('is_in_compare_list', $plugin_public, 'is_in_compare_list');
-		// $this->loader->add_shortcode('wcp_shc2', $plugin_public, 'wcp_shc_do2');
+		$this->loader->add_shortcode('wcp_get_total', $plugin_public, 'wcp_get_total');
 		// $this->loader->add_shortcode('wcp_shc', $plugin_public, 'wcp_shc_do');
 
 	
-	$plugin_public->transfer_cookie_to_bd();
 		$this->loader->add_action('wp_login', $plugin_public, 'transfer_cookie_to_bd');
 		$this->loader->add_action('user_register', $plugin_public, 'transfer_cookie_to_bd');
 	}

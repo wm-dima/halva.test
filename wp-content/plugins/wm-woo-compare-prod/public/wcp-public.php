@@ -164,13 +164,23 @@ class WCP_Public {
 		foreach ($in_cookie as $key => $value) {
 			$sql = '
 				INSERT INTO ' . $wpdb->prefix . 'client_id_product_id (client_id, product_id)
-				SELECT * FROM (SELECT ' . 3 . ', '. (int)$value . ') AS tmp
+				SELECT * FROM (SELECT ' . get_current_user_id() . ', '. (int)$value . ') AS tmp
 				WHERE NOT EXISTS (
-				    SELECT client_id FROM wp_client_id_product_id WHERE client_id = ' . 3 . ' AND product_id = '. (int)$value . '
+				    SELECT client_id FROM wp_client_id_product_id WHERE client_id = ' . get_current_user_id() . ' AND product_id = '. (int)$value . '
 				) LIMIT 1;
 			';
 			$wpdb->query($sql);
 		}
 		setcookie('wcp_compare', '', -1000);
+	}
+
+	public function wcp_get_total(){
+		if (is_user_logged_in()) {
+			global $wpdb;
+			return $wpdb->get_var('SELECT COUNT(product_id) FROM ' . $wpdb->prefix . 'client_id_product_id WHERE client_id = ' . get_current_user_id() . ';');
+			// var_dump( $wpdb->get_var('SELECT COUNT(product_id) FROM ' . $wpdb->prefix . 'client_id_product_id WHERE client_id = ' . get_current_user_id() . ';') );
+		} else {
+			return count( json_decode( $_COOKIE['wcp_compare'], true ) );
+		}
 	}
 }

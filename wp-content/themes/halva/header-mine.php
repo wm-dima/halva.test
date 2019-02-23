@@ -124,7 +124,7 @@
                 <div class="shop-icons">
                     <div class="accept">
                         <div class="shop-icon">
-                            <div class="number"><?php echo count($yith_woocompare->obj->products_list); ?></div>
+                            <div class="number"><?php echo do_shortcode( '[wcp_get_total]' ) ?></div>
                         </div>
                         <p>Сравнение</p>
                     </div>
