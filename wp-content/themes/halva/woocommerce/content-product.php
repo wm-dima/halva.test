@@ -24,7 +24,6 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 	return;
 }
 ?>
-<?php echo do_shortcode( '[is_in_compare_list]' ); ?>
 <div class="catalog-item hi-1" data-wm-prod-id="<?php the_ID(); ?>">
     <div class="item-info">
         <div class="item-logo">

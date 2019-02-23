@@ -158,6 +158,9 @@ class WCP_Public {
 	public function transfer_cookie_to_bd(){
 		global $wpdb;
 		$in_cookie = json_decode( $_COOKIE['wcp_compare'], true );
+		if (empty($in_cookie)) {
+			return;
+		}
 		foreach ($in_cookie as $key => $value) {
 			$sql = '
 				INSERT INTO ' . $wpdb->prefix . 'client_id_product_id (client_id, product_id)
@@ -166,8 +169,6 @@ class WCP_Public {
 				    SELECT client_id FROM wp_client_id_product_id WHERE client_id = ' . 3 . ' AND product_id = '. (int)$value . '
 				) LIMIT 1;
 			';
-			echo $sql;
-			echo "<br>";
 			$wpdb->query($sql);
 		}
 		setcookie('wcp_compare', '', -1000);
