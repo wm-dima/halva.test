@@ -30,7 +30,6 @@ function register_my_widgets(){
 add_action( 'wp_enqueue_scripts', 'my_them_load_css_and_js' );
 
 function my_them_load_css_and_js() {
-    wp_enqueue_style( 'main-style', get_template_directory_uri() . '/style.css');
 
     wp_enqueue_style( 'css-style', get_template_directory_uri() . '/assets/css/style.css');
     wp_enqueue_style( 'normalize', get_template_directory_uri() . '/assets/css/normalize.css');
@@ -42,6 +41,8 @@ function my_them_load_css_and_js() {
     wp_enqueue_style( 'item-slider', get_template_directory_uri() . '/assets/css/item-slider.css');
     wp_enqueue_style( 'jcarousel-connected-carousels', get_template_directory_uri() . '/assets/css/jcarousel.connected-carousels.css');
     wp_enqueue_style( 'select', get_template_directory_uri() . '/assets/css/select.css');
+    
+    wp_enqueue_style( 'main-style', get_template_directory_uri() . '/style.css');
 
 
     wp_deregister_script('jquery');
@@ -50,9 +51,17 @@ function my_them_load_css_and_js() {
     wp_enqueue_script( 'jcarousel', get_template_directory_uri() . '/assets/js/jcarousel.connected-carousels.js', array('jquery'), null, true );
     wp_enqueue_script( 'jquery-jcarousel', get_template_directory_uri() . '/assets/js/jquery.jcarousel.min.js', array('jquery'), null, true );
     wp_enqueue_script( 'select', get_template_directory_uri() . '/assets/js/select.js', array('jquery'), null, true );
-    wp_enqueue_script( 'swiper', get_template_directory_uri() . '/assets/js/swiper.min.js', array('jquery'), null, true );
+    wp_enqueue_script( 'the-swiper', get_template_directory_uri() . '/assets/js/swiper.min.js', array('jquery'), null, false );
 
     wp_enqueue_script( 'wm-main', get_template_directory_uri() . '/assets/js/main.js',[], null, true );
+
+    wp_localize_script( 
+        'wm-main', 
+        'my_ajax_url', 
+        array( 
+            'ajax_url' => admin_url( 'admin-ajax.php' ),
+            'is_log_in' => is_user_logged_in()
+        ) );
 }
 
 
@@ -79,14 +88,8 @@ function wm_get_main_img($id){
 }
 
 function wm_geet_compare_link($text){
-    // return;
-    // if ( $stock == 'outofstock' ) {
-    //     $compare_link = explode ( '</a>', do_shortcode('[yith_compare_button]') );
-    //     return  $compare_link[0] . $text . '</a>' . $compare_link[1];
-    // } else {
-        $compare_link = explode ( '</a>', do_shortcode('[yith_compare_button]') );
-        return $compare_link[0] . $text . '</a>' . $compare_link[1];
-    // }
+    $compare_link = explode ( '</a>', do_shortcode('[yith_compare_button]') );
+    return $compare_link[0] . $text . '</a>' . $compare_link[1];
 }
 
 function wm_get_wishlist_count(){
@@ -252,13 +255,16 @@ function wm_get_shipping_methods(){
     return $html;
 }
 
-// echo "<pre>";
+// add_action( 'user_register', 'aaa' );
+// function aaa( $id ) {
+//     echo "user_register";
+//     var_dump($id);
+//     die;
+// }
 
-// var_dump($sitepress);
-
-// var_dump( $yith_woocompare->obj->list_products_html());
-// echo "<hr>";
-// var_dump( $yith_woocompare->obj->get_products_list() );
-// echo "<hr>";
-// var_dump( get_class_methods($yith_woocompare->obj));
-// die;
+// function your_function($id) {
+//     echo "wp_login";
+//     var_dump($id, $user);
+//     die;
+// }
+// add_action('wp_login', 'your_function');

@@ -292,13 +292,29 @@ div.filter-price > .wm-filter-title > img {
 }
 
 
-.item-balance {
-    background-repeat: no-repeat !important;
+.item-icons a.added  {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: -18px -4px;
+    zoom: 2.5 !important;
+    width: 28px;
+    height: 18px;
+    display: block;
+    background-image: url(./assets/images/item-comp.jpg)
 }
+
 .catalog-item.hi-1{
     position: relative;
 }
 
 .in-basket .added_to_cart.wc-forward {
     display: none;
+}
+
+.item-balance[data-wm-wcp="add"]{
+        background-image: url(./assets/images/compare--no.png);
+}
+
+.item-balance[data-wm-wcp="remove"]{
+        background-image: url(./assets/images/compare--yes.png);
 }

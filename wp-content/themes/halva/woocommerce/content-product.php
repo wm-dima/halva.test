@@ -24,7 +24,8 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 	return;
 }
 ?>
-<div class="catalog-item hi-1">
+<?php echo do_shortcode( '[is_in_compare_list]' ); ?>
+<div class="catalog-item hi-1" data-wm-prod-id="<?php the_ID(); ?>">
     <div class="item-info">
         <div class="item-logo">
             <div class="img-padding">
@@ -35,7 +36,10 @@ if ( empty( $product ) || ! $product->is_visible() ) {
         <div class="item-price"><span class="price-value"><?php echo $product->get_price_html(); ?></span> руб.</div>
         <div class="item-icons">
             <div class="item-like"><?php  echo do_shortcode( '[ti_wishlists_addtowishlist]' ); ?> </div>
-            <?php echo wm_geet_compare_link('<div class="item-balance"></div>'); ?>
+            <div 
+                class="item-balance" 
+                data-wm-wcp="<?php echo do_shortcode( '[is_in_compare_list]' ) == 1 ? 'remove' : 'add'; ?>">
+            </div>
         </div>
     </div>    
     <div class="in-basket">

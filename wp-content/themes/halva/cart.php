@@ -99,5 +99,7 @@
                     </div>
                 </div>
             </div>
+<?php echo wp_registration_url(); ?>
+<?php wp_login_form(); ?>
 <script src="<?php echo get_template_directory_uri() . '/assets/js/wm_catr_page.js' ?>"></script>
 <?php get_footer(); ?>

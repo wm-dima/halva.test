@@ -20,4 +20,4 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 ?>
-                         <div class="catalog-items">
+<div class="catalog-items">
