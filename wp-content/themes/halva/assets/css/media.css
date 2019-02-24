@@ -35,7 +35,7 @@
     
 }
 @media(max-width:1265px) {
-    .search a {
+    .search-a {
         padding: 13px 48px;
     }
     .search form input {
@@ -209,7 +209,7 @@
         width: 190px;
         margin-right: 5px;
     }
-    .search a {
+    .search-a {
         -webkit-box-ordinal-group: 3;
             -ms-flex-order: 2;
                 order: 2;
@@ -225,6 +225,9 @@
     }
     .adv-p {
         font-size: 16px;
+    }
+    .catalog-min {
+        top:145px;
     }
 }
 @media(max-width:1005px) {
@@ -830,6 +833,14 @@
     .social-and-phone {
         width: auto;
     }
+    .catalog-min {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+    .ct-min-1 {
+        margin-bottom: 25px;
+    }
 }
 @media(max-width:530px) {
     .elements {
@@ -988,10 +999,16 @@
 @media(max-width:412px) {
     .hit-item {
         width: 260px;
-        height: 346px;
+        min-height: 325px;
     }
     .in-basket button {
         height: 64px;
+    }
+    .item-info {
+        min-height:266px;
+    }
+    .hit-item {
+        min-height: 325px;
     }
     .catalog-name p {
         font-size: 21px;
@@ -1103,7 +1120,7 @@
         height: 41px;
         font-size: 14px;
     }
-    .search a {
+    .search-a {
         padding: 12px 50px;
         font-size: 14px;
     }
@@ -1114,7 +1131,7 @@
         padding: 12px 70px;
         font-size: 14px;
     }
-    .search a {
+    .search-a {
         padding: 13px 28px;
     }
     .article-name, .article-min {
@@ -1171,7 +1188,7 @@
     }
     .hit-item {
         width: 229px;
-        height: 330px;
+        min-height: 330px;
     }
     .location {
         display: none ;
@@ -1335,7 +1352,7 @@
     }
     .hit-item {
         width: 227px;
-        height: 330px;
+        min-height: 330px;
     }
     .item-logo {
         margin-bottom: 20px;

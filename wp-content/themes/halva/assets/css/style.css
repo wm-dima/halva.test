@@ -635,38 +635,39 @@ header {
     display: -ms-flexbox;
     display: flex;
     -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
     -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
+    flex-wrap: wrap;
+    align-items: flex-start;
 }
 .hit-item , .catalog-item {
     width: 226px;
-    height: 318px;
+    min-height: 318px;
     background-color: #fff;
     -webkit-box-shadow: 0 2px 32px -4px #a4a4a4;
-            box-shadow: 0 2px 32px -4px #a4a4a4;
+    box-shadow: 0 2px 32px -4px #a4a4a4;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
 }
 .item-info {
-    width:100%;
-    height:100%;
+    width: 100%;
+    min-height: 258px;
     padding: 35px 39px 0px 39px;
     -webkit-box-sizing: border-box;
-            box-sizing: border-box;
+    box-sizing: border-box;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
 }
 .hit-name {
     font-family: 'Museo Sans Cyrl 500';
@@ -705,14 +706,20 @@ header {
     display: flex;
     width:80px;
     -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    margin-bottom: 20px;
 }
 .item-like {
     background-image: url(../images/like-item.png);
     width: 28px;
     height: 26px;
     cursor: pointer;
+    background-position: 0 0;
+    /* background-size: contain; */
+}
+.item-like:hover , .like-active {
+    background-position: 28 0;
     /* background-size: contain; */
 }
 .item-balance {
@@ -720,6 +727,9 @@ header {
     width:33px;
     height:27px;
     cursor: pointer;
+}
+.item-balance:hover , .balance-active {
+    background-position: 33.5 0;
 }
 .in-basket button{
     width: 100%;
@@ -1634,6 +1644,7 @@ footer {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    align-items: flex-start;
 }
 .catalog-navigation {
     width:100%;
@@ -1702,7 +1713,7 @@ footer {
 }
 .catalog-item {
     width: 242px !important;
-    min-height: 365px;
+    min-height: 359px;
 }
 .price , .manufacturers , .type-acustic , .power , .size , .quantity-lines , .resistance{
     margin-bottom: 20px;
@@ -2101,7 +2112,7 @@ footer {
     background-position: -102 0;
 }
 .compar:hover {
-    background-position: -102 0;
+    background-position: -102.5 0;
 }
 .delivery-item {
     padding-top: 47px;
@@ -2749,7 +2760,7 @@ footer {
 }
 .element {
     width: 270px;
-    height:400px;
+    min-height: 400px;
 }
 .element-main {
     display: flex;
@@ -2907,14 +2918,26 @@ footer {
 .search form {
 	display:flex;
 }
+.swiper-slide .catalog-item {
+    min-height: 353px;
+}
 /* HOVERS */
 .search-a , .search form button , .in-basket button , 
-.all-categories , .subscribe , .callback-footer a{
+.all-categories , .subscribe , .callback-footer a , 
+.element-main button , .in-basket-item , .buy-opt , .calc ,
+.get-review {
     transition: 0.2s all;
 }
 .search-a:hover , .search form button:hover , .in-basket button:hover, 
-.all-categories:hover , .subscribe:hover , .callback-footer a:hover , .actv{
+.all-categories:hover , .subscribe:hover , .callback-footer a:hover , .actv,
+.element-main button:hover , .in-basket-item:hover , .calc:hover ,
+.get-review:hover {
     color:#fe9b00;
     background: #646464;
 }
 
+/* hover - white*/
+.buy-opt:hover {
+    color:#fff;
+    background: #fe9b00;
+}
