@@ -318,3 +318,16 @@ div.filter-price > .wm-filter-title > img {
 .item-balance[data-wm-wcp="remove"]{
         background-image: url(./assets/images/compare--yes.png);
 }
+
+.item-navigation ul li:last-child {
+    text-decoration: none;
+    color: #ff9c00;
+    display: inline-block;
+    line-height: 38px;
+    /*border: 3px solid #ff9c00;*/
+    border-radius: 9px;
+    font-family: 'Museo Sans Cyrl 300';
+    font-size: 13px;
+    text-transform: uppercase;
+    padding: 0px 20px;
+}

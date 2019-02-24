@@ -91,7 +91,7 @@
                 </div>
             </div>
             <div class="body-black"></div>
-            <div class="logo-head"></div>
+                <div class="logo-head"></div>
             <div class="skype">
                 <a href=""><img src="<?php echo get_template_directory_uri(); ?>/assets/images/skype.png" alt=""></a>
             </div>
@@ -100,7 +100,9 @@
     <div class="menu-wrapper">
 
         <div class="second-menu" id="sc-menu-ct">
-            <div class="logo"></div>
+            <a href="<?php echo get_home_url(); ?>">
+                <div class="logo"></div>
+            </a>
             <div class="phones">
                 <ul>
                     <li><img src="<?php echo get_template_directory_uri(); ?>/assets/images/phone.png" alt=""><span class="phone-number"><a href="tel:+88007007363">8 (800) 700-73-63</a></span></li>

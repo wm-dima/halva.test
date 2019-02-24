@@ -26,12 +26,16 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 ?>
 <div class="catalog-item hi-1" data-wm-prod-id="<?php the_ID(); ?>">
     <div class="item-info">
-        <div class="item-logo">
-            <div class="img-padding">
-                <img src="<?php echo wm_get_main_img( $loop->post->ID ); ?>" alt="">
+        <a href="<?php echo get_permalink(); ?>">
+            <div class="item-logo">
+                <div class="img-padding">
+                    <img src="<?php echo wm_get_main_img( $loop->post->ID ); ?>" alt="">
+                </div>
             </div>
-        </div>
-        <p class="item-name"><?php the_title(); ?></p>
+       </a>
+        <a href="<?php echo get_permalink(); ?>">
+            <p class="item-name"><?php the_title(); ?></p>
+        </a>
         <div class="item-price"><span class="price-value"><?php echo $product->get_price_html(); ?></span> руб.</div>
         <div class="item-icons">
             <div class="item-like"><?php  echo do_shortcode( '[ti_wishlists_addtowishlist]' ); ?> </div>

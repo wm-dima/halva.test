@@ -255,16 +255,28 @@ function wm_get_shipping_methods(){
     return $html;
 }
 
-// add_action( 'user_register', 'aaa' );
-// function aaa( $id ) {
-//     echo "user_register";
-//     var_dump($id);
-//     die;
-// }
+// remove_action( 'woocommerce_before_main_content', 'woocommerce_output_content_wrapper', 10 );
 
-// function your_function($id) {
-//     echo "wp_login";
-//     var_dump($id, $user);
-//     die;
-// }
-// add_action('wp_login', 'your_function');
+function wm_get_images( $id ){
+    if (!is_int((int)$id)) {
+        return;
+    }
+    global $wpdb;
+    $sql = 'SELECT meta_key, meta_value from ' . $wpdb->prefix . 'postmeta where post_id = ' . $id . 
+           ' AND ( meta_key = \'_product_image_gallery\' OR meta_key = \'_thumbnail_id\' );';
+    $res = $wpdb->get_results( $sql );
+    $main_img = [];
+    $additional_img = [];
+    foreach ($res as $key => $value) {
+        if ( $value->meta_key == '_thumbnail_id' ) {
+            $main_img[] = wp_get_attachment_url( $value->meta_value );
+        }
+        if ( $value->meta_key == '_product_image_gallery' && !empty( $value->meta_value ) ) {
+                $ids = explode(',', $value->meta_value);
+                foreach ($ids as $k => $v) {
+                    $additional_img[] = wp_get_attachment_url($v);
+                }
+        }
+    }
+    return array_merge($main_img, $additional_img);
+}
