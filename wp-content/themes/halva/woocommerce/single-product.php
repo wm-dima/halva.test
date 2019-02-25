@@ -69,25 +69,19 @@ get_header( 'shop' ); ?>
                                                     <div class="connected-carousels">
                                                         <div class="stage">
                                                             <div class="carousel carousel-stage">
-                                                                <ul>
-                                                                    <li><img src="../images/item-1.png"  alt=""></li>
-                                                                    <li><img src="../images/item-1.png"  alt=""></li>
-                                                                    <li><img src="../images/item-1.png"  alt=""></li>
-                                                                </ul>
+                                                                <?php echo wm_get_single_prod_galegy( $product->id ); ?>
                                                             </div>
                                                             <a href="#" class="prev prev-stage"><span>&lsaquo;</span></a>
                                                             <a href="#" class="next next-stage"><span>&rsaquo;</span></a>
                                                         </div>
 
                                                         <div class="navigation">
-                                                            <a href="#" class="prev prev-navigation"><img src="../images/prev.png" alt=""></a>
-                                                            <a href="#" class="next next-navigation"><img src="../images/next.png" alt=""></a>
+                                                            <a href="#" class="prev prev-navigation">
+                                                            	<img src="<?php echo get_template_directory_uri(); ?>/assets/images/prev.png" alt=""></a>
+                                                            <a href="#" class="next next-navigation">
+                                                            	<img src="<?php echo get_template_directory_uri(); ?>/assets/images/next.png" alt=""></a>
                                                             <div class="carousel carousel-navigation">
-                                                                <ul>
-                                                                    <li><img src="../images/item-slider.jpg" width="69" height="21" alt=""></li>
-                                                                    <li><img src="../images/item-slider.jpg" width="69" height="21" alt=""></li>
-                                                                    <li><img src="../images/item-slider.jpg" width="69" height="21" alt=""></li>
-                                                                </ul>
+                                                                <?php echo wm_get_single_prod_galegy( $product->id ); ?>
                                                             </div>
                                                         </div>
                                                     </div><!--aba19-port-->
@@ -113,6 +107,93 @@ get_header( 'shop' ); ?>
                                                 </div>
                                             </div>
                                         </div>
+<!-- ================================================== -->
+
+<!-- <div class="woocommerce-shipping-fields">
+    <?php if ( true === WC()->cart->needs_shipping_address() ) : ?>
+
+        <h3 id="ship-to-different-address">
+            <label class="woocommerce-form__label woocommerce-form__label-for-checkbox checkbox">
+                <input id="ship-to-different-address-checkbox" class="woocommerce-form__input woocommerce-form__input-checkbox input-checkbox" <?php checked( apply_filters( 'woocommerce_ship_to_different_address_checked', 'shipping' === get_option( 'woocommerce_ship_to_destination' ) ? 1 : 0 ), 1 ); ?> type="checkbox" name="ship_to_different_address" value="1" /> <span><?php _e( 'Ship to a different address?', 'woocommerce' ); ?></span>
+            </label>
+        </h3>
+
+        <div class="shipping_address">
+
+            <?php do_action( 'woocommerce_before_checkout_shipping_form', $checkout ); ?>
+
+            <div class="woocommerce-shipping-fields__field-wrapper">
+                <?php
+                    $checkout = WC()->checkout; /*моя вставка*/
+                    $fields = $checkout->get_checkout_fields( 'shipping' );
+
+                    foreach ( $fields as $key => $field ) {
+                        if ( isset( $field['country_field'], $fields[ $field['country_field'] ] ) ) {
+                            $field['country'] = $checkout->get_value( $field['country_field'] );
+                        }
+                        woocommerce_form_field( $key, $field, $checkout->get_value( $key ) );
+                    }
+                ?>
+            </div>
+
+            <?php do_action( 'woocommerce_after_checkout_shipping_form', $checkout ); ?>
+
+        </div>
+
+    <?php endif; ?>
+</div>
+<div class="woocommerce-additional-fields">
+    <?php do_action( 'woocommerce_before_order_notes', $checkout ); ?>
+
+    <?php if ( apply_filters( 'woocommerce_enable_order_notes_field', 'yes' === get_option( 'woocommerce_enable_order_comments', 'yes' ) ) ) : ?>
+
+        <?php if ( ! WC()->cart->needs_shipping() || wc_ship_to_billing_address_only() ) : ?>
+
+            <h3><?php _e( 'Additional information', 'woocommerce' ); ?></h3>
+
+        <?php endif; ?>
+
+        <div class="woocommerce-additional-fields__field-wrapper">
+            <?php foreach ( $checkout->get_checkout_fields( 'order' ) as $key => $field ) : ?>
+                <?php woocommerce_form_field( $key, $field, $checkout->get_value( $key ) ); ?>
+            <?php endforeach; ?>
+        </div>
+
+    <?php endif; ?>
+
+    <?php do_action( 'woocommerce_after_order_notes', $checkout ); ?>
+</div> -->
+<?php
+// echo "<pre>";
+// global $product; /* Remove if set already.. */
+// $shipping_class = $product->get_shipping_class();
+// $flat_rate = new WC_Shipping_Flat_Rate;
+// var_dump($flat_rate);
+// $symbol = get_woocommerce_currency_symbol();
+// echo $symbol . $flat_rate->flat_rates[$shipping_class]['cost'];
+// die;
+        wc_get_template(
+            'cart/cart-shipping.php',
+            array(
+                'package'                  => $product,
+                'available_methods'        => $product['rates'],
+                'show_package_details'     => count( $packages ) > 1,
+                'show_shipping_calculator' => is_cart() && $first,
+                'package_details'          => implode( ', ', $product_names ),
+                /* translators: %d: shipping package number */
+                'package_name'             => apply_filters( 'woocommerce_shipping_package_name', ( ( $i + 1 ) > 1 ) ? sprintf( _x( 'Shipping %d', 'shipping packages', 'woocommerce' ), ( $i + 1 ) ) : _x( 'Shipping', 'shipping packages', 'woocommerce' ), $i, $product ),
+                'index'                    => $i,
+                'chosen_method'            => $chosen_method,
+                'formatted_destination'    => WC()->countries->get_formatted_address( $product['destination'], ', ' ),
+                'has_calculated_shipping'  => WC()->customer->has_calculated_shipping(),
+            )
+        );
+
+?>
+
+
+<!-- ================================================== -->
+
                                         <div class="delivery-item">
                                             <div class="calculate">
                                                 <p>Доставка до<br class="brhide">&mdash;</p>
@@ -395,7 +476,7 @@ get_header( 'shop' ); ?>
                                               <div class="catalog-item hi-1">
                                                 <div class="item-info">
                                                     <div class="item-logo">
-                                                        <img src="../images/ct-item-1.png" alt="">
+                                                        <img src="<?php echo get_templa_directory_uri(); ?>/assets/images/ct-item-1.png" alt="">
                                                     </div>
                                                     <p class="item-name"> Акустика Ural AS-D200 ARMADA, Мидрейндж 1шт.</p>
                                                     <div class="item-price"><span class="price-value">1 350</span> руб.</div>
@@ -413,7 +494,7 @@ get_header( 'shop' ); ?>
                                               <div class="catalog-item hi-1">
                                                 <div class="item-info">
                                                     <div class="item-logo">
-                                                        <img src="../images/ct-item-1.png" alt="">
+                                                        <img src="<?php echo get_templa_directory_uri(); ?>/assets/images/ct-item-1.png" alt="">
                                                     </div>
                                                     <p class="item-name"> Акустика Ural AS-D200 ARMADA, Мидрейндж 1шт.</p>
                                                     <div class="item-price"><span class="price-value">1 350</span> руб.</div>
@@ -431,7 +512,7 @@ get_header( 'shop' ); ?>
                                               <div class="catalog-item hi-1">
                                                 <div class="item-info">
                                                     <div class="item-logo">
-                                                        <img src="../images/ct-item-1.png" alt="">
+                                                        <img src="<?php echo get_templa_directory_uri(); ?>/assets/images/ct-item-1.png" alt="">
                                                     </div>
                                                     <p class="item-name"> Акустика Ural AS-D200 ARMADA, Мидрейндж 1шт.</p>
                                                     <div class="item-price"><span class="price-value">1 350</span> руб.</div>
@@ -449,7 +530,7 @@ get_header( 'shop' ); ?>
                                               <div class="catalog-item hi-1">
                                                 <div class="item-info">
                                                     <div class="item-logo">
-                                                        <img src="../images/ct-item-1.png" alt="">
+                                                        <img src="<?php echo get_templa_directory_uri(); ?>/assets/images/ct-item-1.png" alt="">
                                                     </div>
                                                     <p class="item-name"> Акустика Ural AS-D200 ARMADA, Мидрейндж 1шт.</p>
                                                     <div class="item-price"><span class="price-value">1 350</span> руб.</div>
@@ -467,7 +548,7 @@ get_header( 'shop' ); ?>
                                               <div class="catalog-item hi-1">
                                                 <div class="item-info">
                                                     <div class="item-logo">
-                                                        <img src="../images/ct-item-1.png" alt="">
+                                                        <img src="<?php echo get_templa_directory_uri(); ?>/assets/images/ct-item-1.png" alt="">
                                                     </div>
                                                     <p class="item-name"> Акустика Ural AS-D200 ARMADA, Мидрейндж 1шт.</p>
                                                     <div class="item-price"><span class="price-value">1 350</span> руб.</div>
@@ -485,7 +566,7 @@ get_header( 'shop' ); ?>
                                               <div class="catalog-item hi-1">
                                                 <div class="item-info">
                                                     <div class="item-logo">
-                                                        <img src="../images/ct-item-1.png" alt="">
+                                                        <img src="<?php echo get_templa_directory_uri(); ?>/assets/images/ct-item-1.png" alt="">
                                                     </div>
                                                     <p class="item-name"> Акустика Ural AS-D200 ARMADA, Мидрейндж 1шт.</p>
                                                     <div class="item-price"><span class="price-value">1 350</span> руб.</div>
@@ -507,7 +588,7 @@ get_header( 'shop' ); ?>
                                         <div class="swiper-button-prev"></div>
                                     </div>    
                                       <!-- Swiper JS -->
-                                      <script src="../js/swiper.min.js"></script>
+                                      <!-- <script src="../js/swiper.min.js"></script> -->
                                     
                                       <!-- Initialize Swiper -->
                                       <script>

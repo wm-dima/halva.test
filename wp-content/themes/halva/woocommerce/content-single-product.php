@@ -36,7 +36,13 @@ echo "<pre>";
 // die;
 echo "</pre>";
 ?>
-									<div class="item-cart" id="product-<?php the_ID(); ?>" >
+/**
+ * Hook: woocommerce_before_single_product.
+ *
+ * @hooked wc_print_notices - 10
+ */
+do_action( 'woocommerce_before_single_product' );
+								<!-- 	<div class="item-cart" id="product-<?php the_ID(); ?>" >
 										<div class="item-cart-main">
                                             <div class="inside-cart-main">
                                                 <div class="item-view">
@@ -71,7 +77,7 @@ echo "</pre>";
                                                         <div class="like-item"></div>
                                                         <div class="compar"></div>
                                                     </div>
-                                                </div>
+                                                </div> -->
 	<?php
 		/**
 		 * Hook: woocommerce_before_single_product_summary.

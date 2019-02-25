@@ -31,29 +31,29 @@ add_action( 'wp_enqueue_scripts', 'my_them_load_css_and_js' );
 
 function my_them_load_css_and_js() {
 
-    wp_enqueue_style( 'css-style', get_template_directory_uri() . '/assets/css/style.css');
-    wp_enqueue_style( 'normalize', get_template_directory_uri() . '/assets/css/normalize.css');
-    wp_enqueue_style( 'museo', get_template_directory_uri() . '/assets/fonts/museo.css');
-    wp_enqueue_style( 'swiper.min', get_template_directory_uri() . '/assets/css/swiper.min.css');
-    wp_enqueue_style( 'media-css', get_template_directory_uri() . '/assets/css/media.css');
+    wp_enqueue_style( 'wm-the-css-style', get_template_directory_uri() . '/assets/css/style.css');
+    wp_enqueue_style( 'wm-the-normalize', get_template_directory_uri() . '/assets/css/normalize.css');
+    wp_enqueue_style( 'wm-the-museo', get_template_directory_uri() . '/assets/fonts/museo.css');
+    wp_enqueue_style( 'wm-the-swiper.min', get_template_directory_uri() . '/assets/css/swiper.min.css');
+    wp_enqueue_style( 'wm-the-media-css', get_template_directory_uri() . '/assets/css/media.css');
 
-    wp_enqueue_style( 'generic', get_template_directory_uri() . '/assets/css/generic.css');
-    wp_enqueue_style( 'item-slider', get_template_directory_uri() . '/assets/css/item-slider.css');
-    wp_enqueue_style( 'jcarousel-connected-carousels', get_template_directory_uri() . '/assets/css/jcarousel.connected-carousels.css');
-    wp_enqueue_style( 'select', get_template_directory_uri() . '/assets/css/select.css');
+    wp_enqueue_style( 'wm-the-generic', get_template_directory_uri() . '/assets/css/generic.css');
+    wp_enqueue_style( 'wm-the-item-slider', get_template_directory_uri() . '/assets/css/item-slider.css');
+    wp_enqueue_style( 'wm-the-jcarousel-connected-carousels', get_template_directory_uri() . '/assets/css/jcarousel.connected-carousels.css');
+    wp_enqueue_style( 'wm-the-select', get_template_directory_uri() . '/assets/css/select.css');
     
-    wp_enqueue_style( 'main-style', get_template_directory_uri() . '/style.css');
+    wp_enqueue_style( 'wm-the-main-style', get_template_directory_uri() . '/style.css');
 
 
     wp_deregister_script('jquery');
     wp_enqueue_script( 'jquery', get_template_directory_uri() . '/assets/js/jquery-3.3.1.min.js', [], null, false );
 
-    wp_enqueue_script( 'jcarousel', get_template_directory_uri() . '/assets/js/jcarousel.connected-carousels.js', array('jquery'), null, true );
-    wp_enqueue_script( 'jquery-jcarousel', get_template_directory_uri() . '/assets/js/jquery.jcarousel.min.js', array('jquery'), null, true );
-    wp_enqueue_script( 'select', get_template_directory_uri() . '/assets/js/select.js', array('jquery'), null, true );
-    wp_enqueue_script( 'the-swiper', get_template_directory_uri() . '/assets/js/swiper.min.js', array('jquery'), null, false );
+    wp_enqueue_script( 'wm-the-jcarousel', get_template_directory_uri() . '/assets/js/jcarousel.connected-carousels.js', array('jquery'), null, false );
+    wp_enqueue_script( 'wm-the-jquery-jcarousel', get_template_directory_uri() . '/assets/js/jquery.jcarousel.min.js', array('jquery'), null, false );
+    wp_enqueue_script( 'wm-the-select', get_template_directory_uri() . '/assets/js/select.js', array('jquery'), null, true );
+    wp_enqueue_script( 'wm-the-the-swiper', get_template_directory_uri() . '/assets/js/swiper.min.js', array('jquery'), null, false );
 
-    wp_enqueue_script( 'wm-main', get_template_directory_uri() . '/assets/js/main.js',[], null, true );
+    wp_enqueue_script( 'wm-the-wm-main', get_template_directory_uri() . '/assets/js/main.js',[], null, true );
 
     wp_localize_script( 
         'wm-main', 
@@ -279,4 +279,16 @@ function wm_get_images( $id ){
         }
     }
     return array_merge($main_img, $additional_img);
+}
+
+function wm_get_single_prod_galegy( $id ){
+    $images = wm_get_images( $id );
+    // var_dump($images);
+    // die;
+    $html = '<ul>';
+        foreach ($images as $key => $value) {
+            $html .= '<li><img src="' . $value . '"  alt=""></li>';
+        }
+    $html .= '</ul>';
+    return $html;
 }

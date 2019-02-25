@@ -209,6 +209,9 @@ function wc_cart_totals_shipping_html() {
 	foreach ( $packages as $i => $package ) {
 		$chosen_method = isset( WC()->session->chosen_shipping_methods[ $i ] ) ? WC()->session->chosen_shipping_methods[ $i ] : '';
 		$product_names = array();
+		// echo "<pre>";
+		// var_dump($package);
+		// die;
 
 		if ( count( $packages ) > 1 ) {
 			foreach ( $package['contents'] as $item_id => $values ) {
@@ -216,7 +219,18 @@ function wc_cart_totals_shipping_html() {
 			}
 			$product_names = apply_filters( 'woocommerce_shipping_package_details_array', $product_names, $package );
 		}
-
+// 		echo "<pre>";
+// var_dump(
+// '$package[rates]',
+// $package['rates'],
+// 'count( $packages ) > 1',
+// count( $packages ) > 1,
+// 'implode( ", ", $product_names )',
+// implode( ', ', $product_names ),
+// '$chosen_method',
+// $chosen_method
+// );
+// die;
 		wc_get_template(
 			'cart/cart-shipping.php',
 			array(
