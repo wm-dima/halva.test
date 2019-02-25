@@ -292,3 +292,24 @@ function wm_get_single_prod_galegy( $id ){
     $html .= '</ul>';
     return $html;
 }
+
+function all_commentfields( $fields ) {
+    // var_dump($fields); // просмотр всех полей в переменной $fields
+
+    // сохраняем значение всех полей формы
+    $mycomment_field = $fields['comment'];
+    $myauthor_field = $fields['author'];
+    $myemail_field = $fields['email'];
+    $myurl_field = $fields['url'];
+ 
+    unset( $fields['comment'], $fields['author'], $fields['email'], $fields['url'] );
+ 
+    // заново добавляем поля в форму в нужном порядке
+    $fields['author'] = $myauthor_field;
+    $fields['email'] = $myemail_field;
+    $fields['comment'] = $mycomment_field;
+ 
+    return $fields;
+}
+ 
+add_filter( 'comment_form_fields', 'all_commentfields' );

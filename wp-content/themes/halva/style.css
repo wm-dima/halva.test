@@ -46,6 +46,10 @@ Theme Name: halva
     zoom: 1.7;
 }
 
+[data-tinv-wl-action="remove"]:hover {
+    background-image: url(./assets/images/item-like.jpg);
+}
+
 [data-tinv-wl-action="remove"] img{
     display: none !important;
 }
@@ -319,6 +323,14 @@ div.filter-price > .wm-filter-title > img {
         background-image: url(./assets/images/compare--yes.png);
 }
 
+.item-balance[data-wm-wcp="add"]:hover{
+        background-image: url(./assets/images/compare--yes.png);
+}
+
+.item-balance[data-wm-wcp="remove"]:hover{
+        background-image: url(./assets/images/compare--no.png);
+}
+
 .item-navigation ul li:last-child {
     text-decoration: none;
     color: #ff9c00;
@@ -330,4 +342,14 @@ div.filter-price > .wm-filter-title > img {
     font-size: 13px;
     text-transform: uppercase;
     padding: 0px 20px;
+}
+
+.wm-btn-comment{
+    -webkit-appearance: listitem;
+}
+
+.wm-for-balance .item-balance{
+    width: 34px;
+    height: 27px;
+    background-size: cover;
 }

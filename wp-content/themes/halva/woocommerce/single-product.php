@@ -178,149 +178,105 @@ get_header( 'shop' ); ?>
                                             <h4>Характеристики</h4>
                                                 <?php  
                                                     $specifications = get_field( 'add_specifications' );
-                                                    foreach ($specifications as $key => $value): ?>
-                                                    <div class="specifications">
-                                                        <div class="spec-main">
-                                                            <div><?php echo $value['specification_title']; ?></div>
-                                                        </div>
-                                                        <?php foreach ($value['specification_block'] as $k => $v): ?>
-                                                            <div class="type">
-                                                                <div><?php echo $v['specification_title']; ?></div>
-                                                                <div><?php echo $v['specification_value']; ?></div>
+                                                    if ( count( $specifications ) ) {
+                                                        foreach ($specifications as $key => $value): 
+                                                ?>
+                                                        <div class="specifications">
+                                                            <div class="spec-main">
+                                                                <div><?php echo $value['specification_title']; ?></div>
                                                             </div>
-                                                        <?php endforeach ?>
-                                                    </div>
-                                                <?php endforeach ?>
+                                                            <?php 
+                                                                if ( count( $value['specification_block'] ) ) {
+                                                                    foreach ($value['specification_block'] as $k => $v): ?>
+                                                                        <div class="type">
+                                                                            <div><?php echo $v['specification_title']; ?></div>
+                                                                            <div><?php echo $v['specification_value']; ?></div>
+                                                                        </div>
+                                                            <?php 
+                                                                    endforeach;
+                                                                }
+                                                            ?>
+                                                        </div>
+                                                <?php
+                                                        endforeach;
+                                                    }
+                                                ?>
                                         </div>
                                     </div>
-                                    <div class="reviews">
-                                        <h4>Отзывы</h4>
-                                        <p class="no-one-review">
-                                            У этого товара пока нет отзывов. Поделитесь своим мнением об этом товаре, и многие будут вам благодарны.
-                                        </p>
-                                        <a href="" class="get-review">Оставить отзыв</a>
-                                    </div>
+                                    <?php get_template_part('templates/comments', 'form'); ?>
                              </div>
+<?php 
+    $args = array(
+        'include' => $product->get_cross_sell_ids(),
+    );
+    $loop = wc_get_products( $args );
+    $ids = $product->get_cross_sell_ids();
+?>
                              <div class="also-buy">
-                                 <h4>С этим товаром покупают</h4>
-                                 <div class="swiper">
-                                 <div class="swiper-container">
+                                <h4>С этим товаром покупают</h4>
+                                <div class="swiper">
+                                    <div class="swiper-container">
                                         <div class="swiper-wrapper">
-                                          <div class="swiper-slide">
-                                              <div class="catalog-item hi-1">
+
+                                        <?php if ( have_posts() ) :
+                                        foreach ($ids as $key => $value) : 
+                                            // global $product;
+                                            $product = wc_get_product( $value );
+                                            // echo "<pre>";
+                                            // var_dump( $product );
+                                            // die;
+                                        ?>
+
+                                            <div class="swiper-slide">
+                                            <div class="catalog-item hi-1" data-wm-prod-id="<?php $value; ?>">
                                                 <div class="item-info">
-                                                    <div class="item-logo">
-                                                        <img src="<?php echo get_templa_directory_uri(); ?>/assets/images/ct-item-1.png" alt="">
-                                                    </div>
-                                                    <p class="item-name"> Акустика Ural AS-D200 ARMADA, Мидрейндж 1шт.</p>
-                                                    <div class="item-price"><span class="price-value">1 350</span> руб.</div>
+                                                    <a href="<?php echo get_permalink($value); ?>">
+                                                        <div class="item-logo">
+                                                            <div class="img-padding">
+                                                                <img src="<?php echo wm_get_main_img( $value ); ?>" alt="">
+                                                            </div>
+                                                        </div>
+                                                   </a>
+                                                    <a href="<?php echo get_permalink($value); ?>">
+                                                        <p class="item-name"><?php echo $product->name; ?></p>
+                                                    </a>
+                                                    <div class="item-price"><span class="price-value"><?php echo $product->get_price_html(); ?></span> руб.</div>
                                                     <div class="item-icons">
-                                                        <div class="item-like"></div>
-                                                        <div class="item-balance"></div>
+                                                        <div class="item-like"><?php  echo do_shortcode( '[ti_wishlists_addtowishlist]' ); ?> </div>
+                                                        <div 
+                                                            class="item-balance" 
+                                                            data-wm-wcp="<?php echo do_shortcode( '[is_in_compare_list]' ) == 1 ? 'remove' : 'add'; ?>">
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                </div>    
                                                 <div class="in-basket">
-                                                    <button>В корзину</button>
+                                                    <?php if ( $product->stock_status == 'outofstock' ): ?>
+                                                        <div class="out-of-stock"><p>Нет в наличие</p></div>
+                                                    <?php else: ?>
+                                                        <a 
+                                                            href="/shop/?add-to-cart=<?php echo $value; ?>" 
+                                                            data-quantity="1" 
+                                                            class="button product_type_simple add_to_cart_button ajax_add_to_cart" 
+                                                            data-product_id="<?php echo $value; ?>" 
+                                                            data-product_sku="" 
+                                                            rel="nofollow"
+                                                        >
+                                                            <button>В корзину</button>
+                                                        </a>
+                                                    <?php endif ?>
                                                 </div>
                                             </div>
-                                          </div>
-                                          <div class="swiper-slide">
-                                              <div class="catalog-item hi-1">
-                                                <div class="item-info">
-                                                    <div class="item-logo">
-                                                        <img src="<?php echo get_templa_directory_uri(); ?>/assets/images/ct-item-1.png" alt="">
-                                                    </div>
-                                                    <p class="item-name"> Акустика Ural AS-D200 ARMADA, Мидрейндж 1шт.</p>
-                                                    <div class="item-price"><span class="price-value">1 350</span> руб.</div>
-                                                    <div class="item-icons">
-                                                        <div class="item-like"></div>
-                                                        <div class="item-balance"></div>
-                                                    </div>
-                                                </div>
-                                                <div class="in-basket">
-                                                    <button>В корзину</button>
-                                                </div>
                                             </div>
-                                          </div>
-                                          <div class="swiper-slide">
-                                              <div class="catalog-item hi-1">
-                                                <div class="item-info">
-                                                    <div class="item-logo">
-                                                        <img src="<?php echo get_templa_directory_uri(); ?>/assets/images/ct-item-1.png" alt="">
-                                                    </div>
-                                                    <p class="item-name"> Акустика Ural AS-D200 ARMADA, Мидрейндж 1шт.</p>
-                                                    <div class="item-price"><span class="price-value">1 350</span> руб.</div>
-                                                    <div class="item-icons">
-                                                        <div class="item-like"></div>
-                                                        <div class="item-balance"></div>
-                                                    </div>
-                                                </div>
-                                                <div class="in-basket">
-                                                    <button>В корзину</button>
-                                                </div>
-                                            </div>
-                                          </div>
-                                          <div class="swiper-slide">
-                                              <div class="catalog-item hi-1">
-                                                <div class="item-info">
-                                                    <div class="item-logo">
-                                                        <img src="<?php echo get_templa_directory_uri(); ?>/assets/images/ct-item-1.png" alt="">
-                                                    </div>
-                                                    <p class="item-name"> Акустика Ural AS-D200 ARMADA, Мидрейндж 1шт.</p>
-                                                    <div class="item-price"><span class="price-value">1 350</span> руб.</div>
-                                                    <div class="item-icons">
-                                                        <div class="item-like"></div>
-                                                        <div class="item-balance"></div>
-                                                    </div>
-                                                </div>
-                                                <div class="in-basket">
-                                                    <button>В корзину</button>
-                                                </div>
-                                            </div>
-                                          </div>
-                                          <div class="swiper-slide">
-                                              <div class="catalog-item hi-1">
-                                                <div class="item-info">
-                                                    <div class="item-logo">
-                                                        <img src="<?php echo get_templa_directory_uri(); ?>/assets/images/ct-item-1.png" alt="">
-                                                    </div>
-                                                    <p class="item-name"> Акустика Ural AS-D200 ARMADA, Мидрейндж 1шт.</p>
-                                                    <div class="item-price"><span class="price-value">1 350</span> руб.</div>
-                                                    <div class="item-icons">
-                                                        <div class="item-like"></div>
-                                                        <div class="item-balance"></div>
-                                                    </div>
-                                                </div>
-                                                <div class="in-basket">
-                                                    <button>В корзину</button>
-                                                </div>
-                                            </div>
-                                          </div>
-                                          <div class="swiper-slide">
-                                              <div class="catalog-item hi-1">
-                                                <div class="item-info">
-                                                    <div class="item-logo">
-                                                        <img src="<?php echo get_templa_directory_uri(); ?>/assets/images/ct-item-1.png" alt="">
-                                                    </div>
-                                                    <p class="item-name"> Акустика Ural AS-D200 ARMADA, Мидрейндж 1шт.</p>
-                                                    <div class="item-price"><span class="price-value">1 350</span> руб.</div>
-                                                    <div class="item-icons">
-                                                        <div class="item-like"></div>
-                                                        <div class="item-balance"></div>
-                                                    </div>
-                                                </div>
-                                                <div class="in-basket">
-                                                    <button>В корзину</button>
-                                                </div>
-                                            </div>
-                                          </div>
+
+                                        <?php endforeach; endif; ?>
+
                                         </div>
                                         <div class="swiper-pagination"></div>
-                                        <!-- Add Arrows -->
-                                      </div>
-                                        <div class="swiper-button-next"></div>
-                                        <div class="swiper-button-prev"></div>
-                                    </div>    
+                                    <!-- Add Arrows -->
+                                    </div>
+                                    <div class="swiper-button-next"></div>
+                                    <div class="swiper-button-prev"></div>
+                                </div>    
                                       <!-- Swiper JS -->
                                       <!-- <script src="../js/swiper.min.js"></script> -->
                                     
