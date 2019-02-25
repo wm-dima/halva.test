@@ -91,9 +91,29 @@ get_header( 'shop' ); ?>
                                                     </div>
                                                 </div>
                                                 <div class="item-buy">
-                                                    <p class="total-price"><span class="price">4 117</span> р.</p>
-                                                    <p class="in-real">В наличии: <span class="city-1">Новосибирск</span>, <span class="city-2">Красноярск</span></p>
-                                                    <a class="in-basket-item" href="">В корзину</a>
+                                                    <p class="total-price"><span class="price"><?php echo $product->get_price_html(); ?></span> р.</p>
+                                                    <?php if ( $product->stock_status == 'outofstock' ): ?>
+                                                        <div class="out-of-stock"><p>Нет в наличие</p></div>
+                                                    <?php else: ?>
+                                                         <p class="in-real">В наличии:
+                                                            <?php $stocks = get_field('wm_stock_availability');
+                                                                foreach ($stocks as $key => $value) {
+                                                                    $html .= '<span class="city-1">' . $value['stock_title'] . '</span>, ';
+                                                                }
+                                                                echo substr($html, 0, strlen($html) - 2) . '.';
+                                                            ?>
+                                                        <a 
+                                                            href="/shop/?add-to-cart=<?php echo the_id(); ?>" 
+                                                            data-quantity="1" 
+                                                            class="button product_type_simple add_to_cart_button ajax_add_to_cart" 
+                                                            data-product_id="<?php echo the_id(); ?>" 
+                                                            data-product_sku="" 
+                                                            rel="nofollow"
+                                                        >
+                                                            <button class="in-basket-item" style="-webkit-appearance: listitem;">В корзину</button>
+                                                        </a>
+                                                    <?php endif ?>
+                                                   
 
                                                     <div class="buy-at-click">
                                                         <p class="buy-click">Купить в 1 клик</p>
@@ -107,93 +127,6 @@ get_header( 'shop' ); ?>
                                                 </div>
                                             </div>
                                         </div>
-<!-- ================================================== -->
-
-<!-- <div class="woocommerce-shipping-fields">
-    <?php if ( true === WC()->cart->needs_shipping_address() ) : ?>
-
-        <h3 id="ship-to-different-address">
-            <label class="woocommerce-form__label woocommerce-form__label-for-checkbox checkbox">
-                <input id="ship-to-different-address-checkbox" class="woocommerce-form__input woocommerce-form__input-checkbox input-checkbox" <?php checked( apply_filters( 'woocommerce_ship_to_different_address_checked', 'shipping' === get_option( 'woocommerce_ship_to_destination' ) ? 1 : 0 ), 1 ); ?> type="checkbox" name="ship_to_different_address" value="1" /> <span><?php _e( 'Ship to a different address?', 'woocommerce' ); ?></span>
-            </label>
-        </h3>
-
-        <div class="shipping_address">
-
-            <?php do_action( 'woocommerce_before_checkout_shipping_form', $checkout ); ?>
-
-            <div class="woocommerce-shipping-fields__field-wrapper">
-                <?php
-                    $checkout = WC()->checkout; /*моя вставка*/
-                    $fields = $checkout->get_checkout_fields( 'shipping' );
-
-                    foreach ( $fields as $key => $field ) {
-                        if ( isset( $field['country_field'], $fields[ $field['country_field'] ] ) ) {
-                            $field['country'] = $checkout->get_value( $field['country_field'] );
-                        }
-                        woocommerce_form_field( $key, $field, $checkout->get_value( $key ) );
-                    }
-                ?>
-            </div>
-
-            <?php do_action( 'woocommerce_after_checkout_shipping_form', $checkout ); ?>
-
-        </div>
-
-    <?php endif; ?>
-</div>
-<div class="woocommerce-additional-fields">
-    <?php do_action( 'woocommerce_before_order_notes', $checkout ); ?>
-
-    <?php if ( apply_filters( 'woocommerce_enable_order_notes_field', 'yes' === get_option( 'woocommerce_enable_order_comments', 'yes' ) ) ) : ?>
-
-        <?php if ( ! WC()->cart->needs_shipping() || wc_ship_to_billing_address_only() ) : ?>
-
-            <h3><?php _e( 'Additional information', 'woocommerce' ); ?></h3>
-
-        <?php endif; ?>
-
-        <div class="woocommerce-additional-fields__field-wrapper">
-            <?php foreach ( $checkout->get_checkout_fields( 'order' ) as $key => $field ) : ?>
-                <?php woocommerce_form_field( $key, $field, $checkout->get_value( $key ) ); ?>
-            <?php endforeach; ?>
-        </div>
-
-    <?php endif; ?>
-
-    <?php do_action( 'woocommerce_after_order_notes', $checkout ); ?>
-</div> -->
-<?php
-// echo "<pre>";
-// global $product; /* Remove if set already.. */
-// $shipping_class = $product->get_shipping_class();
-// $flat_rate = new WC_Shipping_Flat_Rate;
-// var_dump($flat_rate);
-// $symbol = get_woocommerce_currency_symbol();
-// echo $symbol . $flat_rate->flat_rates[$shipping_class]['cost'];
-// die;
-        wc_get_template(
-            'cart/cart-shipping.php',
-            array(
-                'package'                  => $product,
-                'available_methods'        => $product['rates'],
-                'show_package_details'     => count( $packages ) > 1,
-                'show_shipping_calculator' => is_cart() && $first,
-                'package_details'          => implode( ', ', $product_names ),
-                /* translators: %d: shipping package number */
-                'package_name'             => apply_filters( 'woocommerce_shipping_package_name', ( ( $i + 1 ) > 1 ) ? sprintf( _x( 'Shipping %d', 'shipping packages', 'woocommerce' ), ( $i + 1 ) ) : _x( 'Shipping', 'shipping packages', 'woocommerce' ), $i, $product ),
-                'index'                    => $i,
-                'chosen_method'            => $chosen_method,
-                'formatted_destination'    => WC()->countries->get_formatted_address( $product['destination'], ', ' ),
-                'has_calculated_shipping'  => WC()->customer->has_calculated_shipping(),
-            )
-        );
-
-?>
-
-
-<!-- ================================================== -->
-
                                         <div class="delivery-item">
                                             <div class="calculate">
                                                 <p>Доставка до<br class="brhide">&mdash;</p>
@@ -239,224 +172,25 @@ get_header( 'shop' ); ?>
                                     <div class="full-item-info">
                                         <div class="discription-item">
                                             <h4>Описание</h4>
-                                            <p>
-                                                Цифровой ресивер JVC KD-T402 в черном корпусе имеет 
-                                                компактные размеры. Помимо этого у него множество 
-                                                плюсов: высокочувствительный FM-тюнер, вещающий радиостанции в 
-                                                диапазоне FM, что позволит слушать любимую радиостанцию в дороге и 
-                                                наслаждаться лаконичным звучанием. МР3-декодер, преобразовывающий цифровой 
-                                                сигнал в чистый звук. Устройство читает аудио форматы МР3. 
-                                                Его монохромный дисплей потребляет минимум энергии, 
-                                                несмотря на это, информация на нем читается превосходно.
-                                            </p>
+                                            <p><?php echo $product->description; ?></p>
                                         </div>
                                         <div class="specifications-item">
                                             <h4>Характеристики</h4>
-                                            <div class="specifications">
-                                                <div class="type">
-                                                    <div>Тип</div>
-                                                    <div>автопроигрыватель</div>
-                                                </div>
-                                                <div class="model">
-                                                    <div>Модель</div>
-                                                    <div>JVC KD-T402</div>
-                                                </div>
-                                                <div class="color-front">
-                                                    <div>Цвет передней панели</div>
-                                                    <div>черный</div>
-                                                </div>
-                                                <div class="typsize">
-                                                    <div>Стандартный типоразмер</div>
-                                                    <div>1 din</div>
-                                                </div>
-                                                <div class="tv">
-                                                    <div>Наличие ТВ-тюнера</div>
-                                                    <div>нет</div>
-                                                </div>
-                                                <div class="bort">
-                                                    <div>Бортовая сеть авто</div>
-                                                    <div>12 B</div>
-                                                </div>
-                                            </div>
-                                            <div class="specifications">
-                                                <div class="spec-main">
-                                                    <div>Аудио характеристики</div>
-                                                </div>
-                                                <div class="char1">
-                                                    <div>Общее количество каналов звука	</div>
-                                                    <div>4</div>
-                                                </div>
-                                                <div class="char2">
-                                                    <div>Номинальная выходная мощность</div>
-                                                    <div>4x22 Вт</div>
-                                                </div>
-                                                <div class="char3">
-                                                    <div>Максимальная выходная мощность</div>
-                                                    <div>4x50 Вт</div>
-                                                </div>
-                                                <div class="char4">
-                                                    <div>Наличие эквалайзера</div>
-                                                    <div>есть</div>
-                                                </div>  
-                                            </div>
-                                            <div class="specifications">
-                                                <div class="spec-main">
-                                                    <div>Воспроизведение</div>
-                                                </div>
-                                                <div class="char5">
-                                                    <div>Читаемые носители (CD/DVD)</div>
-                                                    <div>CD</div>
-                                                </div>
-                                                <div class="char6">
-                                                    <div>Воспроизведение музыки по Bluetooth</div>
-                                                    <div>нет</div>
-                                                </div>
-                                                <div class="char7">
-                                                    <div>Читаемые форматы (USB/карта памяти)</div>
-                                                    <div>WAV, WMA, FLAC, MP3</div>
-                                                </div>
-                                                <div class="char8">
-                                                    <div>Читаемые форматы (CD/DVD)</div>
-                                                    <div>MP3, WMA</div>
-                                                </div>  
-                                            </div>
-                                            <div class="specifications">
-                                                    <div class="spec-main">
-                                                        <div>Беспроводные модули и навигация</div>
+                                                <?php  
+                                                    $specifications = get_field( 'add_specifications' );
+                                                    foreach ($specifications as $key => $value): ?>
+                                                    <div class="specifications">
+                                                        <div class="spec-main">
+                                                            <div><?php echo $value['specification_title']; ?></div>
+                                                        </div>
+                                                        <?php foreach ($value['specification_block'] as $k => $v): ?>
+                                                            <div class="type">
+                                                                <div><?php echo $v['specification_title']; ?></div>
+                                                                <div><?php echo $v['specification_value']; ?></div>
+                                                            </div>
+                                                        <?php endforeach ?>
                                                     </div>
-                                                    <div class="char9">
-                                                        <div>Bluetooth</div>
-                                                        <div>нет</div>
-                                                    </div>
-                                                    <div class="char10">
-                                                        <div>GPS-приемник</div>
-                                                        <div>нет</div>
-                                                    </div>
-                                                    <div class="char11">
-                                                        <div>Wi-Fi</div>
-                                                        <div>нет</div>
-                                                    </div>
-                                                    <div class="char12">
-                                                        <div>Навигационное ПО</div>
-                                                        <div>нет</div>
-                                                    </div> 
-                                                    <div class="char13">
-                                                        <div>Передняя панель</div>
-                                                        <div>нет</div>
-                                                    </div>  
-                                                </div>
-                                                <div class="specifications">
-                                                    <div class="spec-main">
-                                                        <div>Разъемы на передней панели</div>
-                                                    </div>
-                                                    <div class="char14">
-                                                        <div>Съемная панель</div>
-                                                        <div>CD, AUX, USB</div>
-                                                    </div>
-                                                    <div class="char15">
-                                                        <div>Тип дисплея</div>
-                                                        <div>есть</div>
-                                                    </div>
-                                                    <div class="char16">
-                                                        <div>Сенсорное управление</div>
-                                                        <div>сегментный дисплей</div>
-                                                    </div>
-                                                    <div class="char17">
-                                                        <div>Цвет подсветки дисплея</div>
-                                                        <div>белый</div>
-                                                    </div> 
-                                                    <div class="char18">
-                                                        <div>Цвет подсветки кнопок</div>
-                                                        <div>красный</div>
-                                                    </div>  
-                                                </div>
-                                                <div class="specifications">
-                                                    <div class="spec-main">
-                                                        <div>Задняя панель</div>
-                                                    </div>
-                                                    <div class="char19">
-                                                        <div>Аналоговые входы</div>
-                                                        <div>нет</div>
-                                                    </div>
-                                                    <div class="char20">
-                                                        <div>Аналоговые выходы</div>
-                                                        <div>линейный аудио (RCA)</div>
-                                                    </div>
-                                                    <div class="char21">
-                                                        <div>Разъемы на тыльной стороне</div>
-                                                        <div>разъем подключения по ISO, антенный вход</div>
-                                                    </div>
-                                                </div>
-                                                <div class="specifications">
-                                                    <div class="spec-main">
-                                                        <div>Радио</div>
-                                                    </div>
-                                                    <div class="char22">
-                                                        <div>Диапазоны радиочастот</div>
-                                                        <div>FM, AM</div>
-                                                    </div>
-                                                    <div class="char23">
-                                                        <div>Поддержка RDS</div>
-                                                        <div>есть</div>
-                                                    </div>
-                                                    <div class="char24">
-                                                        <div>Общее число предустановок</div>
-                                                        <div>24</div>
-                                                    </div>
-                                                </div>
-                                                <div class="specifications">
-                                                    <div class="spec-main">
-                                                        <div>Управление и подключение устройств</div>
-                                                    </div>
-                                                    <div class="char25">
-                                                        <div>Телефонные звонки по Bluetooth (hands-free)</div>
-                                                        <div>нет</div>
-                                                    </div>
-                                                    <div class="char26">
-                                                        <div>Работа с мобильными устройствами</div>
-                                                        <div>Android</div>
-                                                    </div>
-                                                    <div class="char27">
-                                                        <div>Пульт ДУ в комплекте</div>
-                                                        <div>нет</div>
-                                                    </div>
-                                                     <div class="char28">
-                                                        <div>Возможность управления с помощью руля</div>
-                                                        <div>есть</div>
-                                                    </div>
-                                                     <div class="char29">
-                                                        <div>Возможность управления с помощью руля</div>
-                                                        <div>нет</div>
-                                                    </div>
-                                                     <div class="spec-main">
-                                                        <div>Дополнительно</div>
-                                                    </div>
-                                                     <div class="char31">
-                                                        <div>Комплектация</div>
-                                                        <div>документация, ISO-коннектор</div>
-                                                    </div>
-                                                    <div class="char31">
-                                                        <div>Дополнительно</div>
-                                                        <div>3-полосный эквалайзер</div>
-                                                    </div>
-                                                </div>
-                                                <div class="specifications">
-                                                    <div class="spec-main">
-                                                        <div>Габариты</div>
-                                                    </div>
-                                                    <div class="char25">
-                                                        <div>Установочная глубина</div>
-                                                        <div>158 мм</div>
-                                                    </div>
-                                                    <div class="char26">
-                                                        <div>Ширина</div>
-                                                        <div>182 мм</div>
-                                                    </div>
-                                                    <div class="char27">
-                                                        <div>Высота</div>
-                                                        <div>53 мм</div>
-                                                    </div>
-                                                </div>  
+                                                <?php endforeach ?>
                                         </div>
                                     </div>
                                     <div class="reviews">
