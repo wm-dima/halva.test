@@ -719,7 +719,7 @@ header {
     /* background-size: contain; */
 }
 .item-like:hover , .like-active {
-    background-position: 28 0;
+    /*background-position: 28 0;*/
     /* background-size: contain; */
 }
 .item-balance {

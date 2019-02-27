@@ -56,12 +56,13 @@ function my_them_load_css_and_js() {
     wp_enqueue_script( 'wm-the-wm-main', get_template_directory_uri() . '/assets/js/main.js',[], null, true );
 
     wp_localize_script( 
-        'wm-main', 
+        'wm-the-wm-main', 
         'my_ajax_url', 
-        array( 
-            'ajax_url' => admin_url( 'admin-ajax.php' ),
-            'is_log_in' => is_user_logged_in()
-        ) );
+            array( 
+                'ajax_url' => admin_url( 'admin-ajax.php' ),
+                'is_log_in' => is_user_logged_in()
+            ) 
+        );
 }
 
 

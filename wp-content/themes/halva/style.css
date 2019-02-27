@@ -331,6 +331,24 @@ div.filter-price > .wm-filter-title > img {
         background-image: url(./assets/images/compare--no.png);
 }
 
+
+
+.item-like[data-wm-wwl="add"]{
+        background-image: url(./assets/images/no-like.png) !important;
+}
+
+.item-like[data-wm-wwl="remove"]{
+        background-image: url(./assets/images/like.png) !important;
+}
+
+.item-like[data-wm-wwl="add"]:hover{
+        background-image: url(./assets/images/like.png) !important;
+}
+
+.item-like[data-wm-wwl="remove"]:hover{
+        background-image: url(./assets/images/no-like.png) !important;
+}
+
 .item-navigation ul li:last-child {
     text-decoration: none;
     color: #ff9c00;

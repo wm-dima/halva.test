@@ -1,6 +1,6 @@
 <?php
 
-class WCP_Public {
+class WWL_Public {
 
 	private $plugin_name;
 	private $version;
@@ -10,19 +10,19 @@ class WCP_Public {
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
-		$this->fill_compared_prods();
+		$this->fill_wish_prods();
 	}
 
-	public function fill_compared_prods(){
+	public function fill_wish_prods(){
 		if ( is_user_logged_in() ) {
 			global $wpdb;
 			unset( $this->all_prods );
-			$db_res = $wpdb->get_results( "SELECT product_id FROM " . $wpdb->prefix . "client_id_product_id WHERE client_id = " . get_current_user_id(), ARRAY_A);
+			$db_res = $wpdb->get_results( "SELECT product_id FROM " . $wpdb->prefix . "client_id_wishlist_id WHERE client_id = " . get_current_user_id(), ARRAY_A);
 			foreach ($db_res as $key => $value) {
 				$this->all_prods[] = $value['product_id']; 
 			}	
 		} else {
-			$this->all_prods = json_decode( $_COOKIE['wcp_compare'], true );
+			$this->all_prods = json_decode( $_COOKIE['wwl_wish'], true );
 		}
 	}
 
@@ -34,7 +34,7 @@ class WCP_Public {
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wcp-public.js', array( 'jquery' ), $this->version, true );
 	}
 
-	public function set_to_compare_controller() {
+	public function set_to_wish_controller() {
 		$this->validate_before_insert();
 		$id = (int)$_POST['id'];
 		if (is_user_logged_in()) {
@@ -46,16 +46,17 @@ class WCP_Public {
 
 	public function set_to_db( $id ){
 		global $wpdb;
-		$wpdb->insert( $wpdb->prefix . 'client_id_product_id', array( 'client_id' => get_current_user_id() , 'product_id' => $id ) );
+		$wpdb->insert( $wpdb->prefix . 'client_id_wishlist_id', array( 'client_id' => get_current_user_id() , 'product_id' => $id ) );
+		var_dump($wpdb);
 		$this->all_prods[] = $id;
 		$this->added_js_event($id);
 	}
 
 	public function set_to_cookie( $id ) {
-		$in_cookie = json_decode( $_COOKIE['wcp_compare'], true );
+		$in_cookie = json_decode( $_COOKIE['wwl_wish'], true );
 		if ( empty( $in_cookie ) ) {
 			setcookie( 
-				'wcp_compare', 
+				'wwl_wish', 
 				json_encode( array ('0'=>$id) ), 
 				time()+60*60*24*380,
 				'/'
@@ -63,7 +64,7 @@ class WCP_Public {
 		} else {
 			$in_cookie[] = $id;
 			setcookie( 
-				'wcp_compare', 
+				'wwl_wish', 
 				json_encode( $in_cookie ), 
 				time()+60*60*24*380,
 				'/'
@@ -73,7 +74,7 @@ class WCP_Public {
 	}
 
 
-	public function rm_from_compare_controller() {
+	public function rm_from_wish_controller() {
 		$this->validate_before_insert();
 		$id = (int)$_POST['id'];
 		if (is_user_logged_in()) {
@@ -85,14 +86,14 @@ class WCP_Public {
 
 	// public function set_to_db( $id ) {
 	// 	global $wpdb;
-	// 	$wpdb->insert( $wpdb->prefix . 'client_id_product_id', array( 'client_id' => get_current_user_id() , 'product_id' => $id ) );
+	// 	$wpdb->insert( $wpdb->prefix . 'client_id_wishlist_id', array( 'client_id' => get_current_user_id() , 'product_id' => $id ) );
 	// 	$this->all_prods[] = $id;
 	// 	$this->added_js_event($id);
 	// }
 
 	public function rm_from_db( $id ) {
 		global $wpdb;
-		$wpdb->delete( $wpdb->prefix . 'client_id_product_id', array( 'product_id' => $id ) );
+		$wpdb->delete( $wpdb->prefix . 'client_id_wishlist_id', array( 'product_id' => $id ) );
 		unset( $this->all_prods[array_search( $id, $this->all_prods )] );
 		$this->removed_js_event($id);
 	}
@@ -100,19 +101,19 @@ class WCP_Public {
 
 
 	public function rm_from_cookie( $id ) {
-		$in_cookie = json_decode( $_COOKIE['wcp_compare'], true );
+		$in_cookie = json_decode( $_COOKIE['wwl_wish'], true );
 		unset( $in_cookie[array_search( $id, $in_cookie )] );
 		unset( $this->all_prods[array_search( $id, $this->all_prods )] );
 		if ( empty( $in_cookie ) ) {
 			setcookie( 
-				'wcp_compare', 
+				'wwl_wish', 
 				'', 
 				time()+60*60*24*380,
 				'/'
 			);
 		} else {
 			setcookie( 
-				'wcp_compare', 
+				'wwl_wish', 
 				json_encode( $in_cookie ), 
 				time()+60*60*24*380,
 				'/'
@@ -125,7 +126,7 @@ class WCP_Public {
 		$response = [
 			'success' => true,
 			'last_added_product' => $id,
-			'event' => 'compare_added_event'
+			'event' => 'wish_added_event'
 		];
 		echo json_encode($response);
 		die();
@@ -135,7 +136,7 @@ class WCP_Public {
 		$response = [
 			'success' => true,
 			'last_removed_product' => $id,
-			'event' => 'compare_remove_event'
+			'event' => 'wish_remove_event'
 		];
 		echo json_encode($response);
 		die();
@@ -147,7 +148,7 @@ class WCP_Public {
 		}
 	}
 
-	public function is_in_compare_list(){
+	public function is_in_wish_list(){
 		global $product;
 		if ( ! isset( $this->all_prods ) ) {
 			return 0;
@@ -157,30 +158,29 @@ class WCP_Public {
 
 	public function transfer_cookie_to_bd(){
 		global $wpdb;
-		$in_cookie = json_decode( $_COOKIE['wcp_compare'], true );
+		$in_cookie = json_decode( $_COOKIE['wwl_wish'], true );
 		if (empty($in_cookie)) {
 			return;
 		}
 		foreach ($in_cookie as $key => $value) {
 			$sql = '
-				INSERT INTO ' . $wpdb->prefix . 'client_id_product_id (client_id, product_id)
+				INSERT INTO ' . $wpdb->prefix . 'client_id_wishlist_id (client_id, product_id)
 				SELECT * FROM (SELECT ' . get_current_user_id() . ', '. (int)$value . ') AS tmp
 				WHERE NOT EXISTS (
-				    SELECT client_id FROM ' . $wpdb->prefix . 'client_id_product_id WHERE client_id = ' . get_current_user_id() . ' AND product_id = '. (int)$value . '
+				    SELECT client_id FROM ' . $wpdb->prefix . 'client_id_wishlist_id WHERE client_id = ' . get_current_user_id() . ' AND product_id = '. (int)$value . '
 				) LIMIT 1;
 			';
 			$wpdb->query($sql);
 		}
-		setcookie('wcp_compare', '', -1000);
+		setcookie('wwl_wish', '', -1000);
 	}
 
-	public function wcp_get_total(){
+	public function wwl_get_total(){
 		if (is_user_logged_in()) {
 			global $wpdb;
-			return $wpdb->get_var('SELECT COUNT(product_id) FROM ' . $wpdb->prefix . 'client_id_product_id WHERE client_id = ' . get_current_user_id() . ';');
-			// var_dump( $wpdb->get_var('SELECT COUNT(product_id) FROM ' . $wpdb->prefix . 'client_id_product_id WHERE client_id = ' . get_current_user_id() . ';') );
+			return $wpdb->get_var('SELECT COUNT(product_id) FROM ' . $wpdb->prefix . 'client_id_wishlist_id WHERE client_id = ' . get_current_user_id() . ';');
 		} else {
-			return count( json_decode( $_COOKIE['wcp_compare'], true ) );
+			return count( json_decode( $_COOKIE['wwl_wish'], true ) );
 		}
 	}
 }

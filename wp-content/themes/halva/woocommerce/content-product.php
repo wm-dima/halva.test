@@ -38,7 +38,10 @@ if ( empty( $product ) || ! $product->is_visible() ) {
         </a>
         <div class="item-price"><span class="price-value"><?php echo $product->get_price_html(); ?></span> руб.</div>
         <div class="item-icons">
-            <div class="item-like"><?php  echo do_shortcode( '[ti_wishlists_addtowishlist]' ); ?> </div>
+            <div 
+                class="item-like" 
+                data-wm-wwl="<?php echo do_shortcode( '[is_in_wish_list]' ) == 1 ? 'remove' : 'add'; ?>">
+            </div>
             <div 
                 class="item-balance" 
                 data-wm-wcp="<?php echo do_shortcode( '[is_in_compare_list]' ) == 1 ? 'remove' : 'add'; ?>">
