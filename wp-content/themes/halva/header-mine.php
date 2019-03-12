@@ -123,12 +123,14 @@
                     </ul>
                 </div>
                 <div class="shop-icons">
-                    <div class="accept">
-                        <div class="shop-icon">
-                            <div class="number"><?php echo do_shortcode( '[wcp_get_total]' ) ?></div>
+                    <a href="<?php echo get_permalink( 94 ); ?>">
+                        <div class="accept">
+                            <div class="shop-icon">
+                                <div class="number"><?php echo do_shortcode( '[wcp_get_total]' ) ?></div>
+                            </div>
+                            <p>Сравнение</p>
                         </div>
-                        <p>Сравнение</p>
-                    </div>
+                    </a>
                     <div class="likes">
                         <div class="shop-icon">
                             <div class="number"><?php echo wm_get_wishlist_count(); ?></div>

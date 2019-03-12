@@ -11,7 +11,7 @@ class WWL_Activator {
 	 */
 	public static function activate() {
 		global $wpdb;
-		$wpdb->query('CREATE TABLE IF NOT EXISTS `' . $wpdb->dbname . '`.`' . $wpdb->prefix . 'client_id_wishlist_id` ( `client_id` INT NOT NULL , `product_id` INT NOT NULL ) ENGINE = InnoDB;'); 
+		$wpdb->query('CREATE TABLE IF NOT EXISTS `' . $wpdb->dbname . '`.`' . $wpdb->prefix . 'client_id_wishlist_id` ( `client_id` INT NOT NULL  , `product_id` INT NOT NULL ) ENGINE = InnoDB;'); 
 	}
 
 }

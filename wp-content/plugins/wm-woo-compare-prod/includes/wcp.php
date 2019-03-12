@@ -186,11 +186,18 @@ class Wcp {
 
 		$this->loader->add_shortcode('is_in_compare_list', $plugin_public, 'is_in_compare_list');
 		$this->loader->add_shortcode('wcp_get_total', $plugin_public, 'wcp_get_total');
-		// $this->loader->add_shortcode('wcp_shc', $plugin_public, 'wcp_shc_do');
 
-	
+
 		$this->loader->add_action('wp_login', $plugin_public, 'transfer_cookie_to_bd');
 		$this->loader->add_action('user_register', $plugin_public, 'transfer_cookie_to_bd');
+
+		$this->loader->add_action('template_include', $plugin_public, 'wcp_pages_controller');
+		// $this->loader->add_shortcode('wcp_get_compare_page', $plugin_public, 'wcp_get_compare_page');
+	
+
+		$this->loader->add_shortcode('show_compared_prods', $plugin_public, 'show_compared_prods');
+		$this->loader->add_shortcode('show_compared_options', $plugin_public, 'show_compared_options');
+		$this->loader->add_shortcode('get_comp_cats', $plugin_public, 'get_comp_cats');
 	}
 
 	/**

@@ -77,7 +77,7 @@ Template Name: index
                         $loop = new WP_Query( $args );
                         while ( $loop->have_posts() ) : $loop->the_post(); global $product; ?>
 
-                            <div class="hit-item hi-1">
+                            <div class="hit-item hi-1" data-wm-prod-id="<?php the_ID(); ?>">
                                 <div class="item-info">
                                     <div class="item-logo">
                                         <div class="img-padding">
@@ -86,13 +86,13 @@ Template Name: index
                                     </div>
                                     <p class="item-name"><?php the_title(); ?></p>
                                     <div class="item-price"><span class="price-value"><?php echo $product->get_price_html(); ?></span> руб.</div>
-                                                    <div class="item-icons wm-for-balance">
-                                                        <div class="item-like"><?php  echo do_shortcode( '[ti_wishlists_addtowishlist]' ); ?> </div>
-                                                        <div 
-                                                            class="item-balance" 
-                                                            data-wm-wcp="<?php echo do_shortcode( '[is_in_compare_list]' ) == 1 ? 'remove' : 'add'; ?>">
-                                                        </div>
-                                                    </div>
+                                        <div class="item-icons wm-for-balance">
+                                            <div class="item-like"><?php  echo do_shortcode( '[ti_wishlists_addtowishlist]' ); ?> </div>
+                                            <div 
+                                                class="item-balance" 
+                                                data-wm-wcp="<?php echo do_shortcode( '[is_in_compare_list]' ) == 1 ? 'remove' : 'add'; ?>">
+                                            </div>
+                                        </div>
                                 </div>    
 
                                <div class="in-basket">
@@ -135,7 +135,7 @@ Template Name: index
                             $loop = new WP_Query( $args );
                             if ( $loop->have_posts() ) :
                             while ( $loop->have_posts() ) : $loop->the_post(); ?>
-                                <div class="hit-item hi-1">
+                                <div class="hit-item hi-1" data-wm-prod-id="<?php the_ID(); ?>">
                                     <div class="item-info">
                                         <div class="item-logo">
                                             <div class="img-padding">
