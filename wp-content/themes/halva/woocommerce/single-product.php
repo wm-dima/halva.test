@@ -26,16 +26,7 @@ get_header( 'shop' ); ?>
 	if ( ! is_object( $product)) $product = wc_get_product( get_the_ID() );
 ?>
             <div class="wrapper">
-                <div class="search sc-faq">
-                    <a href="">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/catalog.png" alt="">
-                        Каталог товаров
-                    </a>
-                    <form action="">
-                        <input type="text" placeholder="Поиск" required>
-                        <button>Найти</button>
-                    </form>
-                </div>
+<?php get_template_part('templates/search', 'catalog'); ?>
             </div>
             <div class="item-main">
 				<div class="wrapper">

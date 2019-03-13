@@ -3,12 +3,7 @@
     <div class="catalog">
         <div class="wrapper">
             <div class="inside-catalog">
-                <div class="search">
-                    <a href="">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/catalog.png" alt=""> Каталог товаров
-                    </a>
-                    <?php get_search_form(); ?>
-                </div>
+                <?php get_template_part('templates/search', 'catalog'); ?>
                 <div class="catalog-info">
                     <div class="catalog-name">
                         <p>АВТОМОБИЛЬНАЯ  АКУСТИКА</p>
