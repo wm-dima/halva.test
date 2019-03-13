@@ -314,3 +314,43 @@ function all_commentfields( $fields ) {
 }
  
 add_filter( 'comment_form_fields', 'all_commentfields' );
+
+add_action( 'comment_post', 'save_extend_comment_meta_data' );
+function save_extend_comment_meta_data( $comment_id ){
+
+    if( !empty( $_POST['phone'] ) ){
+        $phone = sanitize_text_field($_POST['phone']);
+        add_comment_meta( $comment_id, 'phone', $phone );
+    }
+}
+
+add_action( 'add_meta_boxes_comment', 'extend_comment_add_meta_box' );
+function extend_comment_add_meta_box(){
+    add_meta_box( 'title', __( 'Comment Metadata - Extend Comment' ), 'extend_comment_meta_box', 'comment', 'normal', 'high' );
+}
+
+// Отображаем наши поля
+function extend_comment_meta_box( $comment ){
+    $phone  = get_comment_meta( $comment->comment_ID, 'phone', true );
+
+    wp_nonce_field( 'extend_comment_update', 'extend_comment_update', false );
+    ?>
+    <p>
+        <label for="phone"><?php _e( 'Phone' ); ?></label>
+        <input type="text" name="phone" value="<?php echo esc_attr( $phone ); ?>" class="widefat" />
+    </p>
+    <?php
+}
+
+add_action( 'edit_comment', 'extend_comment_edit_meta_data' );
+function extend_comment_edit_meta_data( $comment_id ) {
+    if( ! isset( $_POST['extend_comment_update'] ) || ! wp_verify_nonce( $_POST['extend_comment_update'], 'extend_comment_update' ) )
+    return;
+
+    if( !empty($_POST['phone']) ){
+        $phone = sanitize_text_field($_POST['phone']);
+        update_comment_meta( $comment_id, 'phone', $phone );
+    }
+    else
+        delete_comment_meta( $comment_id, 'phone');
+}

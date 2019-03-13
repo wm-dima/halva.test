@@ -196,6 +196,11 @@
         margin-bottom:50px;
     }
  }
+@media(max-width:1030px) {
+    .inside-news {
+        justify-content: center;
+    }
+}
 @media(max-width:1025px) {
     .phones , .log-in{
         display: none;
@@ -387,6 +392,12 @@
     }
     .match-elements {
         width: 100%;
+    }
+    .feedback-form {
+        flex-direction: column;
+    }
+    .form-left input[type='text'] , .form-right textarea {
+        width:100%;
     }
 }
 @media(max-width:740px) {
@@ -736,6 +747,10 @@
             -ms-flex-pack: center;
                 justify-content: center;
     }
+    .get-price-list {
+        display: flex;
+    align-self: center;
+    }
     .article {
         width: 408px;
         height: 320px;
@@ -850,6 +865,39 @@
     }
     .element {
         margin-bottom: 80px;
+    }
+    .news-block {
+        padding-top: 20px;
+    }
+    .news-image {
+        height: 270px;
+        margin-bottom: 40px;
+    }
+    .news-info {
+        justify-content: flex-start;
+        min-height: 175px;
+        height: auto;
+    }
+    .news-image {
+        width:100%;
+        display: flex;
+        justify-content: center;
+    }
+    .news-image img {
+        width: 270px;
+        height:270px;
+        border-radius:27px;
+        -webkit-border-radius:27px;
+        -moz-border-radius:27px;
+        -ms-border-radius:27px;
+        -o-border-radius:27px;
+}
+    .news-block {
+        flex-direction: column;
+        min-height: 445px;
+        widtH: auto;
+        height: auto;
+        padding-bottom: 35px;
     }
 }
 @media(max-width:495px) {
@@ -999,16 +1047,10 @@
 @media(max-width:412px) {
     .hit-item {
         width: 260px;
-        min-height: 325px;
+        height: 346px;
     }
     .in-basket button {
         height: 64px;
-    }
-    .item-info {
-        min-height:266px;
-    }
-    .hit-item {
-        min-height: 325px;
     }
     .catalog-name p {
         font-size: 21px;
@@ -1059,6 +1101,9 @@
     }
     .item-options {
         width: 255px;
+    }
+    .news-image {
+        height: auto;
     }
     .carousel-stage img {
         width: 249px !important;
@@ -1188,7 +1233,7 @@
     }
     .hit-item {
         width: 229px;
-        min-height: 330px;
+        height: 330px;
     }
     .location {
         display: none ;
@@ -1213,7 +1258,16 @@
     .catalog-navigation ul a {
         font-size: 17px;
     }
-    
+    .news-image img {
+        width:230px;
+        height:230px;
+    }
+    .news-info {
+        width: 235px;
+    }
+    .news-block {
+        height: auto;
+    }
 }
 @media(max-width:360px) { 
     .connected-carousels .carousel-navigation {
@@ -1352,7 +1406,7 @@
     }
     .hit-item {
         width: 227px;
-        min-height: 330px;
+        height: 330px;
     }
     .item-logo {
         margin-bottom: 20px;

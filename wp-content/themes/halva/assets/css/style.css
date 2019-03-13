@@ -635,39 +635,38 @@ header {
     display: -ms-flexbox;
     display: flex;
     -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
     -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    align-items: flex-start;
+        flex-wrap: wrap;
 }
 .hit-item , .catalog-item {
     width: 226px;
-    min-height: 318px;
+    height: 318px;
     background-color: #fff;
     -webkit-box-shadow: 0 2px 32px -4px #a4a4a4;
-    box-shadow: 0 2px 32px -4px #a4a4a4;
+            box-shadow: 0 2px 32px -4px #a4a4a4;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
 }
 .item-info {
-    width: 100%;
-    min-height: 258px;
+    width:100%;
+    height:100%;
     padding: 35px 39px 0px 39px;
     -webkit-box-sizing: border-box;
-    box-sizing: border-box;
+            box-sizing: border-box;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
 }
 .hit-name {
     font-family: 'Museo Sans Cyrl 500';
@@ -706,20 +705,14 @@ header {
     display: flex;
     width:80px;
     -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-    margin-bottom: 20px;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
 }
 .item-like {
     background-image: url(../images/like-item.png);
     width: 28px;
     height: 26px;
     cursor: pointer;
-    background-position: 0 0;
-    /* background-size: contain; */
-}
-.item-like:hover , .like-active {
-    /*background-position: 28 0;*/
     /* background-size: contain; */
 }
 .item-balance {
@@ -727,9 +720,6 @@ header {
     width:33px;
     height:27px;
     cursor: pointer;
-}
-.item-balance:hover , .balance-active {
-    background-position: 33.5 0;
 }
 .in-basket button{
     width: 100%;
@@ -1133,7 +1123,8 @@ footer {
     text-transform: uppercase;
     color:#fff;
     font-size: 16px;
-    margin-bottom: 44px;
+    /*margin-bottom: 44px;*/
+    margin-bottom: 20px;
 }
 .socials-footer {
     color: #fff;
@@ -1644,7 +1635,6 @@ footer {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    align-items: flex-start;
 }
 .catalog-navigation {
     width:100%;
@@ -1713,7 +1703,7 @@ footer {
 }
 .catalog-item {
     width: 242px !important;
-    min-height: 359px;
+    min-height: 365px;
 }
 .price , .manufacturers , .type-acustic , .power , .size , .quantity-lines , .resistance{
     margin-bottom: 20px;
@@ -2028,7 +2018,7 @@ footer {
     color:#50a14c;
     margin-bottom: 26px;
 }
-.in-basket-item, .calc, .get-review {
+.in-basket-item, .calc, .get-review , .get-price-list {
     display: inline-block;
     line-height: 50px;
     padding: 0px 100px;
@@ -2039,6 +2029,9 @@ footer {
     border-radius: 26px;
     background: #ff9c00;
     margin-bottom: 38px;
+}
+.get-price-list {
+    padding:0px 50px;
 }
 .buy-at-click {
     padding-right: 92px;
@@ -2112,7 +2105,7 @@ footer {
     background-position: -102 0;
 }
 .compar:hover {
-    background-position: -102.5 0;
+    background-position: -102 0;
 }
 .delivery-item {
     padding-top: 47px;
@@ -2760,7 +2753,7 @@ footer {
 }
 .element {
     width: 270px;
-    min-height: 400px;
+    height:400px;
 }
 .element-main {
     display: flex;
@@ -2894,50 +2887,232 @@ footer {
 .ct-min-show {
     display: flex;
 }
-.second-ul {
-	box-sizing:border-box;
-	padding:0px 10px;
+.news-block {
+    width:555px;
+    height: 300px;
+    background: #fff;
+    margin-bottom:40px;
+    border-radius:23px;;
+    -webkit-border-radius:23px;
+    -moz-border-radius:23px;
+    -ms-border-radius:23px;
+    -o-border-radius:23px;
+    box-shadow: 0px 0px 46px -17px #b1b1b1;
+    display: flex;
+
 }
-.second-ul li a{
-	font-family: 'Museo Sans Cyrl 500';
-    font-size: 13px;
-    text-transform: none;
-		line-height: 15px;
-		color:#292929;
+.inside-news {
+    padding: 0px 25px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap:wrap;
 }
-.ct-min-2 {
-	padding:25px 0px;
+.news-image {
+    width:270px;
+    height:100%;
 }
-.ct-min-2 > ul > li {
-	padding:4px 20px;
-	border-bottom:1px solid #e8e8e8;
+.news-image img{
+   width:100%;
+   height:100%;
 }
-.ct-min-2 > ul > li:last-child {
-	border-bottom:0;
+.news-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height:100%;
+    width:285px;
+    padding:0px 24px;
+    font-size: 15px;
+    
 }
-.search form {
-	display:flex;
+.article-new-name {
+    font-family: 'Museo Sans Cyrl 700';
+    margin-bottom: 25px;
+    text-decoration: none;
+    color:#000;
 }
-.swiper-slide .catalog-item {
-    min-height: 353px;
+.article-pre-info {
+    font-family: 'Museo Sans Cyrl 300';
+    margin-bottom: 25px;
+    color:#000;
 }
-/* HOVERS */
+.read-more  {
+    color:#ff9c00;
+    font-family: 'Museo Sans Cyrl 700';
+    text-decoration: none;
+}
+.news-block a {
+    text-decoration: none;
+} 
+.about-company {
+    font-family: 'Museo Sans Cyrl 300';
+    font-size: 16px;
+    line-height: 20px;
+}
+.feedback-form {
+    display: flex;
+    width:100%;
+    justify-content: space-between;
+}
+.form-left {
+    display: flex;
+    flex-direction: column;
+}
+.feedback-form input[type="text"] {
+    width: 296px;
+    height:50px;
+    background: #fff;
+    outline: 0;
+    border:0;
+    border-radius: 26px;
+    -webkit-border-radius: 26px;
+    -moz-border-radius: 26px;
+    -ms-border-radius: 26px;
+    -o-border-radius: 26px;
+    margin-bottom: 23px;
+    font-family: 'Museo Sans Cyrl 500';
+    font-size: 16px;
+    box-sizing: border-box;
+    padding-left: 26px; 
+}
+.feedback-form input[type="submit"] {
+    height:50px;
+    background: #ff9c00;
+    color:#fff;
+    outline: 0;
+    border:0;
+    border-radius: 26px;
+    -webkit-border-radius: 26px;
+    -moz-border-radius: 26px;
+    -ms-border-radius: 26px;
+    -o-border-radius: 26px;
+    margin-bottom: 23px;
+    font-family: 'Museo Sans Cyrl 500';
+    font-size: 18px;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+.feedback-form textarea {
+    width:418px;
+    height:268px;
+    background: #fff;
+    border-radius: 26px;
+    border:0;
+    outline:0;
+    resize: none;
+    box-sizing: border-box;
+    padding:19px 28px;
+    font-family: 'Museo Sans Cyrl 500';
+    font-size: 18px;
+}
+.feedback-form input[type="text"]::-webkit-input-placeholder , 
+.feedback-form textarea::-webkit-input-placeholder {color:#141414;}
+.feedback-form input[type="text"]::-moz-placeholder  ,
+.feedback-form textarea::-webkit-input-placeholder {color:#141414;}
+.feedback-form input[type="text"]:-moz-placeholder ,
+.feedback-form textarea:-moz-placeholder          {color:#141414;}/* Firefox 18- */
+.feedback-form input[type="text"]:-ms-input-placeholder ,
+.feedback-form textarea:-ms-input-placeholder     {color:#141414;}
+
+.pay-way {
+    text-transform: uppercase;
+    font-family: 'Museo Sans Cyrl 500';
+    margin-bottom: 27px;
+    font-size: 18px;
+    font-weight: normal;
+    padding-top: 35px;
+    border-top:1px solid #fff;
+}
+.pay-content , .opt-text p  {
+    font-family: 'Museo Sans Cyrl 300';
+    margin-bottom: 30px;
+}
+.pay-content-ul {
+    margin-bottom: 30px;
+}
+.pay-content-ul li {
+    font-family: 'Museo Sans Cyrl 300';
+    margin-bottom: 5px;
+    list-style: none;
+}
+.pay-way:first-child {
+    border-top:0;
+    padding-top: 0;
+}
+.opt-img {
+    width:100%;
+    margin-bottom: 30px;
+}
+.opt-ans {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.get-price-list {
+    width:150px;
+}
+.review {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+    padding-bottom: 22px;
+}
+.review-info {
+    display: flex;
+    max-width:330px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+}
+.name-reviewer {
+    margin-right: 15px;
+    font-family: 'Museo Sans Cyrl 700';
+    text-transform: uppercase;
+}
+.date-city-review {
+    font-family: 'Museo Sans Cyrl 500';
+}
+.mark {
+    width:52px;
+    height:10px;
+    background-image: url(../images/mark.png);
+    background-repeat: no-repeat;
+    margin-bottom: 20px;
+}
+.mark-4 {
+    width:42px;
+}
+.mark-3 {
+    width:32px;
+}
+.mark-2 {
+    width:22px;
+}
+.mark-1 {
+    width:12px;
+}
+.review-text {
+    font-family: 'Museo Sans Cyrl 500';
+    font-size: 15px;
+    line-height:20px;
+}
+.reviews-list > div {
+    border-bottom:1px solid #fff;
+}
+.reviews-list > div:last-child {
+    border-bottom:0;
+}
+.bld {
+    font-family: 'Museo Sans Cyrl 500';
+}
+/* HOVE
+RS */
 .search-a , .search form button , .in-basket button , 
-.all-categories , .subscribe , .callback-footer a , 
-.element-main button , .in-basket-item , .buy-opt , .calc ,
-.get-review {
+.all-categories , .subscribe , .callback-footer a{
     transition: 0.2s all;
 }
 .search-a:hover , .search form button:hover , .in-basket button:hover, 
-.all-categories:hover , .subscribe:hover , .callback-footer a:hover , .actv,
-.element-main button:hover , .in-basket-item:hover , .calc:hover ,
-.get-review:hover {
+.all-categories:hover , .subscribe:hover , .callback-footer a:hover , .actv{
     color:#fe9b00;
     background: #646464;
-}
-
-/* hover - white*/
-.buy-opt:hover {
-    color:#fff;
-    background: #fe9b00;
 }

@@ -5,13 +5,7 @@
 ?>
 <?php get_header(); ?>
             <div class="wrapper">
-                <div class="search sc-faq">
-                    <a href="">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/catalog.png" alt="">
-                        Каталог товаров
-                    </a>
-                    <?php get_search_form(); ?>
-                </div>
+<?php get_template_part('templates/search', 'catalog'); ?>
             </div>
             <div class="wrapper">
                 <div class="want"> 
