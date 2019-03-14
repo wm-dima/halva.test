@@ -75,16 +75,24 @@
                         </div>
                         <div class="phones-m">
                             <ul>
-                                <li><a href="">8-800-700-73-63</a></li>
-                                <li><a href="">8-800-700-73-63</a></li>
-                                <li><a href="">Skype</a></li>
+                                <li>
+                                    <a href="tel:+<?php echo get_call_phone(get_theme_mod( 'phone_1' )); ?>">
+                                        <?php echo get_theme_mod( 'phone_1' ); ?>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="tel:+<?php echo get_call_phone(get_theme_mod( 'phone_2' )); ?>">
+                                        <?php echo get_theme_mod( 'phone_2' ); ?>
+                                    </a>
+                                </li>
+                                <li><a href="skype:<?php echo get_theme_mod( 'skype' ); ?>">Skype</a></li>
                             </ul>
                         </div>
                         <div class="soc-m">
                             <ul>
-                                <li><a href="">youtube</a></li>
-                                <li><a href="">Вконтакте</a></li>
-                                <li><a href="">instagram</a></li>
+                                <li><a href="<?php echo get_theme_mod( 'youtube' ); ?>">youtube</a></li>
+                                <li><a href="<?php echo get_theme_mod( 'vk' ); ?>">Вконтакте</a></li>
+                                <li><a href="<?php echo get_theme_mod( 'instagram' ); ?>">instagram</a></li>
                             </ul>
                         </div>
                     </div>
@@ -93,7 +101,7 @@
             <div class="body-black"></div>
                 <div class="logo-head"></div>
             <div class="skype">
-                <a href=""><img src="<?php echo get_template_directory_uri(); ?>/assets/images/skype.png" alt=""></a>
+                <a href="skype:<?php echo get_theme_mod( 'skype' ); ?>"><img src="<?php echo get_template_directory_uri(); ?>/assets/images/skype.png" alt=""></a>
             </div>
         </div>
     </header>
@@ -105,13 +113,27 @@
             </a>
             <div class="phones">
                 <ul>
-                    <li><img src="<?php echo get_template_directory_uri(); ?>/assets/images/phone.png" alt=""><span class="phone-number"><a href="tel:+88007007363">8 (800) 700-73-63</a></span></li>
-                    <li><img src="<?php echo get_template_directory_uri(); ?>/assets/images/phone.png" alt=""><span class="phone-number"><a href="tel:+88007007363">8-800-700-73-63</a></span></li>
+                    <li>
+                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/phone.png" alt="">
+                        <span class="phone-number">
+                            <a href="tel:+<?php echo get_call_phone(get_theme_mod( 'phone_1' )); ?>">
+                                <?php echo get_theme_mod( 'phone_1' ); ?>
+                            </a>
+                        </span>
+                    </li>
+                    <li>
+                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/phone.png" alt="">
+                        <span class="phone-number">
+                            <a href="tel:+<?php echo get_call_phone(get_theme_mod( 'phone_2' )); ?>">
+                                <?php echo get_theme_mod( 'phone_2' ); ?>
+                            </a>
+                        </span>
+                    </li>
                 </ul>
             </div>
             <div class="call-back">
                 <ul>
-                    <li>ПН-ВС: 6:00–16:00 (МСК)</li>
+                    <li><?php echo get_theme_mod( 'work_time' ); ?></li>
                     <li>
                         <a href="">
                             <img src="<?php echo get_template_directory_uri(); ?>/assets/images/callback.png" alt=""> Обратный звонок

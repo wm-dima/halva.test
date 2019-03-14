@@ -27,21 +27,43 @@
                             <div class="footer-line"></div>
                             <div class="socials-f">
                                 <ul>
-                                    <li><a href=""><img src="<?php echo get_template_directory_uri(); ?>/assets/images/facebook.png" alt=""></a></li>
-                                    <li><a href=""><img src="<?php echo get_template_directory_uri(); ?>/assets/images/instagram.png" alt=""></a></li>
-                                    <li><a href=""><img src="<?php echo get_template_directory_uri(); ?>/assets/images/vk.png" alt=""></a></li>
+                                    <li>
+                                        <a href="<?php echo get_theme_mod( 'youtube' ); ?>">
+                                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/facebook.png" alt="">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="<?php echo get_theme_mod( 'vk' ); ?>">
+                                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/instagram.png" alt="">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="<?php echo get_theme_mod( 'instagram' ); ?>">
+                                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/vk.png" alt="">
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
                         <div class="phones-footer">
                             <div class="phones-ul">
                                 <ul>
-                                    <li><a href=""><img src="<?php echo get_template_directory_uri(); ?>/assets/images/phone.png" alt="">8 (800) 700-73-63</a></li>
-                                    <li><a href=""><img src="<?php echo get_template_directory_uri(); ?>/assets/images/phone.png" alt="">8-800-700-73-63</a></li>
+                                    <li>
+                                        <a href="tel:+<?php echo get_call_phone( get_theme_mod( 'phone_1') ); ?>">
+                                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/phone.png" alt="">
+                                            <?php echo get_theme_mod( 'phone_1'); ?>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="tel:+<?php echo get_call_phone( get_theme_mod( 'phone_2') ); ?>">
+                                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/phone.png" alt="">
+                                            <?php echo get_theme_mod( 'phone_2'); ?>
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                             <div class="callback-footer">
-                                <p>ПН-ВС: 6:00–16:00 (МСК)</p>
+                                <p><?php echo get_theme_mod( 'work_time' ); ?></p>
                                 <a href="">
                                     <img src="<?php echo get_template_directory_uri(); ?>/assets/images/callback.png" alt="">
                                     Обратный звонок
@@ -78,21 +100,43 @@
                             <div class="footer-line"></div>
                             <div class="socials-f">
                                 <ul>
-                                    <li><a href=""><img src="<?php echo get_template_directory_uri(); ?>/assets/images/facebook.png" alt=""></a></li>
-                                    <li><a href=""><img src="<?php echo get_template_directory_uri(); ?>/assets/images/instagram.png" alt=""></a></li>
-                                    <li><a href=""><img src="<?php echo get_template_directory_uri(); ?>/assets/images/vk.png" alt=""></a></li>
+                                    <li>
+                                        <a href="<?php echo get_theme_mod( 'facebook' ); ?>">
+                                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/facebook.png" alt="">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="<?php echo get_theme_mod( 'instagram' ); ?>">
+                                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/instagram.png" alt="">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="<?php echo get_theme_mod( 'vk' ); ?>">
+                                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/vk.png" alt="">
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
                         <div class="phones-footer">
                             <div class="phones-ul">
                                 <ul>
-                                    <li><a href=""><img src="<?php echo get_template_directory_uri(); ?>/assets/images/phone.png" alt="">8 (800) 700-73-63</a></li>
-                                    <li><a href=""><img src="<?php echo get_template_directory_uri(); ?>/assets/images/phone.png" alt="">8-800-700-73-63</a></li>
+                                    <li>
+                                        <a href="tel:+<?php echo get_call_phone( get_theme_mod( 'phone_1') ); ?>">
+                                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/phone.png" alt="">
+                                            <?php echo get_theme_mod( 'phone_1'); ?>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="tel:+<?php echo get_call_phone( get_theme_mod( 'phone_2') ); ?>">
+                                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/phone.png" alt="">
+                                            <?php echo get_theme_mod( 'phone_2'); ?>
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                             <div class="callback-footer">
-                                <p>ПН-ВС: 6:00–16:00 (МСК)</p>
+                                <p><?php echo get_theme_mod( 'work_time' ); ?></p>
                                 <a href="">
                                     <img src="<?php echo get_template_directory_uri(); ?>/assets/images/callback.png" alt="">
                                     Обратный звонок

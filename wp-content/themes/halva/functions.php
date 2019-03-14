@@ -5,7 +5,6 @@ if (function_exists('add_theme_support')) {
 }
 
 add_action( 'widgets_init', 'register_my_widgets' );
-
 function register_my_widgets(){
     register_sidebar( array(
         'name' => "Фильтр цены",
@@ -27,8 +26,121 @@ function register_my_widgets(){
     ) );
 }
 
-add_action( 'wp_enqueue_scripts', 'my_them_load_css_and_js' );
+add_action('customize_register', 'mytheme_customize_register');
+function mytheme_customize_register( $wp_customize ) {
+    $wp_customize->add_section(
+        'main_option',
+        array(
+            'title' => 'Настройки информации',
+            'description' => 'телефоны, соц. сети, адресс',
+            'priority' => 11,
+        )
+    );
+    /*PHONE*/
+    $wp_customize->add_setting(
+        'phone_1'
+    );
+    $wp_customize->add_control(
+        'phone_1',
+        array(
+            'label' => 'Телефон 1',
+            'section' => 'main_option',
+            'type' => 'text',
+        )
+    );
 
+    /*PHONE*/
+    $wp_customize->add_setting(
+        'phone_2'
+    );
+    $wp_customize->add_control(
+        'phone_2',
+        array(
+            'label' => 'Телефон 2',
+            'section' => 'main_option',
+            'type' => 'text',
+        )
+    );
+
+    /*SKYPE*/
+    $wp_customize->add_setting(
+        'skype'
+    );
+    $wp_customize->add_control(
+        'skype',
+        array(
+            'label' => 'Skype',
+            'section' => 'main_option',
+            'type' => 'text',
+        )
+    );
+
+    /*SOCIAL FaceBook*/
+    $wp_customize->add_setting(
+        'faceBook'
+    );
+    $wp_customize->add_control(
+      'faceBook',
+      array(
+          'label' => 'FaceBook',
+          'section' => 'main_option',
+          'type' => 'text',
+      )
+    );
+    /*SOCIAL Instagram*/
+    $wp_customize->add_setting(
+        'instagram'
+    );
+    $wp_customize->add_control(
+      'instagram',
+      array(
+          'label' => 'Instagram',
+          'section' => 'main_option',
+          'type' => 'text',
+      )
+    );
+
+    /*SOCIAL VK*/
+    $wp_customize->add_setting(
+        'vk'
+    );
+    $wp_customize->add_control(
+      'vk',
+      array(
+          'label' => 'VK',
+          'section' => 'main_option',
+          'type' => 'text',
+      )
+    );
+
+    /*Working time*/
+    $wp_customize->add_setting(
+        'work_time'
+    );
+    $wp_customize->add_control(
+      'work_time',
+      array(
+          'label' => 'Время работы',
+          'section' => 'main_option',
+          'type' => 'text',
+      )
+    );
+
+    /*youtube*/
+    $wp_customize->add_setting(
+        'youtube'
+    );
+    $wp_customize->add_control(
+      'youtube',
+      array(
+          'label' => 'youtube',
+          'section' => 'main_option',
+          'type' => 'text',
+      )
+    );
+}
+
+add_action( 'wp_enqueue_scripts', 'my_them_load_css_and_js' );
 function my_them_load_css_and_js() {
 
     wp_enqueue_style( 'wm-the-css-style', get_template_directory_uri() . '/assets/css/style.css');
@@ -353,4 +465,8 @@ function extend_comment_edit_meta_data( $comment_id ) {
     }
     else
         delete_comment_meta( $comment_id, 'phone');
+}
+
+function get_call_phone($phone){
+    return str_replace(['+','-',' ','(',')'], '', $phone);
 }
