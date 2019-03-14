@@ -25,7 +25,13 @@
                         <div class="log-in">
                             <ul>
                                 <li><img src="<?php echo get_template_directory_uri(); ?>/assets/images/user.png" alt=""></li>
-                                <li>Вход/Регистрация</li>
+                                <li>
+                                    <?php if (is_user_logged_in()) : ?>
+                                        <a href="<?php echo wp_logout_url(get_permalink()); ?>">Выход</a>
+                                    <?php else : ?>
+                                        <a href="<?php echo wp_login_url(get_permalink()); ?>">Вход/Регистрация</a>
+                                    <?php endif;?>
+                                </li>
                             </ul>
                         </div>
                     </a>
@@ -62,7 +68,13 @@
                         <div class="loc-and-log">
                             <ul>
                                 <li><a href="">Москва</a></li>
-                                <li><a href="">Вход/регистрация</a></li>
+                                <li>
+                                    <?php if (is_user_logged_in()) : ?>
+                                        <a href="<?php echo wp_logout_url(get_permalink()); ?>">Выход</a>
+                                    <?php else : ?>
+                                        <a href="<?php echo wp_login_url(get_permalink()); ?>">Вход/Регистрация</a>
+                                    <?php endif;?>                                    
+                                </li>
                             </ul>
                         </div>
                         <div class="nav-m">
