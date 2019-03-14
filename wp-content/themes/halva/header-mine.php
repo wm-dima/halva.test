@@ -40,7 +40,7 @@
                         <div class="payment">
                             <ul>
                                 <li><img src="<?php echo get_template_directory_uri(); ?>/assets/images/question.png" alt=""></li>
-                                <li>Оплата и доставка</li>
+                                <li><a href="<?php echo get_permalink( 118 ) ?>"></a>Оплата и доставка</li>
                             </ul>
                         </div>
                     </a>
@@ -157,19 +157,21 @@
                     </ul>
                 </div>
                 <div class="shop-icons">
-                    <a href="<?php echo get_permalink( 94 ); ?>">
-                        <div class="accept">
-                            <div class="shop-icon">
-                                <div class="number"><?php echo do_shortcode( '[wcp_get_total]' ) ?></div>
-                            </div>
-                            <p>Сравнение</p>
-                        </div>
-                    </a>
-                    <div class="likes">
+                    <div class="accept">
                         <div class="shop-icon">
-                            <div class="number"><?php echo wm_get_wishlist_count(); ?></div>
+                            <div class="number"><?php echo do_shortcode( '[wcp_get_total]' ); ?></div>
                         </div>
-                        <p>Желание</p>
+                        <p>Сравнение</p>
+                    </div>
+                    <div class="likes">
+                        <a href="<?php echo get_permalink( 124 ); ?>">
+                            <div class="shop-icon">
+                                <div class="number"><?php echo do_shortcode( '[wwl_get_total]' ); ?></div>
+                            </div>
+                        </a>
+                        <a href="<?php echo get_permalink( 124 ); ?>">
+                            <p>Желание</p>
+                        </a>    
                     </div>
                     <div class="basket">
                         <a href="<?php echo get_permalink( 6 ); ?>">
