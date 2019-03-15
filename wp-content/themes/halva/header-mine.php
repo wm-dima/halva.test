@@ -164,12 +164,12 @@
                         <p>Сравнение</p>
                     </div>
                     <div class="likes">
-                        <a href="<?php echo get_permalink( 124 ); ?>">
+                        <a href="<?php echo get_permalink( 16 ); ?>">
                             <div class="shop-icon">
                                 <div class="number"><?php echo do_shortcode( '[wwl_get_total]' ); ?></div>
                             </div>
                         </a>
-                        <a href="<?php echo get_permalink( 124 ); ?>">
+                        <a href="<?php echo get_permalink( 16 ); ?>">
                             <p>Желание</p>
                         </a>    
                     </div>
