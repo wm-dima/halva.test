@@ -201,14 +201,11 @@ class WCP_Public {
 
 	public function get_comp_cats(){
 		$cats = $this->get_categories();
-		$res = '';
+		$res = '<ul>';
 		foreach ($cats as $key => $value) {
-			// var_dump($key, $value->term_id);
-			// die;
-			if ($key == 0 ) $res .= "<li class=\"wcp-compare-category wcp-compare-category--active\"><a href=\"\">{$value->name}</li></a>" ;
-			else $res .= "<li class=\"wcp-compare-category\"><a href=\"?category={$value->term_id}\">{$value->name}</li></a>" ;
+			$res .= "<li><a href=\"?category={$value->term_id}\">{$value->name}</li></a>" ;
 		}
-		$res .= "<li><a href=\"\"></li></a>" ;
+		$res .= "</ul>" ;
 		return $res;
 	}
 

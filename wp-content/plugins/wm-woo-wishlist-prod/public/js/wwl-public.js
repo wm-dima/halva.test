@@ -3,25 +3,37 @@ var last_removed_product = null;
 
 var wish_added_event = new Event('wish_was_added');
 var wish_remove_event = new Event('wish_was_removed');
+var wish_list_remove_event = new Event('rm_wish_list');
 
 document.querySelector('body').addEventListener('wish_was_added', wwl_state_to_remove);
 
 function wwl_state_to_remove(){
-	alert('Пробукт был добавлен!');
+	alert('Пробукт был добавлен в список желаний!');
 	document.querySelector('[data-wm-prod-id="' + last_added_product + '"] [data-wm-wwl]').setAttribute('data-wm-wwl', 'remove');
-	document.querySelector('.shop-icons .accept .number').innerText = document.querySelector('.shop-icons .accept .number').innerText * 1 + 1;
+	document.querySelector('.shop-icons .likes .number').innerText = document.querySelector('.shop-icons .likes .number').innerText * 1 + 1;
 }
 
 document.querySelector('body').addEventListener('wish_was_removed', wwl_state_to_add);
 
 function wwl_state_to_add(){
-	alert('Пробукт был удален!');
+	alert('Пробукт был удален из списка желаний!');
 	document.querySelector('[data-wm-prod-id="' + last_removed_product + '"] [data-wm-wwl]').setAttribute('data-wm-wwl', 'add');
-	document.querySelector('.shop-icons .accept .number').innerText = document.querySelector('.shop-icons .accept .number').innerText * 1 - 1;
+	document.querySelector('.shop-icons .likes .number').innerText = document.querySelector('.shop-icons .likes .number').innerText * 1 - 1;
+}
+
+document.querySelector('body').addEventListener('rm_wish_list', wwl_rm_wish_list);
+
+function wwl_rm_wish_list(){
+	alert('Продукт был удален из избранного!');
+	document.querySelector('[data-wm-prod-id="'+last_removed_product+'"]').classList.add('wm-hid');
 }
 
 function wish_controller(e){
-	var id = e.target.closest('.catalog-item.hi-1').getAttribute('data-wm-prod-id');
+	try{
+		var id = e.target.closest('.catalog-item.hi-1').getAttribute('data-wm-prod-id');
+	} catch (er){
+		var id = e.target.closest('.hit-item.hi-1').getAttribute('data-wm-prod-id');
+	}
 	if (e.target.getAttribute('data-wm-wwl') == 'add') {
 		add_to_wish(id);
 	} else {
@@ -29,6 +41,11 @@ function wish_controller(e){
 	}
 }
 
+function wish_list_remove(e, type){
+	var id = e.target.closest('[data-wm-prod-id]').getAttribute('data-wm-prod-id');
+	remove_from_wish(id, type);
+
+}
 function add_to_wish(id){
 	var xhttp = new XMLHttpRequest();
 	xhttp.open('POST', my_ajax_url.ajax_url +"?action=add_to_wish" , true);
@@ -73,11 +90,11 @@ function get_all_wishd(){
 	}	
 }
 
-function remove_from_wish(id){
+function remove_from_wish(id, type = false){
 	var xhttp = new XMLHttpRequest();
 	xhttp.open('POST', my_ajax_url.ajax_url +"?action=remove_from_wish" , true);
 	xhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-	xhttp.send('id=' + id);
+	xhttp.send('id=' + id + '&type=' + type);
 	xhttp.onreadystatechange = function() {
 		if (xhttp.readyState == 4) {
 			if (xhttp.status == 200) {
@@ -135,8 +152,12 @@ function setCookie(name, value, options) {
 
 document.querySelector('body').addEventListener('click', function (e){
 	if (e.target.hasAttribute('data-wm-wwl')) {
-	console.log('e');
 		wish_controller(e);
 		return;
 	}
+	if (e.target.hasAttribute('data-wm-wwl-compared-list')) {
+		wish_list_remove(e, 'wish_list_remove_event');
+		return;
+	}
+
 });

@@ -72,7 +72,7 @@ class Wwl {
 		} else {
 			$this->version = '1.0.0';
 		}
-		$this->plugin_name = 'wcp';
+		$this->plugin_name = 'wwl';
 
 		$this->load_dependencies();
 		// $this->set_locale();
@@ -181,9 +181,12 @@ class Wwl {
 
 		$this->loader->add_action('wp_ajax_get_all_wishd', $plugin_public, 'get_all_wishd_products');
 		$this->loader->add_action('wp_ajax_nopriv_get_all_wishd', $plugin_public, 'get_all_wishd_products');
+		$this->loader->add_action('template_include', $plugin_public, 'wwl_pages_controller');
 
 
 
+		$this->loader->add_shortcode('show_wish_prods', $plugin_public, 'show_wish_prods');
+		$this->loader->add_shortcode('get_wish_cats', $plugin_public, 'get_wish_cats');
 		$this->loader->add_shortcode('is_in_wish_list', $plugin_public, 'is_in_wish_list');
 		$this->loader->add_shortcode('wwl_get_total', $plugin_public, 'wwl_get_total');
 		// // $this->loader->add_shortcode('wcp_shc', $plugin_public, 'wcp_shc_do');

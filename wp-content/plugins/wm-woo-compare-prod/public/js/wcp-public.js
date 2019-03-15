@@ -8,7 +8,7 @@ var compare_remove_list_event = new Event('rm_from_list');
 document.querySelector('body').addEventListener('compare_was_added', wcp_state_to_remove);
 
 function wcp_state_to_remove(){
-	alert('Пробукт был добавлен!');
+	alert('Пробукт был добавлен в сравнение!');
 	document.querySelector('[data-wm-prod-id="' + wcp_last_added_product + '"] [data-wm-wcp]').setAttribute('data-wm-wcp', 'remove');
 	document.querySelector('.shop-icons .accept .number').innerText = document.querySelector('.shop-icons .accept .number').innerText * 1 + 1;
 }
@@ -17,7 +17,7 @@ document.querySelector('body').addEventListener('compare_was_removed', wcp_state
 document.querySelector('body').addEventListener('rm_from_list', wcp_rm_from_list);
 
 function wcp_state_to_add(){
-	alert('Пробукт был удален!');
+	alert('Пробукт был удален из сравнения!');
 	document.querySelector('[data-wm-prod-id="' + wcp_last_removed_product + '"] [data-wm-wcp]').setAttribute('data-wm-wcp', 'add');
 	document.querySelector('.shop-icons .accept .number').innerText = document.querySelector('.shop-icons .accept .number').innerText * 1 - 1;
 }
