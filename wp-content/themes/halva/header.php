@@ -37,11 +37,11 @@
                     </a>
                 </div>
                 <div class="header-wrap-right">
-                    <a href="">
+                    <a href="<?php echo get_permalink( 118 ) ?>">
                         <div class="payment">
                             <ul>
                                 <li><img src="<?php echo get_template_directory_uri(); ?>/assets/images/question.png" alt=""></li>
-                                <li><a href="<?php echo get_permalink( 118 ) ?>"></a>Оплата и доставка</li>
+                                <li>Оплата и доставка</li>
                             </ul>
                         </div>
                     </a>
@@ -79,10 +79,10 @@
                         </div>
                         <div class="nav-m">
                             <ul>
-                                <li><a href="">Akula</a></li>
-                                <li><a href="">Покупателям</a></li>
-                                <li><a href="">Партнерам</a></li>
-                                <li><a href="">Помощь</a></li>
+                                <li><a href="<?php echo get_home_url(); ?>">Akula</a></li>
+                                <li><a href="<?php echo get_permalink( 149 ); ?>">Покупателям</a></li>
+                                <li><a href="<?php echo get_permalink( 151 ); ?>">Партнерам</a></li>
+                                <li><a href="<?php echo get_permalink( 154 ); ?>">Помощь</a></li>
                             </ul>
                         </div>
                         <div class="phones-m">

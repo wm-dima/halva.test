@@ -36,11 +36,11 @@
                     </a>
                 </div>
                 <div class="header-wrap-right">
-                    <a href="">
+                    <a href="<?php echo get_permalink( 118 ) ?>">
                         <div class="payment">
                             <ul>
                                 <li><img src="<?php echo get_template_directory_uri(); ?>/assets/images/question.png" alt=""></li>
-                                <li><a href="<?php echo get_permalink( 118 ) ?>"></a>Оплата и доставка</li>
+                                <li>Оплата и доставка</li>
                             </ul>
                         </div>
                     </a>
@@ -78,10 +78,10 @@
                         </div>
                         <div class="nav-m">
                             <ul>
-                                <li><a href="">Akula</a></li>
-                                <li><a href="">Покупателям</a></li>
-                                <li><a href="">Партнерам</a></li>
-                                <li><a href="">Помощь</a></li>
+                                <li><a href="<?php echo get_home_url(); ?>">Akula</a></li>
+                                <li><a href="<?php echo get_permalink( 149 ); ?>">Покупателям</a></li>
+                                <li><a href="<?php echo get_permalink( 151 ); ?>">Партнерам</a></li>
+                                <li><a href="<?php echo get_permalink( 154 ); ?>">Помощь</a></li>
                             </ul>
                         </div>
                         <div class="phones-m">
@@ -190,41 +190,17 @@
         <div class="slide-wrapper">
             <div class="swiper-container">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/slide-1.png" alt="" class="img1">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/slide-2.png" alt="" class="img2">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/slide.png" alt="" class="img3" > 
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/slide-1.png" alt="" class="img1">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/slide-2.png" alt="" class="img2">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/slide.png" alt="" class="img3" > 
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/slide-1.png" alt="" class="img1">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/slide-2.png" alt="" class="img2">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/slide.png" alt="" class="img3" > 
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/slide-1.png" alt="" class="img1">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/slide-2.png" alt="" class="img2">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/slide.png" alt="" class="img3" > 
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/slide-1.png" alt="" class="img1">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/slide-2.png" alt="" class="img2">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/slide.png" alt="" class="img3" > 
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/slide-1.png" alt="" class="img1">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/slide-2.png" alt="" class="img2">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/slide.png" alt="" class="img3" > 
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/slide-1.png" alt="" class="img1">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/slide-2.png" alt="" class="img2">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/slide.png" alt="" class="img3" > 
-                    </div>
+                <?php  
+                    $slider =  get_field('slider', 10) ;
+                    foreach ($slider as $key => $value) : ?>
+                        <div class="swiper-slide">
+                            <img src="<?php echo $value['min_width_imgs'][0]['min_img']; ?>" alt="" class="img1">
+                            <img src="<?php echo $value['min_width_imgs'][1]['min_img']; ?>" alt="" class="img2" > 
+                            <img src="<?php echo $value['slide_img']; ?>" alt="" class="img3">
+                        </div>
+                    <?php
+                    endforeach;
+                ?>
                 </div>
                 <!-- Add Pagination -->
                 <div class="swiper-pagination"></div>
@@ -252,8 +228,3 @@
             </script>       
         </div>
     </div>
-<?php if (is_user_logged_in()) : ?>
-    <a href="<?php echo wp_logout_url(get_permalink()); ?>">Logout</a>
-<?php else : ?>
-    <a href="<?php echo wp_login_url(get_permalink()); ?>">Login</a>
-<?php endif;?>

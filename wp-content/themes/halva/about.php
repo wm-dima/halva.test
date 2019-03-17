@@ -16,41 +16,7 @@ Template Name: О нас
                 </div>
                 <div class="help-main">
                     <div class="help-side">
-                        <div class="help-nav-1 help-nav">
-                            <ul>
-                                <li>Автоазарт</li>
-                                <li><a href="" class="help-active">О компании</a></li>
-                                <li><a href="">Контакты</a></li>
-                                <li><a href="">Новости</a></li>
-                                <li><a href="">Статьи</a></li>
-                            </ul>
-                        </div>
-                        <div class="help-nav-2 help-nav">
-                            <ul>
-                                <li>ОПТ И ЗАКУПКА </li>
-                                <li><a href="">Поставщикам</a></li>
-                                <li><a href="">Оптовым покупателям</a></li>
-                                <li><a href="">Реквизиты компании</a></li>
-                            </ul>
-                        </div>
-                        <div class="help-nav-3 help-nav">
-                            <ul>
-                                <li>ИНТЕРНЕТ-МАГАЗИН </li>
-                                <li><a href="">Оплата</a></li>
-                                <li><a href="">Доставка</a></li>
-                                <li><a href="">Гарантия</a></li>
-                                <li><a href="">Договор оферты</a></li>
-                            </ul>
-                        </div>
-                        <div class="help-nav-4 help-nav">
-                            <ul>
-                                <li>ПОМОЩЬ</li>
-                                <li><a href="">Популярные вопросы</a></li>
-                                <li><a href="">Обратная связь</a></li>
-                                <li><a href="">Отзывы</a></li>
-                            </ul>
-                        </div>
-
+                        <?php get_template_part('templates/nav', 'side'); ?>
                     </div>
                     <div class="help-answer">
                         <p class="question-name">О компании</p>

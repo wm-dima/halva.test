@@ -171,7 +171,7 @@ Template Name: index
                     <?php endforeach; ?>
                 </div>
 
-                <a href="" class="all-categories">Все категории</a>
+                <a href="<?php echo get_permalink( wc_get_page_id( 'shop' ) ); ?>" class="all-categories">Все категории</a>
             </div>
             
         </div>
@@ -265,26 +265,16 @@ Template Name: index
         <div class="adv-wrapper">
             <h3>ПРЕИМУЩЕСТВА ПОКУПКИ У НАС</h3>
             <div class="inside-adv">
-                <div class="a-item adv-i-1">
-                    <div class="a-picture"></div>
-                    <p class="a-p">С НАМИ НАДЁЖНО <br> И БЕЗОПАСНО</p>
-                </div>
-                <div class="a-item adv-i-2">
-                    <div class="a-picture"></div>
-                    <p class="a-p">ПОЛНАЯ ГАРАНТИЯ НА <br> ДОСТАВКУ И КАЧЕСТВО ТОВАРА</p>
-                </div>
-                <div class="a-item adv-i-3">
-                    <div class="a-picture"></div>
-                    <p class="a-p">БЫСТРАЯ ДОСТАВКА ПО <br> РОССИИ И ЗА ЕЁ ПРЕДЕЛЫ</p>
-                </div>
-                <div class="a-item adv-i-4">
-                    <div class="a-picture"></div>
-                    <p class="a-p">НИЗКИЕ ЦЕНЫ</p>
-                </div>
-                <div class="a-item adv-i-5">
-                    <div class="a-picture"></div>
-                    <p class="a-p">Знания  и опыт</p>
-                </div>
+            <?php  
+                $benefits =  get_field('benefits', 10) ;
+                foreach ($benefits as $key => $value) : ?>
+                    <div class="a-item adv-i-1">
+                        <div style="background-image: url('<?php echo $value['img'] ?>');" class="a-picture"></div>
+                        <p class="a-p"><?php echo $value['desc'] ?></p>
+                    </div>
+                <?php
+                endforeach;
+            ?>
             </div>
         </div>
     </div>

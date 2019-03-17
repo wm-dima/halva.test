@@ -1,9 +1,18 @@
-try{
-	$('body').bind('added_to_cart', function(event, fragments, cart_hash) {
-		alert('Товыр был добавлен в корзину!');
-		document.querySelector('.basket .shop-icon .number').innerText = document.querySelector('.basket .shop-icon .number').innerText * 1 + 1;
+document.addEventListener('DOMContentLoaded', function(){
+	try{
+		$('body').bind('added_to_cart', function(event, fragments, cart_hash) {
+				alert('Товыр был добавлен в корзину!');
+				document.querySelector('.basket .shop-icon .number').innerText = document.querySelector('.basket .shop-icon .number').innerText * 1 + 1;
+		});
+	} catch (e){}
+
+
+	document.querySelector('.inside-header').addEventListener('click', function(e){
+		if (e.target.closest('.bodyBlackShow')) {
+			document.querySelector('#catalog-body > header > div > div.menu-mob.menu-mob-show > div.close').click();
+		}
 	});
-} catch (e){}
+})
 
 // try{
 // 	var xhttp = new XMLHttpRequest();
