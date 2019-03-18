@@ -155,10 +155,14 @@
             </div>
             <div class="shop-icons">
                 <div class="accept">
-                    <div class="shop-icon">
-                        <div class="number"><?php echo do_shortcode( '[wcp_get_total]' ); ?></div>
-                    </div>
-                    <p>Сравнение</p>
+                    <a href="<?php echo get_permalink( 94 ); ?>">
+                        <div class="shop-icon">
+                            <div class="number"><?php echo do_shortcode( '[wcp_get_total]' ); ?></div>
+                        </div>
+                    </a>
+                    <a href="<?php echo get_permalink( 94 ); ?>">
+                        <p>Сравнение</p>
+                    </a>
                 </div>
                 <div class="likes">
                     <a href="<?php echo get_permalink( 16 ); ?>">
