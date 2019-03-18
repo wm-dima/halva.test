@@ -409,7 +409,8 @@ body .item-info{
     margin-bottom: 24px;
 }
 
-.help-nav [aria-current="page"]{
+.help-nav [aria-current="page"],
+.help-nav .current_page_item{
     color: #fff !important;
     line-height: 30px;
     padding: 0px 18px;

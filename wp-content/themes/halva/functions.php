@@ -149,7 +149,7 @@ function my_them_load_css_and_js() {
     wp_enqueue_style( 'wm-the-swiper.min', get_template_directory_uri() . '/assets/css/swiper.min.css');
     wp_enqueue_style( 'wm-the-media-css', get_template_directory_uri() . '/assets/css/media.css');
 
-    wp_enqueue_style( 'wm-the-generic', get_template_directory_uri() . '/assets/css/generic.css');
+    // wp_enqueue_style( 'wm-the-generic', get_template_directory_uri() . '/assets/css/generic.css');
     wp_enqueue_style( 'wm-the-item-slider', get_template_directory_uri() . '/assets/css/item-slider.css');
     wp_enqueue_style( 'wm-the-jcarousel-connected-carousels', get_template_directory_uri() . '/assets/css/jcarousel.connected-carousels.css');
     wp_enqueue_style( 'wm-the-select', get_template_directory_uri() . '/assets/css/select.css');
@@ -469,4 +469,13 @@ function extend_comment_edit_meta_data( $comment_id ) {
 
 function get_call_phone($phone){
     return str_replace(['+','-',' ','(',')'], '', $phone);
+}
+
+add_action( 'comment_post', 'add_comment_metadata_field' );
+function add_comment_metadata_field( $comment_id ) {
+    // echo "<pre>";
+    // var_dump($comment_id);
+    // var_dump($_POST['rating']);
+    // die;
+    add_comment_meta( $comment_id, 'rating', $_POST['rating'] );
 }
