@@ -420,3 +420,114 @@ body .item-info{
     border-radius: 15px;
     font-size: 14px !important;
 }
+
+.catalog-navigation .page-numbers{
+    list-style: none;
+    width: 62px;
+    height: 46px;
+    background-color: #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9px;
+    margin-right: 11px;
+}
+
+.catalog-navigation .page-numbers.current{
+    background-color: #ff9c00 !important;
+    color: #fff;
+    font-family: 'Museo Sans Cyrl 500';
+}
+
+
+.wm-form-log-in{
+    display: flex;
+    flex-direction: column;
+}
+.wm-form-log-in textarea{
+    width: 100%;
+}
+
+.wm-form-log-in .form-left{
+    display: flex;
+    flex-direction: row;
+    justify-content: inherit;
+    margin-top: 40px;
+}
+
+.wm-form-log-in .form-left input{
+   width: 45%;
+}
+
+#commentform{
+    flex-direction: column;
+}
+
+#commentform [type="submit"] {
+    max-width: 350px;
+}
+
+#commentform .fields {
+    display: flex;
+    justify-content: center;
+}
+
+#commentform .fields > div {
+    width: 48%;
+}
+
+#commentform .fields  input[type="text"],
+#commentform .fields  textarea{
+    width: 400px;
+}
+
+#commentform .submit-wrap{
+    display: flex;
+    justify-content: center;
+}
+#commentform .submit-wrap input{
+    width: 350px;
+}
+
+@media (max-width: 730px) {
+    #commentform .fields{
+        flex-direction: column;
+    }
+    #commentform .submit-wrap{
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 990px) {
+    .wm-form-log-in .form-left{
+        display: flex;
+        flex-direction: column;
+        justify-content: inherit;
+        margin-top: 25px;
+    }
+    .wm-form-log-in .form-left input{
+        width: 100%;
+    }
+/*    .feedback-form [type="submit"] {
+        position: absolute;
+        bottom: -105px;
+        width: 85%;
+        margin-left: 8%;
+    }*/
+}
+
+
+
+.feedback-form .comment-form-rating{
+    padding: 20px;
+}
+
+.feedback-form .comment-form-rating select{
+    margin-left: 35px;
+    padding: 10px;
+}
+
+.feedback-form{
+    position: relative;
+}
+

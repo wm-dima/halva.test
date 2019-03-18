@@ -3,6 +3,9 @@
 Template Name: Поставщикам
 */
 ?>
+<?php 
+// не использовал
+?>
 <?php get_header(); ?>
             <div class="wrapper">
                 <?php get_template_part('templates/search', 'catalog'); ?>
@@ -16,7 +19,7 @@ Template Name: Поставщикам
                 </div>
                 <div class="help-main">
                     <div class="help-side">
-                        <?php get_template_part('templates/feedback', 'form'); ?>
+                        <?php get_template_part('templates/nav', 'side'); ?>
                     </div>
                     <div class="help-answer opt-text">
                         <p class="question-name">Поставщикам</p>

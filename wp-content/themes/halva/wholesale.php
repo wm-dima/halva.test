@@ -16,7 +16,7 @@ Template Name: Оптовым покупателям
                 </div>
                 <div class="help-main">
                     <div class="help-side">
-                        <?php get_template_part('templates/feedback', 'form'); ?>
+                        <?php get_template_part('templates/nav', 'side'); ?>
                     </div>
                     <div class="help-answer opt-ans">
                         <p class="question-name">Оптовым покупателям</p>

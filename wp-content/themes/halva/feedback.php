@@ -4,9 +4,9 @@ Template Name: Обратная связь
 */
 ?>
 <?php get_header(); ?>
-            <div class="wrapper">
-                <?php get_template_part('templates/search', 'catalog'); ?>
-            </div>
+        <div class="wrapper">
+            <?php get_template_part('templates/search', 'catalog'); ?>
+        </div>
         <div class="questions">
             <div class="wrapper">
                 <div class="inside-questions">
@@ -20,6 +20,11 @@ Template Name: Обратная связь
                     </div>
                     <div class="help-answer">
                         <p class="question-name">Обратная связь</p>
+                        <p class="about-company">
+                            <?php 
+                                echo $post->post_content
+                            ?>
+                        </p>
                         <?php get_template_part('templates/feedback', 'form'); ?>
                     </div>
                 </div>

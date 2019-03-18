@@ -6,17 +6,17 @@
                         <div class="azart">
                             <ul>
                                 <li>АВТОАЗАРТ</li>
-                                <li><a href="">О компании</a></li>
-                                <li><a href="">Контакты</a></li>
-                                <li><a href="">Новости</a></li>
+                                <li><a href="<?php echo get_permalink( 103 ); ?>">О компании</a></li>
+                                <li><a href="<?php echo get_permalink( 160 ); ?>">Контакты</a></li>
+                                <li><a href="<?php echo get_permalink( 114 ); ?>">Новости</a></li>
                             </ul>
                         </div>
                         <div class="opt">
                             <ul>
                                 <li>Опт и закупка</li>
-                                <li><a href="">Поставщикам </a></li>
-                                <li><a href="">Оптовым покупателям </a></li>
-                                <li><a href="">Реквизиты компании</a></li>
+                                <li><a href="<?php echo get_permalink( 120 ); ?>">Поставщикам </a></li>
+                                <li><a href="<?php echo get_permalink( 116 ); ?>">Оптовым покупателям </a></li>
+                                <li><a href="<?php echo get_permalink( 166 ); ?>">Реквизиты компании</a></li>
                             </ul>
                         </div>
                     </div>
@@ -78,18 +78,18 @@
                         <div class="online-shop os">
                             <ul>
                                 <li>Интернет магазин</li>
-                                <li><a href="">Оплата</a></li>
-                                <li><a href="">Доставка</a></li>
-                                <li><a href="">Гарантия</a></li>
-                                <li><a href="">Договор оферты</a></li>
+                                <li><a href="<?php echo get_permalink( 118 ); ?>">Оплата</a></li>
+                                <li><a href="<?php echo get_permalink( 175 ); ?>">Доставка</a></li>
+                                <li><a href="<?php echo get_permalink( 177 ); ?>">Гарантия</a></li>
+                                <li><a href="<?php echo get_permalink( 171 ); ?>">Договор оферты</a></li>
                             </ul>
                         </div>
                         <div class="online-shop">
                             <ul>
                                 <li>Помощь</li>
-                                <li><a href="">Популярные вопросы</a></li>
-                                <li><a href="">Обратная связь</a></li>
-                                <li><a href="">Отзывы</a></li>
+                                <li><a href="<?php echo get_permalink( 181 ); ?>">Популярные вопросы</a></li>
+                                <li><a href="<?php echo get_permalink( 111 ); ?>">Обратная связь</a></li>
+                                <li><a href="<?php echo get_permalink( 183 ); ?>">Отзывы</a></li>
                             </ul>
                         </div>
                     </div>
@@ -137,7 +137,7 @@
                             </div>
                             <div class="callback-footer">
                                 <p><?php echo get_theme_mod( 'work_time' ); ?></p>
-                                <a href="">
+                                <a href="<?php echo get_permalink(  ); ?>">
                                     <img src="<?php echo get_template_directory_uri(); ?>/assets/images/callback.png" alt="">
                                     Обратный звонок
                                 </a>

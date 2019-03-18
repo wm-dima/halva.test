@@ -166,10 +166,10 @@ get_header( 'shop' ); ?>
                                             <p><?php echo $product->description; ?></p>
                                         </div>
                                         <div class="specifications-item">
-                                            <h4>Характеристики</h4>
                                                 <?php  
                                                     $specifications = get_field( 'add_specifications' );
-                                                    if ( count( $specifications ) ) {
+                                                    if ( count( $specifications ) && is_array($specifications) ) {
+                                                        echo "<h4>Характеристики</h4>";
                                                         foreach ($specifications as $key => $value): 
                                                 ?>
                                                         <div class="specifications">
