@@ -660,3 +660,11 @@ input:focus + label,
     display: flex;
 }
 
+.the-desc {
+  transition: all 0.3s;
+  opacity: 0;
+}
+
+.item-column:hover .the-desc{
+  opacity: 1;
+}

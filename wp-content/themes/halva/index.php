@@ -164,7 +164,9 @@ Template Name: index
                             <div class="item-column">
                                 <div class="item-about">
                                     <p class="category"><?php echo $cat->name; ?></p>
-                                    <p class="description-item"><?php echo $cat->category_description; ?> <img src="<?php echo get_template_directory_uri(); ?>/assets/images/more.png" alt=""></p>
+                                    <p class="description-item">
+                                        <span class="the-desc"><?php echo $cat->category_description; ?></span>
+                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/more.png" alt=""></p>
                                 </div>
                                 <div class="column-more">
                                     <div class="show-all">Все товары...</div>
@@ -229,21 +231,31 @@ Template Name: index
                 <div class="video-first">
                     <div class="logo logoyt"></div>
                     <div class="youtube"><img src="<?php echo get_template_directory_uri(); ?>/assets/images/youtube.png" alt=""></div>
-                    <a href="" class="subscribe">Подписаться</a>
+                    <a 
+                        href="https://www.youtube.com/channel/<?php echo get_field('yt_subscribe', 10) ?>?sub_confirmation=1" 
+                        class="subscribe"
+                    >
+                        Подписаться
+                    </a>
+                  
                 </div>
                 <div class="slider-video">
                     <div class="swiper-container2">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <div class="video-slide-wrap">
-                                    <iframe id="iframe" src="https://www.youtube.com/embed/Bey4XXJAqS8" frameborder="0" allow="picture-in-picture" allowfullscreen></iframe>
-                                </div>    
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="video-slide-wrap">
-                                    <iframe id="iframe" src="https://www.youtube.com/embed/Bey4XXJAqS8" frameborder="0" allow="picture-in-picture" allowfullscreen></iframe>
-                                </div>    
-                            </div>
+                            <?php 
+                                $y_slider = get_field('y_slider', 10);
+                                if (count($y_slider)): 
+                            ?>
+                            <?php foreach ($y_slider as $key => $value): ?>
+                                <div class="swiper-slide">
+                                    <div class="video-slide-wrap">
+                                        <iframe id="iframe" src="<?php echo $value['The_video']; ?>" frameborder="0" allow="picture-in-picture" allowfullscreen></iframe>
+                                    </div>    
+                                </div>
+                            <?php endforeach ?>
+                            <?php endif ?>
+
+
                         </div>
                         <div class="swiper-pagination hide-pag"></div>
                        
