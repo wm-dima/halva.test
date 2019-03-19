@@ -138,6 +138,19 @@ function mytheme_customize_register( $wp_customize ) {
           'type' => 'text',
       )
     );
+
+    /*email*/
+    $wp_customize->add_setting(
+        'the_email'
+    );
+    $wp_customize->add_control(
+      'the_email',
+      array(
+          'label' => 'email',
+          'section' => 'main_option',
+          'type' => 'text',
+      )
+    );
 }
 
 add_action( 'wp_enqueue_scripts', 'my_them_load_css_and_js' );
@@ -164,6 +177,9 @@ function my_them_load_css_and_js() {
     wp_enqueue_script( 'wm-the-jquery-jcarousel', get_template_directory_uri() . '/assets/js/jquery.jcarousel.min.js', array('jquery'), null, false );
     wp_enqueue_script( 'wm-the-select', get_template_directory_uri() . '/assets/js/select.js', array('jquery'), null, true );
     wp_enqueue_script( 'wm-the-the-swiper', get_template_directory_uri() . '/assets/js/swiper.min.js', array('jquery'), null, false );
+
+    wp_enqueue_script( 'wm-the-feedback_popup.js', get_template_directory_uri() . '/assets/js/wm_feedback_popup.js', [], null, false );
+
 
     wp_enqueue_script( 'wm-the-wm-main', get_template_directory_uri() . '/assets/js/main.js',[], null, true );
 
@@ -473,9 +489,40 @@ function get_call_phone($phone){
 
 add_action( 'comment_post', 'add_comment_metadata_field' );
 function add_comment_metadata_field( $comment_id ) {
-    // echo "<pre>";
-    // var_dump($comment_id);
-    // var_dump($_POST['rating']);
-    // die;
     add_comment_meta( $comment_id, 'rating', $_POST['rating'] );
 }
+
+function send_form_contact() {
+
+  /* Забираем отправленные данные */
+  $name = $_POST['name'];
+  $phone = $_POST['tel'];
+
+  $res = "Уведомление с сайта 'АвтоАзарт' <br/><br/>
+            Имя:  $name <br/><br/>
+            Телефон: $phone <br/><br/>
+            Сообщение: 'Перезвоните мне пожалуйста'";
+  /* Отправляем нам письмо */
+  $emailTo = get_theme_mod('the_email');
+  $subject = 'Перезвоните мне пожалуйста!';
+  $headers = "Content-type: text/html; charset=\"utf-8\"";
+  $mailBody = $res;
+
+  $send = wp_mail($emailTo, $subject, $mailBody, $headers);
+
+  /* Завершаем выполнение ajax */
+  if( $send ){
+      $response = [
+        'success' => true
+      ];
+  } else {
+      $response = [
+            'success' => false
+          ];
+  }
+  echo json_encode($response);
+  die();
+  
+}
+add_action("wp_ajax_feedback_popup", "send_form_contact");
+add_action("wp_ajax_nopriv_feedback_popup", "send_form_contact");

@@ -536,3 +536,111 @@ a {
     color: inherit;
     text-decoration: none;
 }
+
+body .item-cart {
+    height: inherit;
+}
+
+.pop-up-wrap{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99;
+    background: #3337;
+}
+
+input[type="text"] {
+    width: 296px;
+    height:50px;
+    background: #fff;
+    outline: 0;
+    border:0;
+    border-radius: 26px;
+    -webkit-border-radius: 26px;
+    -moz-border-radius: 26px;
+    -ms-border-radius: 26px;
+    -o-border-radius: 26px;
+    margin-bottom: 23px;
+    font-family: 'Museo Sans Cyrl 500';
+    font-size: 16px;
+    box-sizing: border-box;
+    padding-left: 26px; 
+}
+input[type="submit"] {
+    height:50px;
+    background: #ff9c00;
+    color:#fff;
+    outline: 0;
+    border:0;
+    border-radius: 26px;
+    -webkit-border-radius: 26px;
+    -moz-border-radius: 26px;
+    -ms-border-radius: 26px;
+    -o-border-radius: 26px;
+    margin-bottom: 23px;
+    font-family: 'Museo Sans Cyrl 500';
+    font-size: 18px;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.place-holder-text {
+    position: relative;
+    font-size: 20px;
+    left: -74%;
+}
+
+input + label,
+.input--not-empty {
+    transform-origin: center left;
+    transition: all 0.3s;
+}
+
+input:focus + label,
+.input--not-empty {
+    display: inline-block;
+    color: #a99c9c !important;
+    transform: scale(0.7);
+    top: -12px;
+}
+
+.pop-up{
+    position: relative;
+}
+
+.feedback-pop-up-submit {
+    display: flex;
+    align-items: center;
+}
+
+.feedback-pop-up-submit input{
+    min-width: 200px;
+    margin-left: 50px;
+}
+
+.pop-up-close{
+    background-image: url(./assets/images/cross.png);
+    background-size: contain;
+    position: absolute;
+    top: -21px;
+    right: 37px;
+    width: 20px;
+    height: 20px;
+}
+
+.pop-up-close:hover{
+    cursor: pointer;
+}
+
+#feedbackPopupForm div{
+  padding-left: 40px
+}
+
+.form-error{
+    border-bottom: #f33 2px solid !important;
+}

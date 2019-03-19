@@ -147,8 +147,9 @@
                 <ul>
                     <li><?php echo get_theme_mod( 'work_time' ); ?></li>
                     <li>
-                        <a href="">
-                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/callback.png" alt=""> Обратный звонок
+                        <a href="javascript:void(0);" onclick="showFeedbackPopup()">
+                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/callback.png" alt="">
+                            Обратный звонок
                         </a>
                     </li>
                 </ul>

@@ -1,3 +1,4 @@
+<?php get_template_part( 'templates/feedback', 'popup' ); ?>
 <footer>
         <div class="wrapper">
             <div class="inside-footer">
@@ -64,7 +65,7 @@
                             </div>
                             <div class="callback-footer">
                                 <p><?php echo get_theme_mod( 'work_time' ); ?></p>
-                                <a href="">
+                                <a href="javascript:void(0);" onclick="showFeedbackPopup()">
                                     <img src="<?php echo get_template_directory_uri(); ?>/assets/images/callback.png" alt="">
                                     Обратный звонок
                                 </a>
@@ -137,7 +138,7 @@
                             </div>
                             <div class="callback-footer">
                                 <p><?php echo get_theme_mod( 'work_time' ); ?></p>
-                                <a href="<?php echo get_permalink(  ); ?>">
+                                <a href="javascript:void(0);" onclick="showFeedbackPopup()">
                                     <img src="<?php echo get_template_directory_uri(); ?>/assets/images/callback.png" alt="">
                                     Обратный звонок
                                 </a>
