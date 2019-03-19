@@ -48,8 +48,12 @@
                     <a href="">
                         <div class="help">
                             <ul>
-                                <li><img src="<?php echo get_template_directory_uri(); ?>/assets/images/help.png" alt=""></li>
-                                <li>Помощь</li>
+                                <a href="<?php echo get_permalink( 219 ); ?>">
+                                    <li><img src="<?php echo get_template_directory_uri(); ?>/assets/images/help.png" alt=""></li>
+                                </a>
+                                <a href="<?php echo get_permalink( 219 ); ?>">
+                                    <li>Помощь</li>
+                                </a>
                             </ul>
                         </div>
                     </a>

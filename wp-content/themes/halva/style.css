@@ -644,3 +644,19 @@ input:focus + label,
 .form-error{
     border-bottom: #f33 2px solid !important;
 }
+
+.search-res-wrapper{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.search-res-wrapper .search{
+    display: flex;
+    align-items: baseline;
+}
+
+.search-res-wrapper .result-single{
+    min-height: 100px;
+    display: flex;
+}
+
