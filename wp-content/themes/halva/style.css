@@ -212,7 +212,7 @@ div.filter-price > .wm-filter-title > img {
     display: flex;
     align-items: center;
     justify-content: center;
-    max-width: 150px;
+    /*max-width: 150px;*/
     max-height: 50px;
 }
 
@@ -730,4 +730,13 @@ body .payment-info .steps .align-img{
 
 body .payment-info .steps .certificat-text {
     text-align: center;
+}
+
+.inside-cart-main .out-of-stock {
+    max-width: 150px;
+}
+
+.out-of-stock > button,
+.out-of-stock > p{
+    background-color:#9a9894;
 }

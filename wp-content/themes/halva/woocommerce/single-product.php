@@ -256,7 +256,7 @@ get_header( 'shop' ); ?>
                                                 </div>    
                                                 <div class="in-basket">
                                                     <?php if ( $product->stock_status == 'outofstock' ): ?>
-                                                        <div class="out-of-stock"><p>Нет в наличие</p></div>
+                                                        <div class="out-of-stock"><button>Нет в наличие</button></div>
                                                     <?php else: ?>
                                                         <a 
                                                             href="/shop/?add-to-cart=<?php echo $value; ?>" 
