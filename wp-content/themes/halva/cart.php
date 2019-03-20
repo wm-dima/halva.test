@@ -16,38 +16,7 @@
                     </div>
                 </div>
             </div>   
-            <div class="basket-navigation">
-                    <div class="wrapper">
-                        <div class="inside-basket-nav">
-                            <ul>
-                                <li>
-                                    <a href="" class="active">
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/basket.png" alt="">
-                                        Корзина
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="">
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/truck.png" alt="">
-                                        Доставка
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="">
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/wallet.png" alt="">
-                                        Оплата
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="">
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/g.png" alt="">
-                                        Оформление
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>    
-            </div>        
+<?php get_template_part('templates/basket', 'navigation') ?>            
             <div class="basket-main">
                 <div class="wrapper">
                     <div class="inside-basket-main">

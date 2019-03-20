@@ -740,3 +740,26 @@ body .payment-info .steps .certificat-text {
 .out-of-stock > p{
     background-color:#9a9894;
 }
+
+
+body .inside-basket-nav ul{
+    justify-content: space-around;
+}
+
+#ship-to-different-address > label {
+    background-image: inherit;
+}
+
+#wm-form-checkout{
+    display: flex;
+}
+
+#customer_details{
+    display: flex;
+    flex-direction: column;
+}
+
+#customer_details div.col-1,
+#customer_details div.col-2 {
+    width: 95%;
+}
