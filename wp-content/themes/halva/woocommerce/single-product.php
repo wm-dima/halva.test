@@ -93,7 +93,6 @@ get_header( 'shop' ); ?>
                                                         <div class="out-of-stock buy-opt"><p>Нет в наличие</p></div>
                                                     <?php else: ?>
                                                             <?php $stocks = get_field('wm_stock_availability');
-                                                            // var_dump($stocks);
                                                             if ( is_array($stocks) ) {
                                                                 foreach ($stocks as $key => $value) {
                                                                     $html .= '<span class="city-1">' . $value['stock_title'] . '</span>, ';
@@ -210,13 +209,15 @@ get_header( 'shop' ); ?>
                                     </div>
                                     <?php get_template_part('templates/comments', 'form'); ?>
                              </div>
-<?php 
-    $args = array(
-        'include' => $product->get_cross_sell_ids(),
-    );
-    $loop = wc_get_products( $args );
-    $ids = $product->get_cross_sell_ids();
-?>
+                            <?php 
+                                $args = array(
+                                    'include' => $product->get_cross_sell_ids(),
+                                );
+                                $loop = wc_get_products( $args );
+                                $ids = $product->get_cross_sell_ids();
+                            ?>
+                            <?php if (count($ids)): ?>
+    
                              <div class="also-buy">
                                 <h4>С этим товаром покупают</h4>
                                 <div class="swiper">
@@ -225,11 +226,7 @@ get_header( 'shop' ); ?>
 
                                         <?php if ( have_posts() ) :
                                         foreach ($ids as $key => $value) : 
-                                            // global $product;
                                             $product = wc_get_product( $value );
-                                            // echo "<pre>";
-                                            // var_dump( $product );
-                                            // die;
                                         ?>
 
                                             <div class="swiper-slide">
@@ -344,6 +341,8 @@ get_header( 'shop' ); ?>
                                       </script>
                                       
                              </div>
+                            <?php endif ?>
+
 						 </div>
 					 </div>
 	<?php
