@@ -5,6 +5,10 @@ var wish_added_event = new Event('wish_was_added');
 var wish_remove_event = new Event('wish_was_removed');
 var wish_list_remove_event = new Event('rm_wish_list');
 
+var single_wwl_rm = new Event('ev_single_wwl_rm');
+var single_wwl_add = new Event('ev_single_wwl_add');
+
+
 document.querySelector('body').addEventListener('wish_was_added', wwl_state_to_remove);
 
 function wwl_state_to_remove(){
@@ -28,6 +32,22 @@ function wwl_rm_wish_list(){
 	document.querySelector('[data-wm-prod-id="'+last_removed_product+'"]').classList.add('wm-hid');
 }
 
+document.querySelector('body').addEventListener('ev_single_wwl_rm', fn_single_wwl_rm);
+
+function fn_single_wwl_rm(){
+	alert('Продукт был добавлен в избраное!');
+	document.querySelector('[data-wm-wwl-single="add"]').setAttribute('data-wm-wwl-single', 'remove');
+	document.querySelector('.shop-icons .likes .number').innerText = document.querySelector('.shop-icons .likes .number').innerText * 1 + 1;
+}
+
+document.querySelector('body').addEventListener('ev_single_wwl_add', fn_single_wwl_add);
+
+function fn_single_wwl_add(){
+	alert('Продукт был удален из избранного!');
+	document.querySelector('[data-wm-wwl-single="remove"]').setAttribute('data-wm-wwl-single', 'add');
+	document.querySelector('.shop-icons .likes .number').innerText = document.querySelector('.shop-icons .likes .number').innerText * 1 - 1;
+}
+
 function wish_controller(e){
 	try{
 		var id = e.target.closest('.catalog-item.hi-1').getAttribute('data-wm-prod-id');
@@ -41,16 +61,25 @@ function wish_controller(e){
 	}
 }
 
+function single_controller(e){
+	var id = e.target.closest('[data-wm-prod-id]').getAttribute('data-wm-prod-id');
+	if (e.target.getAttribute('data-wm-wwl-single') == 'add') {
+		add_to_wish(id, 'single_wwl_rm');
+	} else {
+		remove_from_wish(id, 'single_wwl_add');
+	}
+}
+
 function wish_list_remove(e, type){
 	var id = e.target.closest('[data-wm-prod-id]').getAttribute('data-wm-prod-id');
 	remove_from_wish(id, type);
-
 }
-function add_to_wish(id){
+
+function add_to_wish(id, type = false){
 	var xhttp = new XMLHttpRequest();
 	xhttp.open('POST', my_ajax_url.ajax_url +"?action=add_to_wish" , true);
 	xhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-	xhttp.send('id=' + id);
+	xhttp.send('id=' + id + '&type=' + type);
 	xhttp.onreadystatechange = function() {
 		if (xhttp.readyState == 4) {
 			if (xhttp.status == 200) {
@@ -157,6 +186,10 @@ document.querySelector('body').addEventListener('click', function (e){
 	}
 	if (e.target.hasAttribute('data-wm-wwl-compared-list')) {
 		wish_list_remove(e, 'wish_list_remove_event');
+		return;
+	}
+	if (e.target.hasAttribute('data-wm-wwl-single')) {
+		single_controller(e);
 		return;
 	}
 

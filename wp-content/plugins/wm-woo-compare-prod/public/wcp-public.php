@@ -39,20 +39,20 @@ class WCP_Public {
 		$this->validate_before_insert();
 		$id = (int)$_POST['id'];
 		if (is_user_logged_in()) {
-			$this->set_to_db( $id );
+			$this->set_to_db( $id, $_POST['type'] );
 		} else {
-			$this->set_to_cookie( $id );
+			$this->set_to_cookie( $id, $_POST['type'] );
 		}
+		$this->added_js_event($id, $_POST['type']);
 	}
 
-	public function set_to_db( $id ){
+	public function set_to_db( $id, $type = false ){
 		global $wpdb;
 		$wpdb->insert( $wpdb->prefix . 'client_id_product_id', array( 'client_id' => get_current_user_id() , 'product_id' => $id ) );
 		$this->all_prods[] = $id;
-		$this->added_js_event($id);
 	}
 
-	public function set_to_cookie( $id ) {
+	public function set_to_cookie( $id, $type = false ) {
 		$in_cookie = json_decode( $_COOKIE['wcp_compare'], true );
 		if ( empty( $in_cookie ) ) {
 			setcookie( 
@@ -70,7 +70,6 @@ class WCP_Public {
 				'/'
 			);
 		}
-		$this->added_js_event($id);
 	}
 
 
@@ -114,17 +113,17 @@ class WCP_Public {
 		}
 	}
 
-	public function added_js_event($id) {
+	public function added_js_event($id, $type = 'compare_added_event' ) {
 		$response = [
 			'success' => true,
 			'last_added_product' => $id,
-			'event' => 'compare_added_event'
+			'event' => $type
 		];
 		echo json_encode($response);
 		die();
 	}
 
-	public function removed_js_event($id, $type) {
+	public function removed_js_event($id, $type = false) {
 		$response = [
 			'success' => true,
 			'last_removed_product' => $id,

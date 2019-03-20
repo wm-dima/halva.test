@@ -4,6 +4,8 @@ var wcp_last_removed_product = null;
 var compare_added_event = new Event('compare_was_added');
 var compare_remove_event = new Event('compare_was_removed');
 var compare_remove_list_event = new Event('rm_from_list');
+var single_wcp_rm = new Event('ev_single_wcp_rm');
+var single_wcp_add = new Event('ev_single_wcp_add');
 
 document.querySelector('body').addEventListener('compare_was_added', wcp_state_to_remove);
 
@@ -21,6 +23,25 @@ function wcp_state_to_add(){
 	document.querySelector('[data-wm-prod-id="' + wcp_last_removed_product + '"] [data-wm-wcp]').setAttribute('data-wm-wcp', 'add');
 	document.querySelector('.shop-icons .accept .number').innerText = document.querySelector('.shop-icons .accept .number').innerText * 1 - 1;
 }
+
+document.querySelector('body').addEventListener('ev_single_wcp_rm', fn_single_wcp_rm);
+
+function fn_single_wcp_rm(){
+	alert(1);
+	alert('Продукт был добавлен в сравнения!');
+	document.querySelector('[data-wm-wcp-single="add"]').setAttribute('data-wm-wcp-single', 'remove');
+	document.querySelector('.shop-icons .accept .number').innerText = document.querySelector('.shop-icons .accept .number').innerText * 1 + 1;
+}
+
+document.querySelector('body').addEventListener('ev_single_wcp_add', fn_single_wcp_add);
+
+function fn_single_wcp_add(){
+	alert('Продукт был удален из сравнения!');
+	document.querySelector('[data-wm-wcp-single="remove"]').setAttribute('data-wm-wcp-single', 'add');
+	document.querySelector('.shop-icons .accept .number').innerText = document.querySelector('.shop-icons .accept .number').innerText * 1 - 1;
+}
+
+
 
 function wcp_rm_from_list(){
 	alert('Пробукт был удален!');
@@ -42,7 +63,17 @@ function compare_controller(e, type = 'compare_remove_event' ){
 	}
 }
 
-function add_to_compare(id, type){
+function wcp_single_controller(e){
+	var id = e.target.closest('[data-wm-prod-id]').getAttribute('data-wm-prod-id');
+	if (e.target.getAttribute('data-wm-wcp-single') == 'add') {
+		add_to_compare(id, 'single_wcp_rm');
+	} else {
+		remove_from_compare(id, 'single_wcp_add');
+	}
+}
+
+
+function add_to_compare(id, type = false){
 	var xhttp = new XMLHttpRequest();
 	xhttp.open('POST', my_ajax_url.ajax_url +"?action=add_to_compare" , true);
 	xhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -153,5 +184,9 @@ document.querySelector('body').addEventListener('click', function (e){
 	if ( e.target.hasAttribute('data-wm-wcp-compared-list') ) {
 		compare_controller(e, 'compare_remove_list_event');
 		return;	
+	}
+	if (e.target.hasAttribute('data-wm-wcp-single')) {
+		wcp_single_controller(e);
+		return;
 	}
 });

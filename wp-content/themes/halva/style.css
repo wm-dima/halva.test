@@ -689,3 +689,35 @@ input:focus + label,
 #buyInClickWrap p {
   color: white;
 }
+
+[data-wm-wwl-single="remove"] {
+    background-position: -102 0 !important;
+}
+
+[data-wm-wwl-single="remove"]:hover {
+    background-position: 0 0 !important;
+}
+
+[data-wm-wwl-single="add"] {
+    background-position: 0 0 !important;
+}
+
+[data-wm-wwl-single="add"]:hover {
+    background-position: -102 0 !important;
+}
+
+[data-wm-wcp-single="remove"] {
+    background-position: -102 0 !important;
+}
+
+[data-wm-wcp-single="remove"]:hover {
+    background-position: 0 0 !important;
+}
+
+[data-wm-wcp-single="add"] {
+    background-position: 0 0 !important;
+}
+
+[data-wm-wcp-single="add"]:hover {
+    background-position: -102 0 !important;
+}

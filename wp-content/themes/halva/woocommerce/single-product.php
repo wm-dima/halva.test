@@ -54,7 +54,7 @@ get_header( 'shop' ); ?>
 							<p class="manufac">Производитель &nbsp;&nbsp; <span class="manufac-value"><?php echo $product->get_attribute('manufacturer'); ?></span></p>
 						</div>
 						<div class="item-cart">
-										<div class="item-cart-main">
+										<div class="item-cart-main" data-wm-prod-id="<?php echo $product->id; ?>">
                                             <div class="inside-cart-main">
                                                 <div class="item-view">
                                                     <div class="connected-carousels">
@@ -76,9 +76,15 @@ get_header( 'shop' ); ?>
                                                             </div>
                                                         </div>
                                                     </div><!--aba19-port-->
-                                                    <div class="item-options">
-                                                        <div class="like-item"></div>
-                                                        <div class="compar"></div>
+                                                    <div class="item-options" data-wm-prod-id="<?php echo $product->id; ?>">
+                                                        <div 
+                                                            class="like-item" 
+                                                            data-wm-wwl-single="<?php echo do_shortcode( '[is_in_wish_list]' ) == 1 ? 'remove' : 'add'; ?>"
+                                                        ></div>
+                                                        <div 
+                                                            class="compar" 
+                                                            data-wm-wcp-single="<?php echo do_shortcode( '[is_in_compare_list]' ) == 1 ? 'remove' : 'add'; ?>"
+                                                        ></div>
                                                     </div>
                                                 </div>
                                                 <div class="item-buy">
@@ -221,7 +227,7 @@ get_header( 'shop' ); ?>
                                         ?>
 
                                             <div class="swiper-slide">
-                                            <div class="catalog-item hi-1" data-wm-prod-id="<?php $value; ?>">
+                                            <div class="catalog-item hi-1" data-wm-prod-id="<?php echo $value; ?>">
                                                 <div class="item-info">
                                                     <a href="<?php echo get_permalink($value); ?>">
                                                         <div class="item-logo">
