@@ -273,12 +273,16 @@ class WCP_Public {
             <div class="element" data-wm-prod-id="<?php echo $value->ID; ?>">
                 <div class="element-main">
                     <div class="d21">
-                        <div class="item-logo">
-                            <div class="img-padding">
-                                <img src="<?php echo wm_get_main_img( $value->ID ); ?>" alt="">
-                            </div>
-                        </div>
-                        <p class="element-name"><?php echo $_product->name; ?></p>
+                    	<a href="<?php echo get_permalink( $value->ID ); ?>">
+	                        <div class="item-logo">
+	                            <div class="img-padding">
+	                                <img src="<?php echo wm_get_main_img( $value->ID ); ?>" alt="">
+	                            </div>
+	                        </div>
+                        </a>
+                    	<a href="<?php echo get_permalink( $value->ID ); ?>">
+                        	<p class="element-name"><?php echo $_product->name; ?></p>
+                    	</a>
                         <p class="element-price"><?php echo $_product->get_price_html(); ?> руб.</p>
                     </div>    
                     <a 

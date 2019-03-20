@@ -84,14 +84,16 @@ get_header( 'shop' ); ?>
                                                 <div class="item-buy">
                                                     <p class="total-price"><span class="price"><?php echo $product->get_price_html(); ?></span> р.</p>
                                                     <?php if ( $product->stock_status == 'outofstock' ): ?>
-                                                        <div class="out-of-stock"><p>Нет в наличие</p></div>
+                                                        <div class="out-of-stock buy-opt"><p>Нет в наличие</p></div>
                                                     <?php else: ?>
-                                                         <p class="in-real">В наличии:
                                                             <?php $stocks = get_field('wm_stock_availability');
+                                                            // var_dump($stocks);
+                                                            if ( is_array($stocks) ) {
                                                                 foreach ($stocks as $key => $value) {
                                                                     $html .= '<span class="city-1">' . $value['stock_title'] . '</span>, ';
                                                                 }
-                                                                echo substr($html, 0, strlen($html) - 2) . '.';
+                                                                echo '<p class="in-real">В наличии: ' . substr($html, 0, strlen($html) - 2) . '.';
+                                                            }
                                                             ?>
                                                         <a 
                                                             href="/shop/?add-to-cart=<?php echo the_id(); ?>" 
@@ -107,9 +109,9 @@ get_header( 'shop' ); ?>
                                                    
 
                                                     <div class="buy-at-click">
-                                                        <p class="buy-click">Купить в 1 клик</p>
+                                                        <p class="buy-click" onclick="showBuyInClick()">Купить в 1 клик</p>
                                                         <p class="left-contact">Оставьте данные для связи и наш менеджер свяжется с Вами в ближайшее время</p>
-                                                        <a href="" class="buy-opt">Купить оптом</a>
+                                                        <a class="buy-opt" href="javascript:void(0);" onclick="showBuyInClick()">Купить оптом</a>
                                                         <p class="discript">
                                                             Цена действительна только при заказе в интернет-магазине. 
                                                             В розничных магазинах стоимость товара может отличаться.
@@ -350,6 +352,9 @@ get_header( 'shop' ); ?>
 		// do_action( 'woocommerce_sidebar' );
 	?>
 
-<?php get_footer( 'shop' );
+<?php
+
+get_template_part('templates/buy', 'in_click');
+get_footer( 'shop' );
 
 /* Omit closing PHP tag at the end of PHP files to avoid "headers already sent" issues. */

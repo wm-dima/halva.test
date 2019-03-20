@@ -179,6 +179,7 @@ function my_them_load_css_and_js() {
     wp_enqueue_script( 'wm-the-the-swiper', get_template_directory_uri() . '/assets/js/swiper.min.js', array('jquery'), null, false );
 
     wp_enqueue_script( 'wm-the-feedback_popup.js', get_template_directory_uri() . '/assets/js/wm_feedback_popup.js', [], null, false );
+    wp_enqueue_script( 'wm-the-buy_in_click', get_template_directory_uri() . '/assets/js/buy_in_click.js', [], null, false );
 
 
     wp_enqueue_script( 'wm-the-wm-main', get_template_directory_uri() . '/assets/js/main.js',[], null, true );
@@ -526,3 +527,60 @@ function send_form_contact() {
 }
 add_action("wp_ajax_feedback_popup", "send_form_contact");
 add_action("wp_ajax_nopriv_feedback_popup", "send_form_contact");
+
+function the_buy_in_click() {
+
+    /* Забираем отправленные данные */
+    $name = $_POST['name'];
+    $phone = $_POST['tel'];
+    $count = $_POST['count'];
+    $address = $_POST['address'];
+    $prod_id = $_POST['prod_id'];
+
+    $client_info = "Купить в 1 клик 'АвтоАзарт' <br/><br/>
+        Имя:  $name <br/><br/>
+        Телефон: $phone <br/><br/>
+        Адресс доставки: $address";
+
+    $the_product = wc_get_product( $prod_id );
+    $prod_info = '';
+    $prod_info .= 'Товар "'.$the_product->name.'"<br/>';
+    $prod_info .= 'Цена '.$the_product->price.' руб.';
+    $price = $the_product->price;
+    if ($the_product->sale_price) {
+        $prod_info .= 'Со скидкой '.$the_product->sale_price.' руб.';
+        $price = $the_product->sale_price;
+    }
+    $prod_info .= '<br/>';
+    $prod_info .= 'Количесвто '.$count.' шт.<br/>';
+    // $prod_info .= 'Доставка: '.$address.' руб. <br/>';
+    $prod_info .= 'Всего к оплате: '. $price * $count .' руб. <br/>';
+
+    $res = $client_info  . '<br/> Заказ <br/>' . $prod_info;
+
+
+    /* Отправляем нам письмо */
+    $emailTo = get_theme_mod('the_email');
+    $subject = 'Перезвоните мне пожалуйста!';
+    $headers = "Content-type: text/html; charset=\"utf-8\"";
+    $mailBody = $res;
+
+    $send = wp_mail($emailTo, $subject, $mailBody, $headers);
+
+    /* Завершаем выполнение ajax */
+    if( $send ){
+        $response = [
+            'success' => true
+        ];
+    } else {
+        $response = [
+            'success' => false
+        ];
+    }
+    echo json_encode($response);
+    die();
+
+}
+add_action("wp_ajax_buy_in_click", "the_buy_in_click");
+add_action("wp_ajax_nopriv_buy_in_click", "the_buy_in_click");
+

@@ -212,6 +212,8 @@ div.filter-price > .wm-filter-title > img {
     display: flex;
     align-items: center;
     justify-content: center;
+    max-width: 150px;
+    max-height: 50px;
 }
 
 .out-of-stock p {
@@ -667,4 +669,23 @@ input:focus + label,
 
 .item-column:hover .the-desc{
   opacity: 1;
+}
+
+.pod-info-wrap{
+    display: flex;
+    font-size: 22px;
+    padding: 16px;
+    padding-left: 50px;
+}
+
+.pod-info-wrap input[type="number"]{
+    width: 65px;
+}
+
+#buyInClickWrap{
+    background: #000000c2;
+}
+
+#buyInClickWrap p {
+  color: white;
 }
