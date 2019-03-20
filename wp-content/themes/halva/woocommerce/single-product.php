@@ -153,18 +153,24 @@ get_header( 'shop' ); ?>
                                                 </ul>
                                             </div>
                                             <div class="steps">
-                                                <div class="pay-step">
-                                                    <div class="ps-img"></div>
-                                                    <p>Оплата</p>
-                                                </div>
-                                                <div class="dalivery-step">
-                                                    <div class="ds-img"></div>
-                                                    <p>Оплата</p>
-                                                </div>
-                                                <div class="garanty-step">
-                                                    <div class="gs-img"></div>
-                                                    <p>Оплата</p>
-                                                </div>
+                                                <?php 
+                                                $certificates = get_field('certificates', $product->id);
+                                                if ($certificates && is_array($certificates)) :
+                                                foreach ($certificates as $key => $value): ?>                                                    
+                                                    <div class="pay-step" >
+                                                        <div class="align-img" 
+                                                        style="
+                                                            background: url(<?php echo $value['img'] ?>);
+
+                                                        "
+                                                        ></div>
+                                                        <p class="certificat-text"><?php echo $value['sign'] ?></p>
+                                                    </div>
+                                                <?php 
+                                                endforeach;
+                                                endif;
+                                                ?>
+                                              
                                             </div>
                                         </div>
                                     </div>

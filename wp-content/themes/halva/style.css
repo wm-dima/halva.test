@@ -721,3 +721,13 @@ input:focus + label,
 [data-wm-wcp-single="add"]:hover {
     background-position: -102 0 !important;
 }
+
+body .payment-info .steps .align-img{
+    background-size: contain !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+}
+
+body .payment-info .steps .certificat-text {
+    text-align: center;
+}
