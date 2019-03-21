@@ -21,17 +21,12 @@
                 <div class="wrapper">
                     <div class="inside-basket-main">
                         <div class="basket-left">
-
                             <?php get_template_part('woocommerce/cart/cart'); ?>
+                                <!-- <div class="price-basket">
+                                    <p class="sum-price-p">Стоимость товаров</p>
+                                    <p class="final-price"><?php wc_cart_totals_subtotal_html(); ?> р.</p>
+                                </div> -->
 
-                            <div class="basket-info">
-                                <p>Для того чтобы процесс оформления покупки был ещё проще, <br>
-                                    вы можете «Войти под Вашей учетной записью» или «Зарегистрироваться»</p>
-                                <a href="" class="log-in">
-                                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/user.png" alt="">    
-                                    Вход / Регистрация
-                                </a>
-                            </div>
                         </div>
                         <div class="basket-right">
                             <div class="price-basket">
@@ -39,24 +34,19 @@
                                 <p class="final-price"><?php wc_cart_totals_subtotal_html(); ?> р.</p>
                             </div>
                             <div class="delivery-method">
-                                <p class="dm-p">Способ доставки</p>
-                                <p class="d-method-main">Не выбран</p>
-                                <?php echo wm_get_shipping_methods(); ?>
-                            </div>
-                            <div class="pay-method">
-                                <p class="dm-p">Способ оплаты</p>
-                                <p class="p-method-main">Не выбран</p>
-                            </div>
-                            <div class="basket-next">
-                                <ul>
-                                    <li>Для продолжения введите <br> номер телефона:</li>
-                                    <li>
-                                        <form action="">
-                                            <input type="text" placeholder="+7">
-                                            <button>Далее</button>
-                                        </form>
-                                    </li>
-                                </ul>
+                                <?php if (is_user_logged_in()) : ?>
+                                    <a href="<?php echo wp_logout_url(get_permalink()); ?>" class="log-in">
+                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/user.png" alt="">  
+                                        Выход
+                                    </a>
+                                <?php else : ?>
+                                    <p>Для того чтобы процесс оформления покупки был ещё проще, <br>
+                                        вы можете «Войти под Вашей учетной записью» или «Зарегистрироваться»</p>
+                                    <a href="<?php echo wp_login_url(get_permalink()); ?>" class="log-in">
+                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/user.png" alt="">  
+                                        Вход/Регистрация
+                                    </a>
+                                <?php endif;?>
                             </div>
                         </div>
                     </div>

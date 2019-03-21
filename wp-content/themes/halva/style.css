@@ -763,3 +763,38 @@ body .inside-basket-nav ul{
 #customer_details div.col-2 {
     width: 95%;
 }
+
+.carousel.carousel-stage img {
+    object-fit: contain;
+}
+
+.connected-carousels .navigation li img{
+  object-fit: contain;
+  width: 100%;
+  height: 100%; 
+  border: none !important;
+}
+
+.connected-carousels .navigation li{
+  background-color: inherit;
+  border: none;
+}
+
+.price-basket {
+  display: flex;
+  max-height: 30px;
+  height: 35px;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.price-basket p {
+  line-height: 30px;
+  display: inline-block;
+  height: 30px;
+  margin-bottom: 5px;
+}
+
+.price-basket  p:nth-child(1) {
+  margin-right: 10px;
+}

@@ -584,27 +584,6 @@ function the_buy_in_click() {
 add_action("wp_ajax_buy_in_click", "the_buy_in_click");
 add_action("wp_ajax_nopriv_buy_in_click", "the_buy_in_click");
 
-// add_filter('woocommerce_checkout_fields','remove_checkout_fields');
-function remove_checkout_fields($fields){
-    return;
-    //unset($fields['billing']['billing_first_name']);
-    //unset($fields['billing']['billing_last_name']);
-    unset($fields['billing']['billing_company']);
-    //unset($fields['billing']['billing_address_1']);
-    unset($fields['billing']['billing_address_2']);
-    //unset($fields['billing']['billing_city']);
-    unset($fields['billing']['billing_postcode']);
-    unset($fields['billing']['billing_country']);
-    unset($fields['billing']['billing_state']);
-    //unset($fields['billing']['billing_phone']);
-    //unset($fields['order']['order_comments']);
-    //unset($fields['billing']['billing_email']);
-    //unset($fields['account']['account_username']);
-    //unset($fields['account']['account_password']);
-    //unset($fields['account']['account_password-2']);
-    return $fields;
-}
-
 add_filter( 'woocommerce_checkout_fields' , 'custom_override_checkout_fields' );
  
 // Все $fields в этой функции будут пропущены через фильтр
@@ -629,3 +608,39 @@ unset($fields['shipping']['shipping_state']);
 
 return $fields;
 }
+
+function the_get_more_comments() {
+    global $post;
+
+
+    $args = array(
+        'offset' => (int)$_POST['offset'],
+        'number' => 10,
+        'orderby' => 'comment_date',
+        'order' => 'DESC',
+        'post_id' => $post->ID,
+        'status' => 'approve'
+    );
+
+    $comments = get_comments( $args );
+    $res = '';
+    foreach( $comments as $comment ) {
+        $res .= '<div class="comment">';
+            $res .= '<p class="name-commentator">' . $comment->comment_author . '</p>';
+            $res .= '<div class="comment-text">';
+                $res .= '<p class="comment-p">' . $comment->comment_content . '</p>';
+            $res .= '</div>';
+        $res .= '</div>';
+    }
+
+    $response = [
+        'success' => true,
+        'res' => $res,
+        'count' => count($comments)
+    ];
+    echo json_encode($response);
+    die();
+
+}
+add_action("wp_ajax_get_more_comments", "the_get_more_comments");
+add_action("wp_ajax_nopriv_get_more_comments", "the_get_more_comments");
