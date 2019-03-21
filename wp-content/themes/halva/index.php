@@ -3,175 +3,11 @@
 Template Name: index
 */
 ?>
-<?php get_header(); ?>
-<?php 
-	global $woocommerce;
-?>
-    <div class="banner">
-        <div class="menu-wrapper">
-            
-            <div class="second-menu">
-                <div class="logo"></div>
-                <div class="phones">
-                    <ul>
-                        <li><img src="<?php echo get_template_directory_uri(); ?>/assets/images/phone.png" alt=""><span class="phone-number"><a href="tel:+88007007363">8 (800) 700-73-63</a></span></li>
-                        <li><img src="<?php echo get_template_directory_uri(); ?>/assets/images/phone.png" alt=""><span class="phone-number"><a href="tel:+88007007363">8-800-700-73-63</a></span></li>
-                    </ul>
-                </div>
-                <div class="call-back">
-                    <ul>
-                        <li>ПН-ВС: 6:00–16:00 (МСК)</li>
-                        <li>
-                            <a href="">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/callback.png" alt="">
-                                Обратный звонок
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="shop-icons">
-                    <div class="accept">
-                        <div class="shop-icon">
-                            <div class="number"><?php echo count($yith_woocompare->obj->products_list); ?></div>
-                        </div>
-                        <p>Сравнение</p>
-                    </div>
-                    <div class="likes">
-                        <div class="shop-icon">
-                            <div class="number"><?php echo wm_get_wishlist_count(); ?></div>
-                        </div>
-                        <p>Желание</p>
-                    </div>
-                    <div class="basket">
-                        <div class="shop-icon">
-                            <div class="number"><?php echo $woocommerce->cart->cart_contents_count; ?></div>
-                        </div>
-                        <p>Корзина</p>
-                    </div>
-                </div>
-            </div>
-            
-        </div>
-        <div class="slide-wrapper">
-            <div class="swiper-container">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/slide-1.png" alt="" class="img1">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/slide-2.png" alt="" class="img2">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/slide.png" alt="" class="img3" > 
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/slide-1.png" alt="" class="img1">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/slide-2.png" alt="" class="img2">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/slide.png" alt="" class="img3" > 
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/slide-1.png" alt="" class="img1">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/slide-2.png" alt="" class="img2">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/slide.png" alt="" class="img3" > 
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/slide-1.png" alt="" class="img1">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/slide-2.png" alt="" class="img2">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/slide.png" alt="" class="img3" > 
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/slide-1.png" alt="" class="img1">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/slide-2.png" alt="" class="img2">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/slide.png" alt="" class="img3" > 
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/slide-1.png" alt="" class="img1">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/slide-2.png" alt="" class="img2">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/slide.png" alt="" class="img3" > 
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/slide-1.png" alt="" class="img1">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/slide-2.png" alt="" class="img2">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/slide.png" alt="" class="img3" > 
-                    </div>
-                </div>
-                <!-- Add Pagination -->
-                <div class="swiper-pagination"></div>
-                <!-- Add Arrows -->
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
-            </div>
+<?php get_header( 'mine' ); ?>
 
-            <!-- <script src="js/swiper.min.js"></script> -->
-
-            <script>
-                var swiper = new Swiper('.swiper-container', {
-                slidesPerView: 1,
-                spaceBetween: 30,
-                loop: true,
-                pagination: {
-                    el: '.swiper-pagination',
-                    clickable: true,
-                },
-                navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
-                },
-                });
-            </script>       
-        </div>
-    </div>
     <div class="new-and-hits">
         <div class="wrapper">
-            <div class="search">
-                <a class="search-a" onclick="$('.catalog-min').toggleClass('ct-min-show');$('.search-a').toggleClass('actv');">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/catalog.png" alt="">
-                    Каталог товаров
-                </a>
-                <?php get_search_form(); ?>
-                <div class="catalog-min">
-                    <div class="ct-min-1">
-                        <ul>
-                            <li><a href="">Автозвук и видео <span class="quantity-catalog">3427</span></a></li>
-                            <li><a href="">Автоэлектроника <span class="quantity-catalog">3427</span></a></li>
-                            <li><a href="">автоаксессуары <span class="quantity-catalog">3427</span></a></li>
-                            <li><a href="" class="active">автосвет <span class="quantity-catalog">3427</span></a></li>
-                            <li><a href="">Защита от угона <span class="quantity-catalog">3427</span></a></li>
-                            <li><a href="">мультимедия <span class="quantity-catalog">3427</span></a></li>
-                            <li><a href="">навесное оборудование <span class="quantity-catalog">3427</span></a></li>
-                            <li><a href="">багажники и рейлинги <span class="quantity-catalog">3427</span></a></li>
-                            <li><a href="" class="br ">предпусковые <br> обогреватели <span class="quantity-catalog">427</span></a></li>
-                            <li><a href="">бытовое освещение <span class="quantity-catalog">3427</span></a></li>
-                            <li><a href="">фирменная атрибутика <span class="quantity-catalog">3427</span></a></li>
-                            <li><a href="">распродажа <span class="quantity-catalog">3427</span></a></li>
-                        </ul>
-                    </div>
-                    <div class="ct-min-2">
-                        <ul>
-                            <li><a href="">Антирадары <span class="quantity-catalog">3427</span></a></li>
-                            <li class="more-list">
-                                <a href="">Видеорегистраторы <span class="quantity-catalog">3427</span></a>
-                                <ul class="second-ul">
-                                    <li><a href="">Видеорегистраторы <span class="quantity-catalog">3427</span></a></li>
-                                    <li><a href="">Запасные части к видеорегистраторам <span class="quantity-catalog">3427</span></a></li>
-                                </ul>
-                            </li>
-                            <li><a href="">Gps навигаторы <span class="quantity-catalog">3427</span></a></li>
-                            <li class="more-list">
-                                <a href="">Камеры <span class="quantity-catalog">3427</span></a>
-                                <ul class="second-ul">
-                                    <li><a href="">Камеры заднего вида <span class="quantity-catalog">3427</span></a></li>
-                                    <li><a href="">Камеры переднего обзора <span class="quantity-catalog">3427</span></a></li>
-                                </ul>
-                            </li>
-                            <li class="more-list">
-                                <a href="">Парковочные радары <span class="quantity-catalog">3427</span></a>
-                                <ul class="second-ul">
-                                    <li><a href="">Парковочные радары <span class="quantity-catalog">3427</span></a></li>
-                                    <li><a href="">Датчики <span class="quantity-catalog">3427</span></a></li>
-                                </ul>
-                            </li>
-                            <li><a href="">Карты памяти и usb flash <span class="quantity-catalog">3427</span></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+            <?php get_template_part('templates/search', 'catalog'); ?>
         </div>    
         <div class="wrapper">
             <div class="main-hits">
@@ -188,23 +24,40 @@ Template Name: index
                         );
                         $loop = new WP_Query( $args );
                         while ( $loop->have_posts() ) : $loop->the_post(); global $product; ?>
+<?php 
 
-                            <div class="hit-item hi-1">
+// echo "<pre>";
+// var_dump($product);
+// die;
+?>
+                            <div class="hit-item hi-1" data-wm-prod-id="<?php the_ID(); ?>">
                                 <div class="item-info">
-                                    <div class="item-logo">
-                                        <div class="img-padding">
-                                            <img src="<?php echo wm_get_main_img( $loop->post->ID ); ?>" alt="">
+                                    <a href="<?php echo get_permalink( $loop->post->ID );?>">
+                                        <div class="item-logo">
+                                            <div class="img-padding">
+                                                <img src="<?php echo wm_get_main_img( $loop->post->ID ); ?>" alt="">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <p class="item-name"><?php the_title(); ?></p>
+                                    </a>
+                                    <a href="<?php echo get_permalink( $loop->post->ID );?>">
+                                        <p class="item-name"><?php the_title(); ?></p>
+                                    </a>
                                     <div class="item-price"><span class="price-value"><?php echo $product->get_price_html(); ?></span> руб.</div>
-                                    <div class="item-icons">
-                                        <div class="item-like"><?php  echo do_shortcode( '[ti_wishlists_addtowishlist]' ); ?> </div>
-                                        <?php echo wm_geet_compare_link('<div class="item-balance"></div>'); ?>
-                                    </div>
+                                        <div class="item-icons wm-for-balance">
+                                            <div 
+                                                class="item-like" 
+                                                data-wm-wwl="<?php echo do_shortcode( '[is_in_wish_list]' ) == 1 ? 'remove' : 'add'; ?>">
+                                            </div>
+                                            <div 
+                                                class="item-balance" 
+                                                data-wm-wcp="<?php echo do_shortcode( '[is_in_compare_list]' ) == 1 ? 'remove' : 'add'; ?>">
+                                            </div>
+                                        </div>
+                                        <div></div>
                                 </div>    
 
                                <div class="in-basket">
+                                <?php if ($product->stock_status != 'outofstock'): ?>
                                     <a 
                                         href="/shop/?add-to-cart=<?php echo the_id(); ?>" 
                                         data-quantity="1" 
@@ -215,6 +68,9 @@ Template Name: index
                                     >
                                         <button>В корзину</button>
                                     </a>
+                                <?php else: ?>
+                                    <div class="out-of-stock"><button>Нет в наличие</button></div>
+                                <?php endif ?>
                                 </div>
                             </div>
 
@@ -224,58 +80,69 @@ Template Name: index
                     </div>
                 </div>
                 <div class="hits">
-                        <div class="hit-name">Хиты продаж</div>
-                        <div class="hit-items">
+                    <div class="hit-name">Хиты продаж</div>
+                    <div class="hit-items">
 
-                        <?php
-                            $args = array(
-                                'post_type' => 'product',
-                                'posts_per_page' => 2,
-                                'tax_query' => array(
-                                        array(
-                                            'taxonomy' => 'product_visibility',
-                                            'field'    => 'name',
-                                            'terms'    => 'featured',
-                                        ),
+                    <?php
+                        $args = array(
+                            'post_type' => 'product',
+                            'posts_per_page' => 2,
+                            'tax_query' => array(
+                                    array(
+                                        'taxonomy' => 'product_visibility',
+                                        'field'    => 'name',
+                                        'terms'    => 'featured',
                                     ),
-                                'orderby'     =>  'post_modified',
-                                'order'       =>  'DESC',
-                                );
-                            $loop = new WP_Query( $args );
-                            if ( $loop->have_posts() ) :
-                            while ( $loop->have_posts() ) : $loop->the_post(); ?>
-                                <div class="hit-item hi-1">
-                                    <div class="item-info">
+                                ),
+                            'orderby'     =>  'post_modified',
+                            'order'       =>  'DESC',
+                            );
+                        $loop = new WP_Query( $args );
+                        if ( $loop->have_posts() ) :
+                        while ( $loop->have_posts() ) : $loop->the_post(); ?>
+                            <div class="hit-item hi-1" data-wm-prod-id="<?php the_ID(); ?>">
+                                <div class="item-info">
+                                    <a href="<?php echo get_permalink( $loop->post->ID );?>">
                                         <div class="item-logo">
                                             <div class="img-padding">
                                                 <img src="<?php echo wm_get_main_img( $loop->post->ID ); ?>" alt="" />
                                             </div>
                                         </div>
+                                    </a>
+                                    <a href="<?php echo get_permalink( $loop->post->ID );?>">
                                         <p class="item-name"><?php the_title(); ?></p>
-                                        <div class="item-price"><span class="price-value"><?php echo $product->get_price_html(); ?></span> руб.</div>
-                                        <div class="item-icons">
-                                            <div class="wm-add-to-wishlist"> <?php  echo do_shortcode( '[ti_wishlists_addtowishlist]' ); ?> </div>
-                                            <?php echo wm_geet_compare_link('<div class="item-balance"></div>'); ?>
-                                        </div>
-                                    </div>    
-                                    <div class="in-basket">
-                                        <a 
-                                            href="/shop/?add-to-cart=<?php echo the_id(); ?>" 
-                                            data-quantity="1" 
-                                            class="button product_type_simple add_to_cart_button ajax_add_to_cart" 
-                                            data-product_id="<?php echo the_id(); ?>" 
-                                            data-product_sku="" 
-                                            rel="nofollow"
-                                        >
-                                            <button>В корзину</button>
-                                        </a>
-                                    </div>
+                                    </a>
+                                    <div class="item-price"><span class="price-value"><?php echo $product->get_price_html(); ?></span> руб.</div>
+                                                <div class="item-icons wm-for-balance ">
+                                                    <div class="item-like"><?php  echo do_shortcode( '[ti_wishlists_addtowishlist]' ); ?> </div>
+                                                    <div 
+                                                        class="item-balance" 
+                                                        data-wm-wcp="<?php echo do_shortcode( '[is_in_compare_list]' ) == 1 ? 'remove' : 'add'; ?>">
+                                                    </div>
+                                                </div>
+                                </div>    
+                                <div class="in-basket">
+                                <?php if ($product->stock_status != 'outofstock'): ?>
+                                    <a 
+                                        href="/shop/?add-to-cart=<?php echo the_id(); ?>" 
+                                        data-quantity="1" 
+                                        class="button product_type_simple add_to_cart_button ajax_add_to_cart" 
+                                        data-product_id="<?php echo the_id(); ?>" 
+                                        data-product_sku="" 
+                                        rel="nofollow"
+                                    >
+                                        <button>В корзину</button>
+                                    </a>
+                                <?php else: ?>
+                                    <div class="out-of-stock"><button>Нет в наличие</button></div>
+                                <?php endif ?>
                                 </div>
-                            <?php endwhile; ?>
-                            <?php endif; ?>
-                            <?php wp_reset_postdata(); ?>
+                            </div>
+                        <?php endwhile; ?>
+                        <?php endif; ?>
+                        <?php wp_reset_postdata(); ?>
 
-                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -310,7 +177,9 @@ Template Name: index
                             <div class="item-column">
                                 <div class="item-about">
                                     <p class="category"><?php echo $cat->name; ?></p>
-                                    <p class="description-item"><?php echo $cat->category_description; ?> <img src="<?php echo get_template_directory_uri(); ?>/assets/images/more.png" alt=""></p>
+                                    <p class="description-item">
+                                        <span class="the-desc"><?php echo $cat->category_description; ?></span>
+                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/more.png" alt=""></p>
                                 </div>
                                 <div class="column-more">
                                     <div class="show-all">Все товары...</div>
@@ -325,7 +194,7 @@ Template Name: index
                     <?php endforeach; ?>
                 </div>
 
-                <a href="" class="all-categories">Все категории</a>
+                <a href="<?php echo get_permalink( wc_get_page_id( 'shop' ) ); ?>" class="all-categories">Все категории</a>
             </div>
             
         </div>
@@ -375,21 +244,31 @@ Template Name: index
                 <div class="video-first">
                     <div class="logo logoyt"></div>
                     <div class="youtube"><img src="<?php echo get_template_directory_uri(); ?>/assets/images/youtube.png" alt=""></div>
-                    <a href="" class="subscribe">Подписаться</a>
+                    <a 
+                        href="https://www.youtube.com/channel/<?php echo get_field('yt_subscribe', 10) ?>?sub_confirmation=1" 
+                        class="subscribe"
+                    >
+                        Подписаться
+                    </a>
+                  
                 </div>
                 <div class="slider-video">
                     <div class="swiper-container2">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <div class="video-slide-wrap">
-                                    <iframe id="iframe" src="https://www.youtube.com/embed/Bey4XXJAqS8" frameborder="0" allow="picture-in-picture" allowfullscreen></iframe>
-                                </div>    
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="video-slide-wrap">
-                                    <iframe id="iframe" src="https://www.youtube.com/embed/Bey4XXJAqS8" frameborder="0" allow="picture-in-picture" allowfullscreen></iframe>
-                                </div>    
-                            </div>
+                            <?php 
+                                $y_slider = get_field('y_slider', 10);
+                                if (count($y_slider)): 
+                            ?>
+                            <?php foreach ($y_slider as $key => $value): ?>
+                                <div class="swiper-slide">
+                                    <div class="video-slide-wrap">
+                                        <iframe id="iframe" src="<?php echo $value['The_video']; ?>" frameborder="0" allow="picture-in-picture" allowfullscreen></iframe>
+                                    </div>    
+                                </div>
+                            <?php endforeach ?>
+                            <?php endif ?>
+
+
                         </div>
                         <div class="swiper-pagination hide-pag"></div>
                        
@@ -419,26 +298,16 @@ Template Name: index
         <div class="adv-wrapper">
             <h3>ПРЕИМУЩЕСТВА ПОКУПКИ У НАС</h3>
             <div class="inside-adv">
-                <div class="a-item adv-i-1">
-                    <div class="a-picture"></div>
-                    <p class="a-p">С НАМИ НАДЁЖНО <br> И БЕЗОПАСНО</p>
-                </div>
-                <div class="a-item adv-i-2">
-                    <div class="a-picture"></div>
-                    <p class="a-p">ПОЛНАЯ ГАРАНТИЯ НА <br> ДОСТАВКУ И КАЧЕСТВО ТОВАРА</p>
-                </div>
-                <div class="a-item adv-i-3">
-                    <div class="a-picture"></div>
-                    <p class="a-p">БЫСТРАЯ ДОСТАВКА ПО <br> РОССИИ И ЗА ЕЁ ПРЕДЕЛЫ</p>
-                </div>
-                <div class="a-item adv-i-4">
-                    <div class="a-picture"></div>
-                    <p class="a-p">НИЗКИЕ ЦЕНЫ</p>
-                </div>
-                <div class="a-item adv-i-5">
-                    <div class="a-picture"></div>
-                    <p class="a-p">Знания  и опыт</p>
-                </div>
+            <?php  
+                $benefits =  get_field('benefits', 10) ;
+                foreach ($benefits as $key => $value) : ?>
+                    <div class="a-item adv-i-1">
+                        <div style="background-image: url('<?php echo $value['img'] ?>');" class="a-picture"></div>
+                        <p class="a-p"><?php echo $value['desc'] ?></p>
+                    </div>
+                <?php
+                endforeach;
+            ?>
             </div>
         </div>
     </div>

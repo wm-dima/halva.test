@@ -5,7 +5,6 @@ if (function_exists('add_theme_support')) {
 }
 
 add_action( 'widgets_init', 'register_my_widgets' );
-
 function register_my_widgets(){
     register_sidebar( array(
         'name' => "Фильтр цены",
@@ -27,32 +26,172 @@ function register_my_widgets(){
     ) );
 }
 
+add_action('customize_register', 'mytheme_customize_register');
+function mytheme_customize_register( $wp_customize ) {
+    $wp_customize->add_section(
+        'main_option',
+        array(
+            'title' => 'Настройки информации',
+            'description' => 'телефоны, соц. сети, адресс',
+            'priority' => 11,
+        )
+    );
+    /*PHONE*/
+    $wp_customize->add_setting(
+        'phone_1'
+    );
+    $wp_customize->add_control(
+        'phone_1',
+        array(
+            'label' => 'Телефон 1',
+            'section' => 'main_option',
+            'type' => 'text',
+        )
+    );
+
+    /*PHONE*/
+    $wp_customize->add_setting(
+        'phone_2'
+    );
+    $wp_customize->add_control(
+        'phone_2',
+        array(
+            'label' => 'Телефон 2',
+            'section' => 'main_option',
+            'type' => 'text',
+        )
+    );
+
+    /*SKYPE*/
+    $wp_customize->add_setting(
+        'skype'
+    );
+    $wp_customize->add_control(
+        'skype',
+        array(
+            'label' => 'Skype',
+            'section' => 'main_option',
+            'type' => 'text',
+        )
+    );
+
+    /*SOCIAL FaceBook*/
+    $wp_customize->add_setting(
+        'faceBook'
+    );
+    $wp_customize->add_control(
+      'faceBook',
+      array(
+          'label' => 'FaceBook',
+          'section' => 'main_option',
+          'type' => 'text',
+      )
+    );
+    /*SOCIAL Instagram*/
+    $wp_customize->add_setting(
+        'instagram'
+    );
+    $wp_customize->add_control(
+      'instagram',
+      array(
+          'label' => 'Instagram',
+          'section' => 'main_option',
+          'type' => 'text',
+      )
+    );
+
+    /*SOCIAL VK*/
+    $wp_customize->add_setting(
+        'vk'
+    );
+    $wp_customize->add_control(
+      'vk',
+      array(
+          'label' => 'VK',
+          'section' => 'main_option',
+          'type' => 'text',
+      )
+    );
+
+    /*Working time*/
+    $wp_customize->add_setting(
+        'work_time'
+    );
+    $wp_customize->add_control(
+      'work_time',
+      array(
+          'label' => 'Время работы',
+          'section' => 'main_option',
+          'type' => 'text',
+      )
+    );
+
+    /*youtube*/
+    $wp_customize->add_setting(
+        'youtube'
+    );
+    $wp_customize->add_control(
+      'youtube',
+      array(
+          'label' => 'youtube',
+          'section' => 'main_option',
+          'type' => 'text',
+      )
+    );
+
+    /*email*/
+    $wp_customize->add_setting(
+        'the_email'
+    );
+    $wp_customize->add_control(
+      'the_email',
+      array(
+          'label' => 'email',
+          'section' => 'main_option',
+          'type' => 'text',
+      )
+    );
+}
+
 add_action( 'wp_enqueue_scripts', 'my_them_load_css_and_js' );
-
 function my_them_load_css_and_js() {
-    wp_enqueue_style( 'main-style', get_template_directory_uri() . '/style.css');
 
-    wp_enqueue_style( 'css-style', get_template_directory_uri() . '/assets/css/style.css');
-    wp_enqueue_style( 'normalize', get_template_directory_uri() . '/assets/css/normalize.css');
-    wp_enqueue_style( 'museo', get_template_directory_uri() . '/assets/fonts/museo.css');
-    wp_enqueue_style( 'swiper.min', get_template_directory_uri() . '/assets/css/swiper.min.css');
-    wp_enqueue_style( 'media-css', get_template_directory_uri() . '/assets/css/media.css');
+    wp_enqueue_style( 'wm-the-css-style', get_template_directory_uri() . '/assets/css/style.css');
+    wp_enqueue_style( 'wm-the-normalize', get_template_directory_uri() . '/assets/css/normalize.css');
+    wp_enqueue_style( 'wm-the-museo', get_template_directory_uri() . '/assets/fonts/museo.css');
+    wp_enqueue_style( 'wm-the-swiper.min', get_template_directory_uri() . '/assets/css/swiper.min.css');
+    wp_enqueue_style( 'wm-the-media-css', get_template_directory_uri() . '/assets/css/media.css');
 
-    wp_enqueue_style( 'generic', get_template_directory_uri() . '/assets/css/generic.css');
-    wp_enqueue_style( 'item-slider', get_template_directory_uri() . '/assets/css/item-slider.css');
-    wp_enqueue_style( 'jcarousel-connected-carousels', get_template_directory_uri() . '/assets/css/jcarousel.connected-carousels.css');
-    wp_enqueue_style( 'select', get_template_directory_uri() . '/assets/css/select.css');
+    // wp_enqueue_style( 'wm-the-generic', get_template_directory_uri() . '/assets/css/generic.css');
+    wp_enqueue_style( 'wm-the-item-slider', get_template_directory_uri() . '/assets/css/item-slider.css');
+    wp_enqueue_style( 'wm-the-jcarousel-connected-carousels', get_template_directory_uri() . '/assets/css/jcarousel.connected-carousels.css');
+    wp_enqueue_style( 'wm-the-select', get_template_directory_uri() . '/assets/css/select.css');
+    
+    wp_enqueue_style( 'wm-the-main-style', get_template_directory_uri() . '/style.css');
 
 
     wp_deregister_script('jquery');
     wp_enqueue_script( 'jquery', get_template_directory_uri() . '/assets/js/jquery-3.3.1.min.js', [], null, false );
 
-    wp_enqueue_script( 'jcarousel', get_template_directory_uri() . '/assets/js/jcarousel.connected-carousels.js', array('jquery'), null, true );
-    wp_enqueue_script( 'jquery-jcarousel', get_template_directory_uri() . '/assets/js/jquery.jcarousel.min.js', array('jquery'), null, true );
-    wp_enqueue_script( 'select', get_template_directory_uri() . '/assets/js/select.js', array('jquery'), null, true );
-    wp_enqueue_script( 'swiper', get_template_directory_uri() . '/assets/js/swiper.min.js', array('jquery'), null, true );
+    wp_enqueue_script( 'wm-the-jcarousel', get_template_directory_uri() . '/assets/js/jcarousel.connected-carousels.js', array('jquery'), null, false );
+    wp_enqueue_script( 'wm-the-jquery-jcarousel', get_template_directory_uri() . '/assets/js/jquery.jcarousel.min.js', array('jquery'), null, false );
+    wp_enqueue_script( 'wm-the-select', get_template_directory_uri() . '/assets/js/select.js', array('jquery'), null, true );
+    wp_enqueue_script( 'wm-the-the-swiper', get_template_directory_uri() . '/assets/js/swiper.min.js', array('jquery'), null, false );
 
-    wp_enqueue_script( 'wm-filter', get_template_directory_uri() . '/assets/js/wm_filters.js',[], null, true );
+    wp_enqueue_script( 'wm-the-feedback_popup.js', get_template_directory_uri() . '/assets/js/wm_feedback_popup.js', [], null, false );
+    wp_enqueue_script( 'wm-the-buy_in_click', get_template_directory_uri() . '/assets/js/buy_in_click.js', [], null, false );
+
+
+    wp_enqueue_script( 'wm-the-wm-main', get_template_directory_uri() . '/assets/js/main.js',[], null, true );
+
+    wp_localize_script( 
+        'wm-the-wm-main', 
+        'my_ajax_url', 
+            array( 
+                'ajax_url' => admin_url( 'admin-ajax.php' ),
+                'is_log_in' => is_user_logged_in()
+            ) 
+        );
 }
 
 
@@ -80,7 +219,7 @@ function wm_get_main_img($id){
 
 function wm_geet_compare_link($text){
     $compare_link = explode ( '</a>', do_shortcode('[yith_compare_button]') );
-    return  $compare_link[0] . $text . $compare_link[1];
+    return $compare_link[0] . $text . '</a>' . $compare_link[1];
 }
 
 function wm_get_wishlist_count(){
@@ -220,3 +359,288 @@ function wm_prod_per_page(){
      
     }
 }
+
+function wm_get_shipping_methods(){
+    global $wpdb;
+    $methods_id = $wpdb->get_results( 'SELECT * from ' . $wpdb->prefix . 'woocommerce_shipping_zone_methods where is_enabled = 1' );
+    $where_clause = 'WHERE ';
+    foreach ($methods_id as $key => $value) {
+        $where_clause .= 'option_name like "%' . $value->method_id . '_' . $value->instance_id . '%" OR ';
+    }
+    $where_clause = substr($where_clause, 0, strlen($where_clause) - 3);
+
+    $option_values = $wpdb->get_results( 'SELECT option_value FROM `' . $wpdb->prefix . 'options` ' . $where_clause );
+
+    $html = '<ul class="shipping-list">';
+    foreach ($option_values as $key => $value) {
+        $shipping = unserialize($value->option_value);
+        $html .= '<li>';
+        $html .= '<span class="title">' . $shipping['title'] . '<span>';
+        if ( $shipping['cost'] != '0' && $shipping['cost'] != '' ) {
+            $html .= '<span class="cost"> (' . $shipping['cost'] . ') руб.<span>';
+        }
+        $html .= '</li>';
+    }
+    $html .= '</ul>';
+    return $html;
+}
+
+// remove_action( 'woocommerce_before_main_content', 'woocommerce_output_content_wrapper', 10 );
+
+function wm_get_images( $id ){
+    if (!is_int((int)$id)) {
+        return;
+    }
+    global $wpdb;
+    $sql = 'SELECT meta_key, meta_value from ' . $wpdb->prefix . 'postmeta where post_id = ' . $id . 
+           ' AND ( meta_key = \'_product_image_gallery\' OR meta_key = \'_thumbnail_id\' );';
+    $res = $wpdb->get_results( $sql );
+    $main_img = [];
+    $additional_img = [];
+    foreach ($res as $key => $value) {
+        if ( $value->meta_key == '_thumbnail_id' ) {
+            $main_img[] = wp_get_attachment_url( $value->meta_value );
+        }
+        if ( $value->meta_key == '_product_image_gallery' && !empty( $value->meta_value ) ) {
+                $ids = explode(',', $value->meta_value);
+                foreach ($ids as $k => $v) {
+                    $additional_img[] = wp_get_attachment_url($v);
+                }
+        }
+    }
+    return array_merge($main_img, $additional_img);
+}
+
+function wm_get_single_prod_galegy( $id ){
+    $images = wm_get_images( $id );
+    // var_dump($images);
+    // die;
+    $html = '<ul>';
+        foreach ($images as $key => $value) {
+            $html .= '<li><img src="' . $value . '"  alt=""></li>';
+        }
+    $html .= '</ul>';
+    return $html;
+}
+
+function all_commentfields( $fields ) {
+    // var_dump($fields); // просмотр всех полей в переменной $fields
+
+    // сохраняем значение всех полей формы
+    $mycomment_field = $fields['comment'];
+    $myauthor_field = $fields['author'];
+    $myemail_field = $fields['email'];
+    $myurl_field = $fields['url'];
+ 
+    unset( $fields['comment'], $fields['author'], $fields['email'], $fields['url'] );
+ 
+    // заново добавляем поля в форму в нужном порядке
+    $fields['author'] = $myauthor_field;
+    $fields['email'] = $myemail_field;
+    $fields['comment'] = $mycomment_field;
+ 
+    return $fields;
+}
+ 
+add_filter( 'comment_form_fields', 'all_commentfields' );
+
+add_action( 'comment_post', 'save_extend_comment_meta_data' );
+function save_extend_comment_meta_data( $comment_id ){
+
+    if( !empty( $_POST['phone'] ) ){
+        $phone = sanitize_text_field($_POST['phone']);
+        add_comment_meta( $comment_id, 'phone', $phone );
+    }
+}
+
+add_action( 'add_meta_boxes_comment', 'extend_comment_add_meta_box' );
+function extend_comment_add_meta_box(){
+    add_meta_box( 'title', __( 'Comment Metadata - Extend Comment' ), 'extend_comment_meta_box', 'comment', 'normal', 'high' );
+}
+
+// Отображаем наши поля
+function extend_comment_meta_box( $comment ){
+    $phone  = get_comment_meta( $comment->comment_ID, 'phone', true );
+
+    wp_nonce_field( 'extend_comment_update', 'extend_comment_update', false );
+    ?>
+    <p>
+        <label for="phone"><?php _e( 'Phone' ); ?></label>
+        <input type="text" name="phone" value="<?php echo esc_attr( $phone ); ?>" class="widefat" />
+    </p>
+    <?php
+}
+
+add_action( 'edit_comment', 'extend_comment_edit_meta_data' );
+function extend_comment_edit_meta_data( $comment_id ) {
+    if( ! isset( $_POST['extend_comment_update'] ) || ! wp_verify_nonce( $_POST['extend_comment_update'], 'extend_comment_update' ) )
+    return;
+
+    if( !empty($_POST['phone']) ){
+        $phone = sanitize_text_field($_POST['phone']);
+        update_comment_meta( $comment_id, 'phone', $phone );
+    }
+    else
+        delete_comment_meta( $comment_id, 'phone');
+}
+
+function get_call_phone($phone){
+    return str_replace(['+','-',' ','(',')'], '', $phone);
+}
+
+add_action( 'comment_post', 'add_comment_metadata_field' );
+function add_comment_metadata_field( $comment_id ) {
+    add_comment_meta( $comment_id, 'rating', $_POST['rating'] );
+}
+
+function send_form_contact() {
+
+  /* Забираем отправленные данные */
+  $name = $_POST['name'];
+  $phone = $_POST['tel'];
+
+  $res = "Уведомление с сайта 'АвтоАзарт' <br/><br/>
+            Имя:  $name <br/><br/>
+            Телефон: $phone <br/><br/>
+            Сообщение: 'Перезвоните мне пожалуйста'";
+  /* Отправляем нам письмо */
+  $emailTo = get_theme_mod('the_email');
+  $subject = 'Перезвоните мне пожалуйста!';
+  $headers = "Content-type: text/html; charset=\"utf-8\"";
+  $mailBody = $res;
+
+  $send = wp_mail($emailTo, $subject, $mailBody, $headers);
+
+  /* Завершаем выполнение ajax */
+  if( $send ){
+      $response = [
+        'success' => true
+      ];
+  } else {
+      $response = [
+            'success' => false
+          ];
+  }
+  echo json_encode($response);
+  die();
+  
+}
+add_action("wp_ajax_feedback_popup", "send_form_contact");
+add_action("wp_ajax_nopriv_feedback_popup", "send_form_contact");
+
+function the_buy_in_click() {
+
+    /* Забираем отправленные данные */
+    $name = $_POST['name'];
+    $phone = $_POST['tel'];
+    $count = $_POST['count'];
+    $address = $_POST['address'];
+    $prod_id = $_POST['prod_id'];
+
+    $client_info = "Купить в 1 клик 'АвтоАзарт' <br/><br/>
+        Имя:  $name <br/><br/>
+        Телефон: $phone <br/><br/>
+        Адресс доставки: $address";
+
+    $the_product = wc_get_product( $prod_id );
+    $prod_info = '';
+    $prod_info .= 'Товар "'.$the_product->name.'"<br/>';
+    $prod_info .= 'Цена '.$the_product->price.' руб.';
+    $price = $the_product->price;
+    if ($the_product->sale_price) {
+        $prod_info .= 'Со скидкой '.$the_product->sale_price.' руб.';
+        $price = $the_product->sale_price;
+    }
+    $prod_info .= '<br/>';
+    $prod_info .= 'Количесвто '.$count.' шт.<br/>';
+    // $prod_info .= 'Доставка: '.$address.' руб. <br/>';
+    $prod_info .= 'Всего к оплате: '. $price * $count .' руб. <br/>';
+
+    $res = $client_info  . '<br/> Заказ <br/>' . $prod_info;
+
+
+    /* Отправляем нам письмо */
+    $emailTo = get_theme_mod('the_email');
+    $subject = 'Перезвоните мне пожалуйста!';
+    $headers = "Content-type: text/html; charset=\"utf-8\"";
+    $mailBody = $res;
+
+    $send = wp_mail($emailTo, $subject, $mailBody, $headers);
+
+    /* Завершаем выполнение ajax */
+    if( $send ){
+        $response = [
+            'success' => true
+        ];
+    } else {
+        $response = [
+            'success' => false
+        ];
+    }
+    echo json_encode($response);
+    die();
+
+}
+add_action("wp_ajax_buy_in_click", "the_buy_in_click");
+add_action("wp_ajax_nopriv_buy_in_click", "the_buy_in_click");
+
+add_filter( 'woocommerce_checkout_fields' , 'custom_override_checkout_fields' );
+ 
+// Все $fields в этой функции будут пропущены через фильтр
+function custom_override_checkout_fields( $fields ) {
+unset($fields['billing']['billing_company']);
+unset($fields['billing']['billing_address_2']);
+unset($fields['billing']['billing_country']);
+unset($fields['billing']['billing_state']);
+unset($fields['billing']['billing_postcode']);
+
+
+
+unset($fields['shipping']['shipping_first_name']);
+unset($fields['shipping']['shipping_last_name']);
+unset($fields['shipping']['shipping_company']);
+unset($fields['shipping']['shipping_address_1']);
+unset($fields['shipping']['shipping_address_2']);
+unset($fields['shipping']['shipping_city']);
+unset($fields['shipping']['shipping_postcode']);
+unset($fields['shipping']['shipping_country']);
+unset($fields['shipping']['shipping_state']);
+
+return $fields;
+}
+
+function the_get_more_comments() {
+    global $post;
+
+
+    $args = array(
+        'offset' => (int)$_POST['offset'],
+        'number' => 10,
+        'orderby' => 'comment_date',
+        'order' => 'DESC',
+        'post_id' => $post->ID,
+        'status' => 'approve'
+    );
+
+    $comments = get_comments( $args );
+    $res = '';
+    foreach( $comments as $comment ) {
+        $res .= '<div class="comment">';
+            $res .= '<p class="name-commentator">' . $comment->comment_author . '</p>';
+            $res .= '<div class="comment-text">';
+                $res .= '<p class="comment-p">' . $comment->comment_content . '</p>';
+            $res .= '</div>';
+        $res .= '</div>';
+    }
+
+    $response = [
+        'success' => true,
+        'res' => $res,
+        'count' => count($comments)
+    ];
+    echo json_encode($response);
+    die();
+
+}
+add_action("wp_ajax_get_more_comments", "the_get_more_comments");
+add_action("wp_ajax_nopriv_get_more_comments", "the_get_more_comments");

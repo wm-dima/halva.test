@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Themes - Twenty Nineteen package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2018-12-03 13:00:38+0000\n"
+"PO-Revision-Date: 2019-01-09 23:39:31+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -12,12 +12,17 @@ msgstr ""
 "Project-Id-Version: Themes - Twenty Nineteen\n"
 
 #. Description of the theme
-msgid "A new Gutenberg-ready theme."
-msgstr "Новая тема с поддержкой Gutenberg."
+msgid "Our 2019 default theme is designed to show off the power of the block editor. It features custom styles for all the default blocks, and is built so that what you see in the editor looks like what you'll see on your website. Twenty Nineteen is designed to be adaptable to a wide range of websites, whether you’re running a photo blog, launching a new business, or supporting a non-profit. Featuring ample whitespace and modern sans-serif headlines paired with classic serif body text, it's built to be beautiful on all screen sizes."
+msgstr "Наша тема для 2019 года создана демонстрировать мощь редактора блоков. Она предоставляет пользовательские стили для всех блоков по умолчанию и сделана так, что на сайте вы увидите то же самое, что и в редакторе блоков. Twenty Nineteen создана для совместимости с широким кругом сайтов, неважно что у вас, фото блог, новый сайт для бизнеса или некоммерческий сайт. С просторными интервалами, современными шрифтами без засечек для заголовков и классическими шрифтами с засечками для текста, она просто создана выглядеть красиво при любом размере экрана."
 
 #. Theme Name of the theme
 msgid "Twenty Nineteen"
 msgstr "Twenty Nineteen"
+
+#. translators: %s: parent post link
+#: single.php:31
+msgid "<span class=\"meta-nav\">Published in</span><span class=\"post-title\">%s</span>"
+msgstr "<span class=\"meta-nav\">Опубликовано в</span><span class=\"post-title\">%s</span>"
 
 #: image.php:87
 msgctxt "Parent post link"
@@ -34,11 +39,11 @@ msgstr "Продвигаемая"
 msgid "Twenty Nineteen requires at least WordPress version 4.7. You are running version %s. Please upgrade and try again."
 msgstr "Twenty Nineteen требует WordPress не ниже версии 4.7. У вас - %s. Пожалуйста обновите WordPress перед тем, как попробовать снова."
 
-#: inc/template-functions.php:219
+#: inc/template-functions.php:216
 msgid "Back"
 msgstr "Назад"
 
-#: inc/template-functions.php:211
+#: inc/template-functions.php:209
 msgid "More"
 msgstr "Больше"
 
@@ -60,19 +65,19 @@ msgctxt "primary color"
 msgid "Default"
 msgstr "По умолчанию"
 
-#: functions.php:166
+#: functions.php:170
 msgid "White"
 msgstr "Белая"
 
-#: functions.php:161
+#: functions.php:165
 msgid "Light Gray"
 msgstr "Светло-серая"
 
-#: functions.php:156
+#: functions.php:160
 msgid "Dark Gray"
 msgstr "Тёмно-серая"
 
-#: functions.php:151
+#: functions.php:155
 msgid "Secondary"
 msgstr "Вторичная"
 
@@ -121,11 +126,11 @@ msgstr "Полный размер"
 msgid "Page"
 msgstr "Страница"
 
-#: functions.php:190
+#: functions.php:194
 msgid "Add widgets here to appear in your footer."
 msgstr "Добавьте виджеты сюда, для помещения их в подвал сайта."
 
-#: functions.php:188 template-parts/footer/footer-widgets.php:12
+#: template-parts/footer/footer-widgets.php:12 functions.php:192
 msgid "Footer"
 msgstr "Подвал"
 
@@ -145,11 +150,12 @@ msgstr[0] "%d комментарий"
 msgstr[1] "%d комментария"
 msgstr[2] "%d комментариев"
 
-#: template-parts/post/author-bio.php:18
+#: template-parts/post/author-bio.php:26
 msgid "View more posts"
 msgstr "Посмотреть больше записей"
 
-#: template-parts/post/author-bio.php:13
+#. translators: %s: post author
+#: template-parts/post/author-bio.php:17
 msgid "Published by %s"
 msgstr "Опубликовано %s"
 
@@ -163,9 +169,9 @@ msgstr "Верхнее меню"
 msgid "Continue reading<span class=\"screen-reader-text\"> \"%s\"</span>"
 msgstr "Читать далее<span class=\"screen-reader-text\"> «%s»</span>"
 
-#: image.php:52 template-parts/content/content.php:49
-#: template-parts/content/content-single.php:40
+#: template-parts/content/content.php:49
 #: template-parts/content/content-page.php:27
+#: template-parts/content/content-single.php:40 image.php:52
 msgid "Pages:"
 msgstr "Страницы:"
 
@@ -186,36 +192,31 @@ msgstr "Готовы опубликовать свою первую запись
 msgid "Nothing Found"
 msgstr "Ничего не найдено"
 
-#: single.php:41
+#: single.php:42
 msgid "Previous post:"
 msgstr "Предыдущая запись:"
 
-#: single.php:40
+#: single.php:41
 msgid "Previous Post"
 msgstr "Предыдущая запись"
 
-#: single.php:38
+#: single.php:39
 msgid "Next post:"
 msgstr "Следующая запись:"
 
-#: single.php:37
+#: single.php:38
 msgid "Next Post"
 msgstr "Следующая запись"
-
-#: single.php:30
-msgctxt "Parent post link"
-msgid "<span class=\"meta-nav\">Published in</span><br/><span class=\"post-title\">%title</span>"
-msgstr "<span class=\"meta-nav\">Опубликовано в</span><span class=\"post-title\">%title</span>"
 
 #: search.php:22
 msgid "Search results for:"
 msgstr "Результаты поиска для:"
 
-#: inc/template-tags.php:232
+#: inc/template-tags.php:234
 msgid "Older posts"
 msgstr "Старые записи"
 
-#: inc/template-tags.php:231
+#: inc/template-tags.php:230
 msgid "Newer posts"
 msgstr "Новые записи"
 
@@ -288,10 +289,10 @@ msgstr "Архивы меток:"
 msgid "Category Archives: "
 msgstr "Архивы рубрик:"
 
-#. translators: %s: Name of current post. Only visible to screen readers.
 #. translators: %s: Name of current post. Only visible to screen readers
-#: inc/template-tags.php:120 template-parts/content/content-page.php:41
-#: template-parts/header/entry-header.php:32
+#. translators: %s: Name of current post. Only visible to screen readers.
+#: template-parts/content/content-page.php:41
+#: template-parts/header/entry-header.php:32 inc/template-tags.php:120
 msgid "Edit <span class=\"screen-reader-text\">%s</span>"
 msgstr "Редактировать <span class=\"screen-reader-text\">%s</span>"
 
@@ -299,11 +300,11 @@ msgstr "Редактировать <span class=\"screen-reader-text\">%s</span>"
 msgid "Skip to content"
 msgstr "Перейти к содержимому"
 
-#: functions.php:61 template-parts/header/site-branding.php:46
+#: template-parts/header/site-branding.php:46 functions.php:61
 msgid "Social Links Menu"
 msgstr "Меню социальных ссылок"
 
-#: functions.php:59 functions.php:146
+#: functions.php:59 functions.php:150
 msgid "Primary"
 msgstr "Основное"
 
@@ -351,21 +352,20 @@ msgstr "Оставьте комментарий"
 msgid "Join the Conversation"
 msgstr "Вливайтесь в общение"
 
-#: classes/class-twentynineteen-walker-comment.php:87
+#: classes/class-twentynineteen-walker-comment.php:100
 msgid "Your comment is awaiting moderation."
 msgstr "Ваш комментарий ожидает одобрения."
 
-#: classes/class-twentynineteen-walker-comment.php:82
+#: classes/class-twentynineteen-walker-comment.php:95
 msgid "Edit"
 msgstr "Редактировать"
 
 #. translators: 1: comment date, 2: comment time
-#: classes/class-twentynineteen-walker-comment.php:74
+#: classes/class-twentynineteen-walker-comment.php:87
 msgid "%1$s at %2$s"
 msgstr "%1$s в %2$s"
 
-#. translators: %s: comment author link
-#: classes/class-twentynineteen-walker-comment.php:60
+#: classes/class-twentynineteen-walker-comment.php:67
 msgid "%s <span class=\"screen-reader-text says\">says:</span>"
 msgstr "%s <span class=\"screen-reader-text says\">пишет:</span>"
 
