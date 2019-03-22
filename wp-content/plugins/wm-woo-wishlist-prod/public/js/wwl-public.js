@@ -32,6 +32,7 @@ document.querySelector('body').addEventListener('removed_from_compare_list', wwl
 function wwl_rm_wish_list(){
 	alert('Продукт был удален из избранного!');
 	document.querySelector('[data-wm-prod-id="'+last_removed_product+'"]').classList.add('wm-hid');
+	document.querySelector('.shop-icons .likes .number').innerText = document.querySelector('.shop-icons .likes .number').innerText * 1 - 1;
 }
 
 // document.querySelector('body').addEventListener('ev_single_wwl_rm', fn_single_wwl_rm);
