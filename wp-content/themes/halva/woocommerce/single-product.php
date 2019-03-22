@@ -79,8 +79,11 @@ get_header( 'shop' ); ?>
                                                     <div class="item-options" data-wm-prod-id="<?php echo $product->id; ?>">
                                                         <div 
                                                             class="like-item" 
-                                                            data-wm-wwl-single="<?php echo do_shortcode( '[is_in_wish_list]' ) == 1 ? 'remove' : 'add'; ?>"
-                                                        ></div>
+                                                            data-wm-wwl="<?php echo do_shortcode( '[is_in_wish_list]' ) == 1 ? 'remove' : 'add'; ?>"
+                                                            data-item-id="<?php the_ID(); ?>"
+                                                            data-event-after="wish_event_simple"
+                                                        >
+                                                        </div>
                                                         <div 
                                                             class="compar" 
                                                             data-wm-wcp-single="<?php echo do_shortcode( '[is_in_compare_list]' ) == 1 ? 'remove' : 'add'; ?>"
