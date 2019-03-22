@@ -47,7 +47,10 @@ Template Name: index
                                             </div>
                                             <div 
                                                 class="item-balance" 
-                                                data-wm-wcp="<?php echo do_shortcode( '[is_in_compare_list]' ) == 1 ? 'remove' : 'add'; ?>">
+                                                data-wm-wcp="<?php echo do_shortcode( '[is_in_compare_list]' ) == 1 ? 'remove' : 'add'; ?>"
+                                                data-item-id="<?php the_ID(); ?>"
+                                                data-event-after="compare_event_simple"
+                                                >
                                             </div>
                                         </div>
                                         <div></div>
