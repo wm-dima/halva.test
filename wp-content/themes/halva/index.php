@@ -4,7 +4,7 @@ Template Name: index
 */
 ?>
 <?php get_header( 'mine' ); ?>
-
+    <div class="popupBg" onclick="$('.popupBg').toggleClass('popupBgShow');"></div>
     <div class="new-and-hits">
         <div class="wrapper">
             <?php get_template_part('templates/search', 'catalog'); ?>
@@ -178,9 +178,12 @@ Template Name: index
                                 <div class="item-about">
                                     <p class="category"><?php echo $cat->name; ?></p>
                                     <p class="description-item">
-                                        <span class="the-desc"><?php echo $cat->category_description; ?></span>
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/more.png" alt=""></p>
+                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/more.png" alt="">
+                                    </p>
                                 </div>
+                                <p class="description-item">
+                                    <span class="the-desc"><?php echo $cat->category_description; ?></span>
+                                </p>
                                 <div class="column-more">
                                     <div class="show-all">Все товары...</div>
                                     <img src="<?php echo $image; ?>" alt="">

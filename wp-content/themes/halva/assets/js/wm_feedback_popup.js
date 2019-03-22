@@ -1,11 +1,13 @@
 function showFeedbackPopup(){
 	document.querySelector('#feedbackPopupWrap').classList.remove('wm-hid');
 	let feedbackPopupWrapShow = true;
+	$('.popupBg').toggleClass('popupBgShow');
 };
 
 function hidFeedbackPopup(){
 	document.querySelector('#feedbackPopupWrap').classList.add('wm-hid');
 	let feedbackPopupWrapShow = false;
+	$('.popupBg').toggleClass('popupBgShow');
 };
 
 function is_phone(dom_elem){

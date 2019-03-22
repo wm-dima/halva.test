@@ -115,6 +115,7 @@ Theme Name: halva
     margin: 0 5px 4px 0;
     position: relative;
     left: -3px;
+    cursor: pointer;
 }
 
 div.filter-price> .wm-filter-title,
@@ -123,6 +124,8 @@ div.filter-manufactures > .wm-filter-title {
     font-weight: 300;
     font-size: 20px;
     color: black;
+    cursor: pointer;
+    
 }
 
 .woocommerce-widget-layered-nav-list,
@@ -213,7 +216,7 @@ div.filter-price > .wm-filter-title > img {
     align-items: center;
     justify-content: center;
     /*max-width: 150px;*/
-    max-height: 50px;
+    /* max-height: 50px; */
 }
 
 .out-of-stock p {
@@ -464,6 +467,7 @@ body .item-info{
 
 #commentform{
     flex-direction: column;
+    margin-bottom: 35px;
 }
 
 #commentform [type="submit"] {
@@ -472,16 +476,17 @@ body .item-info{
 
 #commentform .fields {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
+    align-items: center;
 }
 
 #commentform .fields > div {
-    width: 48%;
+    width: 45%;
 }
 
 #commentform .fields  input[type="text"],
 #commentform .fields  textarea{
-    width: 400px;
+    width: 100%;
 }
 
 #commentform .submit-wrap{
@@ -552,7 +557,7 @@ body .item-cart {
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 99;
+    z-index: 999;
     background: #3337;
 }
 
@@ -571,7 +576,7 @@ input[type="text"] {
     font-family: 'Museo Sans Cyrl 500';
     font-size: 16px;
     box-sizing: border-box;
-    padding-left: 26px; 
+    padding-left: 26px;
 }
 input[type="submit"] {
     height:50px;
@@ -613,6 +618,7 @@ input:focus + label,
 
 .pop-up{
     position: relative;
+    z-index: 999;
 }
 
 .feedback-pop-up-submit {
@@ -626,7 +632,7 @@ input:focus + label,
 }
 
 .pop-up-close{
-    background-image: url(./assets/images/cross.png);
+    background-image: url(./assets/images/cross2.png);
     background-size: contain;
     position: absolute;
     top: -21px;
@@ -640,7 +646,8 @@ input:focus + label,
 }
 
 #feedbackPopupForm div{
-  padding-left: 40px
+  padding-left: 40px;
+  font-family: 'Museo Sans Cyrl 300';
 }
 
 .form-error{
@@ -663,12 +670,17 @@ input:focus + label,
 }
 
 .the-desc {
-  transition: all 0.3s;
+  transition: all 2.3s;
   opacity: 0;
+  display: none;
 }
 
 .item-column:hover .the-desc{
   opacity: 1;
+  display: block;
+  /* transition: all 2.3s; */
+  margin-top: -10px;
+  margin-bottom: 10px;
 }
 
 .pod-info-wrap{
@@ -752,6 +764,7 @@ body .inside-basket-nav ul{
 
 #wm-form-checkout{
     display: flex;
+    font-family: 'Museo Sans Cyrl 300'
 }
 
 #customer_details{
@@ -782,19 +795,25 @@ body .inside-basket-nav ul{
 
 .price-basket {
   display: flex;
-  max-height: 30px;
-  height: 35px;
-  align-items: flex-end;
-  justify-content: flex-end;
+  min-height: 35px;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding-bottom: 10px;
 }
 
 .price-basket p {
   line-height: 30px;
   display: inline-block;
-  height: 30px;
   margin-bottom: 5px;
 }
 
 .price-basket  p:nth-child(1) {
   margin-right: 10px;
+}
+.delivery-method {
+  font-family: 'Museo Sans Cyrl 300'
+}
+.delivery-method p {
+  margin-bottom:20px
 }
