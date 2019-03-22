@@ -40,7 +40,10 @@ if ( empty( $product ) || ! $product->is_visible() ) {
         <div class="item-icons">
             <div 
                 class="item-like" 
-                data-wm-wwl="<?php echo do_shortcode( '[is_in_wish_list]' ) == 1 ? 'remove' : 'add'; ?>">
+                data-wm-wwl="<?php echo do_shortcode( '[is_in_wish_list]' ) == 1 ? 'remove' : 'add'; ?>"
+                data-item-id="<?php the_ID(); ?>"
+                data-event-after="wish_event_simple"
+            >
             </div>
             <div 
                 class="item-balance" 
