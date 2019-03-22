@@ -296,7 +296,14 @@ class WCP_Public {
                     </a> 
                 </div> 
                 <div class="element-delete"> 
-                    <div class="delete-elem" data-wm-wcp-compared-list></div> 
+                    <div 
+                    	class="delete-elem"
+                        data-wm-wcp="remove"
+                        data-item-id="<?php echo $value->ID; ?>"
+                        data-event-after="compare_list_event"
+                    >
+                    </div> 
+
                 </div> 
             </div> 
  
