@@ -10,7 +10,7 @@ document.querySelector('body').addEventListener('wish_was_added_simple', wwl_sta
 
 function wwl_state_to_remove(){
 	alert('Пробукт был добавлен в список желаний!');
-	document.querySelector('[data-item-id="' + last_added_product + '"]').setAttribute('data-wm-wwl', 'remove');
+	document.querySelector('[data-item-id="' + last_added_product + '"][data-wm-wwl]').setAttribute('data-wm-wwl', 'remove');
 	document.querySelector('.shop-icons .likes .number').innerText = document.querySelector('.shop-icons .likes .number').innerText * 1 + 1;
 }
 
@@ -18,7 +18,7 @@ document.querySelector('body').addEventListener('wish_was_removed_simple', wwl_s
 
 function wwl_state_to_add(){
 	alert('Пробукт был удален из списка желаний!');
-	document.querySelector('[data-item-id="' + last_removed_product + '"]').setAttribute('data-wm-wwl', 'add');
+	document.querySelector('[data-item-id="' + last_removed_product + '"][data-wm-wwl]').setAttribute('data-wm-wwl', 'add');
 	document.querySelector('.shop-icons .likes .number').innerText = document.querySelector('.shop-icons .likes .number').innerText * 1 - 1;
 }
 
@@ -26,7 +26,7 @@ document.querySelector('body').addEventListener('removed_from_compare_list', wwl
 
 function wwl_rm_wish_list(){
 	alert('Продукт был удален из избранного!');
-	document.querySelector('[data-wm-prod-id="'+last_removed_product+'"]').classList.add('wm-hid');
+	document.querySelector('[data-wm-prod-id="'+last_removed_product+'"][data-wm-wwl]').classList.add('wm-hid');
 	document.querySelector('.shop-icons .likes .number').innerText = document.querySelector('.shop-icons .likes .number').innerText * 1 - 1;
 }
 
