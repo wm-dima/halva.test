@@ -826,3 +826,9 @@ body .inside-basket-nav ul{
 .payment-info {
     padding-bottom: 50px;
 }
+.load-more {
+    cursor: pointer;
+}
+.delete-elem {
+    background-position: 0 0 !important;
+}
