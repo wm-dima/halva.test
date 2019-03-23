@@ -1,5 +1,5 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/timetowe/public_html/autoazart/
+    - export DEPLOYPATH=/home/timetowe/public_html/autoazart
     - /bin/cp * $DEPLOYPATH
