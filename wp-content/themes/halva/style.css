@@ -817,3 +817,26 @@ body .inside-basket-nav ul{
 .delivery-method p {
   margin-bottom:20px
 }
+
+.inside-cart-main [data-wm-wwl="remove"] ,
+.inside-cart-main [data-wm-wwl="add"]:hover {
+    background-position: 102px 0;
+}
+.inside-cart-main [data-wm-wcp="remove"] ,
+.inside-cart-main [data-wm-wcp="add"]:hover {
+    background-position: 102px 0
+}
+.payment-info {
+    padding-bottom: 50px;
+}
+.load-more {
+    cursor: pointer;
+}
+.delete-elem {
+    background-position: 0 0 !important;
+}
+
+[wwl-procesing],
+[wcp-procesing]{
+  border: 1px solid red !important;
+}

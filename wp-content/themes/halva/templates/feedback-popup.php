@@ -17,3 +17,5 @@
 		</form>
 	</div>
 </div>
+
+<div class="popupBg" onclick="$('.popupBg').toggleClass('popupBgShow');"></div>
