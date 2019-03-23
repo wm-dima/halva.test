@@ -3,7 +3,7 @@
 Template Name: index
 */
 ?>
-<?php //echo 'sctringa'; die; ?>
+<?php echo 'sctringa'; die; ?>
 <?php get_header( 'mine' ); ?>
     <div class="popupBg" onclick="$('.popupBg').toggleClass('popupBgShow');"></div>
     <div class="new-and-hits">
