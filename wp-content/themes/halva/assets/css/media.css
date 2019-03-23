@@ -184,6 +184,7 @@
     }
     .want-item {
         width: 640px;
+        padding-top: 20px;
     }
     .inside-basket-main {
         flex-direction: column;
@@ -194,6 +195,9 @@
     }
     .basket-left {
         margin-bottom:50px;
+    }
+    .want-in-basket {
+        margin-left: 0;
     }
  }
 @media(max-width:1030px) {
@@ -309,6 +313,13 @@
     }
     .wi {
         flex-direction: column;
+    }
+    .want-item-info {
+        margin-left: 0;
+    }
+    .want-in-basket {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
     }
     .want-item-img, .want-item-info {
          margin-right: 0;
@@ -678,6 +689,11 @@
         flex-wrap: nowrap;
         width: auto;
     }
+    #wm-form-checkout {
+        display: flex;
+        font-family: 'Museo Sans Cyrl 300';
+        flex-direction: column;
+    }
 }
 @media(max-width:580px) {
     .img3 {
@@ -984,6 +1000,12 @@
     .steps {
         justify-content: space-around;
         width: 100%;
+    }
+    .want-item {
+        width: 270px;
+    }
+    .want-in-basket a {
+        padding: 0px 45px;
     }
 }
 @media(max-width:450px) {
