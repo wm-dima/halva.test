@@ -817,3 +817,12 @@ body .inside-basket-nav ul{
 .delivery-method p {
   margin-bottom:20px
 }
+[data-wm-wwl="remove"] , [data-wm-wwl="add"]:hover {
+    background-position: 102px 0;
+}
+[data-wm-wcp="remove"] , [data-wm-wcp="add"]:hover {
+    background-position: 102px 0
+}
+.payment-info {
+    padding-bottom: 50px;
+}
