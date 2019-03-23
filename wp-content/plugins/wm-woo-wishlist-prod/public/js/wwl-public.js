@@ -49,6 +49,7 @@ function add_to_wish(id, type = false){
 		if (xhttp.readyState == 4) {
 			if (xhttp.status == 200) {
 				response = JSON.parse(xhttp.response );
+				document.querySelector('[data-item-id="' + response.last_added_product + '"][data-wm-wwl]').removeAttribute('wwl-procesing');
 				if(response.success){
 					last_added_product = response.last_added_product;
 					document.querySelector('body').dispatchEvent( eval( response.event ) );
@@ -71,8 +72,8 @@ function remove_from_wish(id, type = false){
 		if (xhttp.readyState == 4) {
 			if (xhttp.status == 200) {
 				response = JSON.parse(xhttp.response );
+				document.querySelector('[data-item-id="' + response.last_removed_product + '"][data-wm-wwl]').removeAttribute('wwl-procesing');
 				if(response.success){
-					// rm_id(response.last_removed_product);
 					last_removed_product = response.last_removed_product;
 					document.querySelector('body').dispatchEvent( eval( response.event ) );
 				} else {
@@ -86,7 +87,9 @@ function remove_from_wish(id, type = false){
 }
 
 document.querySelector('body').addEventListener('click', function (e){
+	if (e.target.hasAttribute('wwl-procesing')) return;
 	if (e.target.hasAttribute('data-wm-wwl')) {
+		e.target.setAttribute('wwl-procesing', true);
 		wish_controller(e);
 		return;
 	}
