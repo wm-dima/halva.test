@@ -24,12 +24,6 @@ Template Name: index
                         );
                         $loop = new WP_Query( $args );
                         while ( $loop->have_posts() ) : $loop->the_post(); global $product; ?>
-<?php 
-
-// echo "<pre>";
-// var_dump($product);
-// die;
-?>
                             <div class="hit-item hi-1" data-wm-prod-id="<?php the_ID(); ?>">
                                 <div class="item-info">
                                     <a href="<?php echo get_permalink( $loop->post->ID );?>">
@@ -46,11 +40,17 @@ Template Name: index
                                         <div class="item-icons wm-for-balance">
                                             <div 
                                                 class="item-like" 
-                                                data-wm-wwl="<?php echo do_shortcode( '[is_in_wish_list]' ) == 1 ? 'remove' : 'add'; ?>">
+                                                data-wm-wwl="<?php echo do_shortcode( '[is_in_wish_list]' ) == 1 ? 'remove' : 'add'; ?>"
+                                                data-item-id="<?php the_ID(); ?>"
+                                                data-event-after="wish_event_simple"
+                                            >
                                             </div>
                                             <div 
                                                 class="item-balance" 
-                                                data-wm-wcp="<?php echo do_shortcode( '[is_in_compare_list]' ) == 1 ? 'remove' : 'add'; ?>">
+                                                data-wm-wcp="<?php echo do_shortcode( '[is_in_compare_list]' ) == 1 ? 'remove' : 'add'; ?>"
+                                                data-item-id="<?php the_ID(); ?>"
+                                                data-event-after="compare_event_simple"
+                                                >
                                             </div>
                                         </div>
                                         <div></div>
@@ -114,10 +114,19 @@ Template Name: index
                                     </a>
                                     <div class="item-price"><span class="price-value"><?php echo $product->get_price_html(); ?></span> руб.</div>
                                                 <div class="item-icons wm-for-balance ">
-                                                    <div class="item-like"><?php  echo do_shortcode( '[ti_wishlists_addtowishlist]' ); ?> </div>
+                                                    <div 
+                                                        class="item-like" 
+                                                        data-wm-wwl="<?php echo do_shortcode( '[is_in_wish_list]' ) == 1 ? 'remove' : 'add'; ?>"
+                                                        data-item-id="<?php the_ID(); ?>"
+                                                        data-event-after="wish_event_simple"
+                                                    >
+                                                    </div>
                                                     <div 
                                                         class="item-balance" 
-                                                        data-wm-wcp="<?php echo do_shortcode( '[is_in_compare_list]' ) == 1 ? 'remove' : 'add'; ?>">
+                                                        data-wm-wcp="<?php echo do_shortcode( '[is_in_compare_list]' ) == 1 ? 'remove' : 'add'; ?>"
+                                                        data-item-id="<?php the_ID(); ?>"
+                                                        data-event-after="compare_event_simple"
+                                                        >
                                                     </div>
                                                 </div>
                                 </div>    

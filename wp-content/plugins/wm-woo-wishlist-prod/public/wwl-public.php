@@ -39,21 +39,20 @@ class WWL_Public {
 		$this->validate_before_insert();
 		$id = (int)$_POST['id'];
 		if (is_user_logged_in()) {
-			$this->set_to_db( $id , $_POST['type'] );
+			$this->set_to_db( $id );
 		} else {
-			$this->set_to_cookie( $id , $_POST['type'] );
+			$this->set_to_cookie( $id );
 		}
+		$this->added_js_event($id, $_POST['type']);
 	}
 
-	public function set_to_db( $id, $type = false ){
+	public function set_to_db( $id ){
 		global $wpdb;
 		$wpdb->insert( $wpdb->prefix . 'client_id_wishlist_id', array( 'client_id' => get_current_user_id() , 'product_id' => $id ) );
-		// var_dump($wpdb);
 		$this->all_prods[] = $id;
-		$this->added_js_event($id, $type);
 	}
 
-	public function set_to_cookie( $id, $type = false ) {
+	public function set_to_cookie( $id ) {
 		$in_cookie = json_decode( $_COOKIE['wwl_wish'], true );
 		if ( empty( $in_cookie ) ) {
 			setcookie( 
@@ -71,7 +70,6 @@ class WWL_Public {
 				'/'
 			);
 		}
-		$this->added_js_event($id, $type);
 	}
 
 
@@ -120,7 +118,7 @@ class WWL_Public {
 		$response = [
 			'success' => true,
 			'last_added_product' => $id,
-			'event' => $type ? $type : 'wish_added_event'
+			'event' => $type 
 		];
 		echo json_encode($response);
 		die();
@@ -130,7 +128,7 @@ class WWL_Public {
 		$response = [
 			'success' => true,
 			'last_removed_product' => $id,
-			'event' => $type ? $type : 'wish_remove_event'
+			'event' => $type 
 		];
 		echo json_encode($response);
 		die();
@@ -274,7 +272,12 @@ class WWL_Public {
 				                        rel="nofollow"
 				                    > В корзину</a>
                                 </div>
-                                <div class="want-delete" data-wm-wwl-compared-list></div>
+                                <div 
+                                	class="want-delete" 
+                                	data-wm-wwl="remove"
+									data-item-id="<?php echo $value; ?>"
+                                    data-event-after="remove_from_compare_list"
+                                ></div>
                             </div>
 
 		<?php endforeach;
