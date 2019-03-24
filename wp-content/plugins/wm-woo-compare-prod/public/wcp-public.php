@@ -312,6 +312,10 @@ class WCP_Public {
  
 	public function show_compared_options(){ 
 		$options = $this->prepare_options(); 
+		if (empty($options)) {
+			echo "<p class=\"any-campared-attrs\">Общие атрибуты для сравнения отсутствуют</p>";
+			return;
+		}
         echo '<table>'; 
         $options = array_chunk( $options, 2, true); 
         $ids =  $this->get_prods_id_from_cat() ; 
