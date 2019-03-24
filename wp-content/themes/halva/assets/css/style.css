@@ -1726,7 +1726,7 @@ footer {
     width: 242px !important;
     min-height: 365px;
     margin-bottom: 25px;
-    margin-right: 16px;
+    margin-left: 16px;
 }
 .price , .manufacturers , .type-acustic , .power , .size , .quantity-lines , .resistance{
     margin-bottom: 20px;
