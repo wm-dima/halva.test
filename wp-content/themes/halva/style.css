@@ -4,7 +4,7 @@ Theme Name: halva
 
 .item-logo{
     position: relative;
-    width: 100%;
+    /* width: 190px; */
 }
 
 .item-logo > div.img-padding{
@@ -319,7 +319,20 @@ div.filter-price > .wm-filter-title > img {
 .in-basket .added_to_cart.wc-forward {
     display: none;
 }
-
+.added_to_cart {
+    background: transparent !important;
+    color: #ff9c00 !important;
+    font-weight: 700 !important;
+    font-size: 11px !important;
+    padding: 0 !important;
+}
+.want-in-basket {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-left: auto;
+    margin-right: 45px;
+}
 .item-balance[data-wm-wcp="add"]{
         background-image: url(./assets/images/compare--no.png);
 }
@@ -657,6 +670,7 @@ input:focus + label,
 .search-res-wrapper{
     max-width: 1200px;
     margin: 0 auto;
+    font-family: 'Museo Sans Cyrl 300';
 }
 
 .search-res-wrapper .search{
@@ -839,4 +853,20 @@ body .inside-basket-nav ul{
 [wwl-procesing],
 [wcp-procesing]{
   border: 1px solid red !important;
+}
+.want-catalog {
+    padding:10px 0px;
+    box-sizing: border-box;
+    font-family: 'Helvetica' !important;
+}
+.want-catalog li {
+    list-style: none;
+    box-sizing: border-box;
+    padding: 20px 30px;
+    border-bottom: 1px solid #141414;
+}
+.want-catalog li:last-child {
+    
+    border:0;
+    
 }
