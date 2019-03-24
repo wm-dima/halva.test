@@ -18,15 +18,14 @@
                             
                         </div>    
                         <div class="match-elements">
-                            <div class="match-wrap">
-                                <div class="me1">
-                                    <a href="" class="noActive">
-                                        <div class="add-element">
-                                            Добавить товар к сравнению
-                                        </div>
-                                    </a>    
-                                </div>    
-                                <div class="elements">
+                            <div class="me1">
+                                <a href="" class="noActive">
+                                    <div class="add-element">
+                                        <a href="<?php echo get_permalink( wc_get_page_id( 'shop' ) ); ?>">Добавить товар к сравнению</a>
+                                    </div>
+                                </a>    
+                            </div>    
+                            <div class="elements">
 
                             <?php do_shortcode( '[show_compared_prods]' ); ?>
 
