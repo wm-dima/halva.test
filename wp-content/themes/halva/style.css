@@ -30,6 +30,15 @@ Theme Name: halva
     padding: 0 !important;
 }
 
+[wcp-procesing="true"] {
+    background-image: url(./assets/images/load.gif) !important;
+    width:26px !important;
+}
+[data-item-id][data-wm-wwl][wwl-procesing="true"] {
+    background-image: url(./assets/images/load.gif) !important;
+    background-repeat: no-repeat;
+}
+
 [data-tinv-wl-action="remove"],
 .tinvwl_add_to_wishlist_button > img {
     width: 28px !important;
@@ -850,10 +859,6 @@ body .inside-basket-nav ul{
     background-position: 0 0 !important;
 }
 
-[wwl-procesing],
-[wcp-procesing]{
-  border: 1px solid red !important;
-}
 .want-catalog {
     padding:10px 0px;
     box-sizing: border-box;
@@ -875,3 +880,4 @@ body .inside-basket-nav ul{
     float: right;
     margin: 20px 20 0 0;
 }
+
