@@ -201,7 +201,7 @@ class WCP_Public {
 	public function get_comp_cats(){ 
 		$cats = $this->get_categories();
 		if (!$cats ) {
-			return '<p class="empty empty-wcp-categories">Для выбора категорий необходимо добавить товары в сравнения.</p>';
+			return '<li class="empty empty-wcp-categories">Для выбора категорий необходимо добавить товары в сравнения.</li>';
 		}
 		$res = '<ul>'; 
 		foreach ($cats as $key => $value) { 
