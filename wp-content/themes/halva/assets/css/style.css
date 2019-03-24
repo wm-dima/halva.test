@@ -2593,15 +2593,16 @@ footer {
     flex-direction: column;
     justify-content: center;
     width: 284px;
-    margin-right: 50px;
+    /* margin-right: 50px; */
 }
 .basket-item-img {
     margin-right: 40px;
+    max-width: 200px;
 }
 .quantity-basket {
     display: flex;
     align-items: center;
-    margin-right:70px;
+    margin-right: 30px;
 }
 .minus , .plus {
     -moz-user-select: none;
@@ -2636,6 +2637,7 @@ footer {
 .basket-item {
     border-radius:18px;
     padding: 25px;
+    max-width: 815px;
 }
 .basket-info {
     width:804px;
@@ -3182,4 +3184,12 @@ RS */
 .woocommerce-info, .woocommerce-message {
     font-family: 'Museo Sans Cyrl 300';
 }
-/*Ð²ÐµÑ‚ÐºÐ° Anton2*/
+.basket-item-img img {
+    width:200px !important;
+    height:200px !important;
+}
+
+/*Если что, удалить*/
+.delivery-method .log-in img {
+    margin-right: 10px;
+}
