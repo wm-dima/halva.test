@@ -689,8 +689,11 @@ header {
 .item-logo {
     margin-bottom: 15px;
     -ms-flex-item-align: center;
-        -ms-grid-row-align: center;
-        align-self: center;
+    -ms-grid-row-align: center;
+    /* align-self: center; */
+    /* display: flex; */
+    /* justify-content: center; */
+    margin-top: 25px;
 }
 .item-name {
     font-family: 'Museo Sans Cyrl 500';
@@ -734,7 +737,7 @@ header {
 }
 .in-basket button{
     width: 100%;
-    height: 60px;
+    height: 59px;
     background-color: #ff9c00;
     text-transform: uppercase;
     font-family: 'Museo Sans Cyrl 700';
@@ -1752,7 +1755,7 @@ footer {
 .catalog-item .item-price {
     font-size: 23px;
     text-align: left;
-    margin-bottom: 19px;
+    margin-bottom: 27px;
 }
 .catalog-item .item-like {
     width: 29px;
@@ -3208,4 +3211,8 @@ RS */
     resize:none;
     box-sizing: border-box;
     padding:10px;
+}
+.wm-filters-wrap .count {
+    font-family: 'Museo Sans Cyrl 300';
+    color:#ff9c00;
 }
