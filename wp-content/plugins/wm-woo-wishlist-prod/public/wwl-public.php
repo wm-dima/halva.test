@@ -188,6 +188,7 @@ class WWL_Public {
 		global $wpdb;
 
 		$ids = $this->get_all_prods();
+		if (empty($ids) || is_null($ids)) return false;
 		$query_ids = '( ';
 		foreach ($ids as $key => $value) {
 			$query_ids .= $value . ', ';
@@ -231,10 +232,11 @@ class WWL_Public {
 
 	public function get_wish_cats(){
 		$cats = $this->get_categories();
+		if (!$cats) return "<li class=\"wcp-compare-category--empty\">Для выбора категорий необходимо добавить товары в желания.</li>";
 		$res = '';
 		foreach ($cats as $key => $value) {
-			if ($key == 0 ) $res .= "<li class=\"wcp-compare-category wcp-compare-category--active\"><a href=\"\">{$value->name}</li></a>" ;
-			else $res .= "<li class=\"wcp-compare-category\"><a href=\"?category={$value->term_id}\">{$value->name}</li></a>" ;
+			if ($key == 0 ) $res .= "<li class=\"wcp-compare-category wcp-compare-category--active\"><a href=\"\">{$value->name}</a></li>" ;
+			else $res .= "<li class=\"wcp-compare-category\"><a href=\"?category={$value->term_id}\">{$value->name}</a></li>" ;
 		}
 		return $res;
 	}
