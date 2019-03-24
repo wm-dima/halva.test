@@ -1,4 +1,6 @@
 
 wp-content/uploads/wc-logs/
 
+*.yml
+
 wp-config\.php
