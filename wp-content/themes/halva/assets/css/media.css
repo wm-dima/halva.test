@@ -395,11 +395,9 @@
     .me1 { 
         width:100%; 
     } 
-    .add-element { 
-        width: auto; 
-        height: 90px; 
-        border-radius: 10px; 
-        margin-bottom: 40px; 
+    .add-element {
+        border-radius: 10px;
+        margin-bottom: 40px;
     } 
     .match-elements { 
         width: 100%; 
@@ -884,10 +882,7 @@
     } 
 } 
 @media(max-width:530px) { 
-    .elements { 
-        justify-content: space-around; 
-        width: 100%; 
-        flex-wrap: wrap; 
+    .elements {
     } 
     .element { 
         margin-bottom: 80px; 
@@ -1109,7 +1104,7 @@
     .match-preview { 
         flex-direction: column; 
     } 
-    .match-preview h3 {; 
+    .match-preview h3 { 
         margin-right: 0; 
     } 
 } 
@@ -1124,6 +1119,27 @@
         margin-right: 0px; 
     } 
 } 
+@media(max-width:430px) { 
+    .add-element {
+        width: 100%;
+        height: 395px;
+    }
+    .element {
+        min-width: 230px;
+    }
+    .element-main button {
+        height: 55px;
+    }
+    .match-table table tr td:first-child {
+        max-width: 169px;
+    }
+    .match-table table tr td {
+        min-width: 233px;
+    }
+    .element {
+        margin-bottom: 0px;
+    }
+}
 @media(max-width:390px) { 
     .shop-icons p { 
        display:none; 
