@@ -3193,3 +3193,19 @@ RS */
 .delivery-method .log-in img {
     margin-right: 10px;
 }
+
+#billing_phone , #billing_email{
+    height:50px;
+    border:0;
+    outline:0;
+    font-family: 'Museo Sans Cyrl 500';
+    font-size: 16px;
+    box-sizing: border-box;
+    border-radius: 26px;
+    padding-left: 26px;
+}
+#order_comments {
+    resize:none;
+    box-sizing: border-box;
+    padding:10px;
+}
