@@ -224,7 +224,7 @@ class WWL_Public {
 				$ids[] = $value->product_id;
 			}
 		} else {
-			$ids =  json_decode( $_COOKIE['wcp_compare'], true );
+			$ids =  json_decode( $_COOKIE['wwl_wish'], true );
 		}
 		return $ids;
 	}
