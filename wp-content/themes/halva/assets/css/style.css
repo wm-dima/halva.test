@@ -664,7 +664,7 @@ header {
 .item-info {
     width:100%;
     min-height: 290px;
-    padding: 35px 39px 12px 39px;
+    padding: 35px 19px 12px 19px;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     display: -webkit-box;
@@ -2464,7 +2464,7 @@ footer {
     display: flex;
     background: #fff;
     box-sizing: border-box;
-    padding-left: 20px;
+    padding-left: 40px;
     align-items: center;
     position: relative;
     margin-bottom: 18px;
@@ -2474,7 +2474,7 @@ footer {
     margin-right: 40px;
 }
 .want-item-info {
-    width:240px;
+    /* width: 194px; */
     margin-left: 40px;
 }
 .want-name , .basket-name{
@@ -3172,5 +3172,10 @@ RS */
     margin-left: 0px !important;
     padding-left: 0px !important;
 }
-
-/*ветка Anton2*/
+.search form {
+    display:flex;
+}
+.woocommerce-info, .woocommerce-message {
+    font-family: 'Museo Sans Cyrl 300';
+}
+/*Ð²ÐµÑ‚ÐºÐ° Anton2*/
