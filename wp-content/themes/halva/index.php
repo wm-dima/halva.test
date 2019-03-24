@@ -240,7 +240,8 @@ Template Name: index
                                 </div>
                                 <div class="article-description">
                                     <p class="article-name"><?php echo $recent['post_title']; ?></p>
-                                    <p class="article-min"> <?php echo get_the_excerpt( $recent['ID'] ); ?></p>    
+                                    <p class="article-min"> <?php echo get_the_excerpt( $recent['ID'] ); ?></p>
+                                    <a href="<?php echo $recent['guid']; ?>" class="article-more">Подробнее</a>   
                                 </div>
                             </div>
                         </a>
