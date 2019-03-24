@@ -241,9 +241,9 @@ class WWL_Public {
 
 	public function show_wish_prods(){
 		$ids = $this->get_all_prods();
-		$query_ids = '( ';
-		foreach ($ids as $key => $value) {
-			$query_ids .= $value . ', ';
+		if (empty($ids)) {
+			echo "<p class=\"any-wish-prods\">У Вас нет товаров в разделе желания.</p>";
+			return;
 		}
 		foreach ($ids as $key => $value) : $_product = wc_get_product( $value ); ?>
 
