@@ -2759,7 +2759,6 @@ footer {
 }
 .match-elements {
     display: flex;
-    width:880px;
     justify-content: space-between;
     margin-bottom: 90px;
 }
@@ -2814,7 +2813,7 @@ footer {
     text-align: left;
 }
 .element-price span{
-    font-size: 31px;
+    font-size: 23px;
 }
 .element-img {
     display: flex;
@@ -2865,7 +2864,7 @@ footer {
 .elements {
     display: flex;
     justify-content: space-between;
-    width: 584px;
+    min-width: 830px;
 }
 .catalog-min {
     position: absolute;
