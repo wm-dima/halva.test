@@ -199,7 +199,10 @@ class WCP_Public {
 	} 
  
 	public function get_comp_cats(){ 
-		$cats = $this->get_categories(); 
+		$cats = $this->get_categories();
+		if (!$cats ) {
+			return '<p class="empty empty-wcp-categories">Для выбора категорий необходимо добавить товары в сравнения.</p>';
+		}
 		$res = '<ul>'; 
 		foreach ($cats as $key => $value) { 
 			$res .= "<li><a href=\"?category={$value->term_id}\">{$value->name}</li></a>" ; 
@@ -215,7 +218,8 @@ class WCP_Public {
 	public function get_categories(){ 
 		global $wpdb; 
  
-		$ids = $this->get_all_prods(); 
+		$ids = $this->get_all_prods();
+		if (empty($ids) || is_null($ids)) return false;
 		$query_ids = '( '; 
 		foreach ($ids as $key => $value) { 
 			$query_ids .= $value . ', '; 
@@ -247,8 +251,9 @@ class WCP_Public {
  
 		if ( !$cat_id ) { 
 			$cat_id = $this->first_cat; 
-		} 
-		$ids = $this->get_all_prods(); 
+		}
+		$ids = $this->get_all_prods();
+		if (empty($ids) || is_null($ids)) return false;
 		$query_ids = '( '; 
 		foreach ($ids as $key => $value) { 
 			$query_ids .= $value . ', '; 
@@ -270,7 +275,11 @@ class WCP_Public {
 			$ids = $this->get_prods_id_from_cat($_GET['category']); 
 		} else { 
 			$ids = $this->get_prods_id_from_cat(); 
-		} 
+		}
+		if (!$ids) {
+			echo '<p class="empty empty-wcp-categories">Ваш список сравнений пуст!</p>';
+			return;
+		}
 		foreach ($ids as $key => $value) : $_product = wc_get_product( $value->ID ); ?> 
  
             <div class="element" data-wm-prod-id="<?php echo $value->ID; ?>"> 
@@ -353,6 +362,7 @@ class WCP_Public {
 	public function prepare_options(){ 
 		global $wpdb; 
 		$ids = $this->get_prods_id_from_cat(); 
+		if (!$ids) return;
 		$query_ids = '( '; 
 		foreach ($ids as $key => $value) { 
 			$query_ids .= $value->ID . ', '; 
