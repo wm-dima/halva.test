@@ -1654,7 +1654,7 @@ footer {
 }
 .catalog-items {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     flex-wrap: wrap;
 }
 .catalog-navigation {
@@ -1765,7 +1765,7 @@ footer {
 .catalog-item .item-balance {
     width: 34px;
     height: 27px;
-    background-size: cover;
+    background-size: contain;
 }
 .catalog-item .item-name {
     font-size: 15px;
