@@ -2758,9 +2758,9 @@ footer {
     color:#ff9c00 !important;
 }
 .match-elements {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 90px;
+    overflow-x: scroll;
+    will-change: scroll-position;
+    padding: 20px 0px;
 }
 .add-element {
     width: 250px;
@@ -2781,9 +2781,10 @@ footer {
     background: #fff;
 }
 .element {
-    width: 270px;
-    display: flex;
+    min-width: 270px;
+    display: inline-block;
     flex-direction: column;
+    margin-right: 5px;
 }
 .element-main {
     display: flex;
@@ -2850,21 +2851,25 @@ footer {
 .match-table table tr td {
     font-family: 'Museo Sans Cyrl 500';
     font-size: 18px;
+    min-width: 273px;
+    text-align: center;
+    /* margin: 0; */
 }
 .match-table table tr td:first-child {
-    width:295px;
+    max-width: 275px;
+    text-align: left;
 }
 
 .match-table table tr td:nth-child(2) {
-    width:195px;
+    width: 270px;
 }
 .noActive {
     text-decoration:none;
 }
 .elements {
     display: flex;
-    justify-content: space-between;
-    min-width: 830px;
+    justify-content: flex-start;
+    width: 100%;
 }
 .catalog-min {
     position: absolute;
@@ -3214,4 +3219,18 @@ RS */
 .wm-filters-wrap .count {
     font-family: 'Museo Sans Cyrl 300';
     color:#ff9c00;
+}
+.me1 {
+    margin-right:30px;
+}
+.inside-match {
+    padding:0;
+}
+.match-main {
+    padding: 0px 25px 70px;
+}
+.match-wrap {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
 }

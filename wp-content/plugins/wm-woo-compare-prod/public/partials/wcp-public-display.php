@@ -18,22 +18,24 @@
                             
                         </div>    
                         <div class="match-elements">
-                            <div class="me1">
-                                <a href="" class="noActive">
-                                    <div class="add-element">
-                                        Добавить товар к сравнению
-                                    </div>
-                                </a>    
-                            </div>    
-                            <div class="elements">
+                            <div class="match-wrap">
+                                <div class="me1">
+                                    <a href="" class="noActive">
+                                        <div class="add-element">
+                                            Добавить товар к сравнению
+                                        </div>
+                                    </a>    
+                                </div>    
+                                <div class="elements">
 
-<?php do_shortcode( '[show_compared_prods]' ); ?>
+                            <?php do_shortcode( '[show_compared_prods]' ); ?>
 
-                            </div>    
-                        </div>
-                        <div class="match-table">
-<?php do_shortcode( '[show_compared_options]' ); ?>
+                                </div> 
+                            </div>
 
+                            <div class="match-table">
+                                <?php do_shortcode( '[show_compared_options]' ); ?>
+                            </div>   
                         </div>
                     </div>
                 </div>
