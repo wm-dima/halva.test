@@ -110,7 +110,7 @@ function remove_from_compare(id, type){
 }
 
 document.querySelector('body').addEventListener('click', function (e){
-	if (e.target.hasAttribute('wcp-procesing')) return;
+	if (document.querySelector('[wcp-procesing]') != null) return;
 	if (e.target.hasAttribute('data-wm-wcp')) {
 		e.target.setAttribute('wcp-procesing', true);
 		compare_controller(e);

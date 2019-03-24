@@ -87,7 +87,7 @@ function remove_from_wish(id, type = false){
 }
 
 document.querySelector('body').addEventListener('click', function (e){
-	if (e.target.hasAttribute('wwl-procesing')) return;
+	if (document.querySelector('[wwl-procesing]') != null) return;
 	if (e.target.hasAttribute('data-wm-wwl')) {
 		e.target.setAttribute('wwl-procesing', true);
 		wish_controller(e);
