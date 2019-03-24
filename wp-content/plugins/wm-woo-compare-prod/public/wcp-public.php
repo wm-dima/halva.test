@@ -207,6 +207,10 @@ class WCP_Public {
 		$res .= "</ul>" ; 
 		return $res; 
 	} 
+
+	public function ajax_get_comp_cats(){
+		echo $this->get_comp_cats();
+	}
  
 	public function get_categories(){ 
 		global $wpdb; 

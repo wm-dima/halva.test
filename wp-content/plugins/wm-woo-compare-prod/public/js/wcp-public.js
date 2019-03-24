@@ -39,7 +39,29 @@ function compare_controller(e, type = 'compare_remove_event' ){
 	if (e.target.getAttribute('data-wm-wcp') == 'add') {
 		add_to_compare(id, e.target.getAttribute('data-event-after') + '_added');
 	} else {
-		remove_from_compare(id, e.target.getAttribute('data-event-after') + '_removed');
+ before_remove(e);
+			 setTimeout(() => resolve("result"), 1000);
+		  remove_from_compare(id, e.target.getAttribute('data-event-after') + '_removed');
+	}
+}
+
+function before_remove(e){
+	if ( e.target.getAttribute('data-event-after') == 'compare_list_event' ) update_wcp_categories();
+}
+
+function update_wcp_categories(){
+	var xhttp = new XMLHttpRequest();
+	xhttp.open('POST', my_ajax_url.ajax_url +"?action=wcp_get_compared_cat" , true);
+	xhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+	xhttp.send();
+	xhttp.onreadystatechange = function() {
+		if (xhttp.readyState == 4) {
+			if (xhttp.status == 200) {
+				ocument.querySelector('.item-navigation').innerHTML = xhttp.response;
+			} else {
+				// alert('Что-то пошло не так, попробуйте позже.');
+			}
+		}
 	}
 }
 
@@ -74,6 +96,7 @@ function remove_from_compare(id, type){
 	xhttp.onreadystatechange = function() {
 		if (xhttp.readyState == 4) {
 			if (xhttp.status == 200) {
+				alert(1);
 				wcp_response = JSON.parse(xhttp.response );
 				document.querySelector('[data-item-id="' + wcp_response.last_removed_product + '"][data-wm-wcp]').removeAttribute('wcp-procesing');
 				if(wcp_response.success){
