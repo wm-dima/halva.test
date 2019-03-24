@@ -870,3 +870,8 @@ body .inside-basket-nav ul{
     border:0;
     
 }
+
+.article-more{
+    float: right;
+    margin: 20px 20 0 0;
+}

@@ -21,7 +21,7 @@
                             <div class="me1">
                                 <a href="" class="noActive">
                                     <div class="add-element">
-                                        Добавить товар к сравнению
+                                        <a href="<?php echo get_permalink( wc_get_page_id( 'shop' ) ); ?>">Добавить товар к сравнению</a>
                                     </div>
                                 </a>    
                             </div>    
