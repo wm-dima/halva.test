@@ -182,6 +182,9 @@ class Wcp {
 		$this->loader->add_action('wp_ajax_get_all_compared', $plugin_public, 'get_all_compared_products');
 		$this->loader->add_action('wp_ajax_nopriv_get_all_compared', $plugin_public, 'get_all_compared_products');
 
+		$this->loader->add_action('wp_ajax_wcp_get_compared_cat', $plugin_public, 'ajax_get_comp_cats');
+		$this->loader->add_action('wp_ajax_nopriv_wcp_get_compared_cat', $plugin_public, 'ajax_get_comp_cats');
+
 
 
 		$this->loader->add_shortcode('is_in_compare_list', $plugin_public, 'is_in_compare_list');
