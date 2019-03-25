@@ -52,7 +52,6 @@ function update_wcp_categories(){
 		if (xhttp.readyState == 4) {
 			if (xhttp.status == 200) {
 				document.querySelector('.item-navigation').innerHTML = xhttp.response;
-				console.log(xhttp.response);
 			}
 		}
 	}
@@ -89,7 +88,7 @@ function remove_from_compare(id, type){
 	xhttp.onreadystatechange = function() {
 		if (xhttp.readyState == 4) {
 			if (xhttp.status == 200) {
-				// if (true) update_wcp_categories(); 
+				if (document.querySelector('.item-navigation') != null) update_wcp_categories(); 
 				wcp_response = JSON.parse(xhttp.response );
 				document.querySelector('[data-item-id="' + wcp_response.last_removed_product + '"][data-wm-wcp]').removeAttribute('wcp-procesing');
 				if(wcp_response.success){
