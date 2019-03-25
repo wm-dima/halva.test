@@ -71,6 +71,7 @@ function remove_from_wish(id, type = false){
 	xhttp.onreadystatechange = function() {
 		if (xhttp.readyState == 4) {
 			if (xhttp.status == 200) {
+				if (document.querySelector('.want-left .want-catalog') != null) update_wwl_categories();
 				response = JSON.parse(xhttp.response );
 				document.querySelector('[data-item-id="' + response.last_removed_product + '"][data-wm-wwl]').removeAttribute('wwl-procesing');
 				if(response.success){
@@ -94,6 +95,20 @@ document.querySelector('body').addEventListener('click', function (e){
 		return;
 	}
 });
+
+function update_wwl_categories(){
+	var xhttp = new XMLHttpRequest();
+	xhttp.open('POST', my_ajax_url.ajax_url +"?action=wwl_get_compared_cat" , true);
+	xhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+	xhttp.send();
+	xhttp.onreadystatechange = function() {
+		if (xhttp.readyState == 4) {
+			if (xhttp.status == 200) {
+				document.querySelector('.want-left .want-catalog').innerHTML = xhttp.response;
+			}
+		}
+	}
+}
 
 function getCookie(name) {
   var matches = document.cookie.match(new RegExp(

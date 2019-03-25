@@ -57,7 +57,7 @@ class WWL_Public {
 		if ( empty( $in_cookie ) ) {
 			setcookie( 
 				'wwl_wish', 
-				json_encode( array ('0'=>$id) ), 
+				json_encode( array ($id) ), 
 				time()+60*60*24*380,
 				'/'
 			);
@@ -65,7 +65,7 @@ class WWL_Public {
 			$in_cookie[] = $id;
 			setcookie( 
 				'wwl_wish', 
-				json_encode( $in_cookie ), 
+				json_encode( array_values( $in_cookie) ),
 				time()+60*60*24*380,
 				'/'
 			);
@@ -107,7 +107,7 @@ class WWL_Public {
 		} else {
 			setcookie( 
 				'wwl_wish', 
-				json_encode( $in_cookie ), 
+				json_encode( array_values( $in_cookie) ),
 				time()+60*60*24*380,
 				'/'
 			);
@@ -228,6 +228,11 @@ class WWL_Public {
 			$ids =  json_decode( $_COOKIE['wwl_wish'], true );
 		}
 		return $ids;
+	}
+
+	public function ajax_get_wish_cats(){
+		echo $this->get_wish_cats();
+		die;
 	}
 
 	public function get_wish_cats(){

@@ -4,7 +4,7 @@ Theme Name: halva
 
 .item-logo{
     position: relative;
-    /* width: 190px; */
+    width: 190px;
 }
 
 .item-logo > div.img-padding{
@@ -37,6 +37,20 @@ Theme Name: halva
 [data-item-id][data-wm-wwl][wwl-procesing="true"] {
     background-image: url(./assets/images/load.gif) !important;
     background-repeat: no-repeat;
+}
+.item-view [data-wm-prod-id] [data-wm-wcp][data-item-id][data-event-after][wcp-procesing="true"] {
+    background-image: url(./assets/images/load.gif) !important;
+    width:104px !important;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 6px 0 !important;
+}
+.item-view [data-wm-prod-id] [data-wm-wwl][data-item-id][data-event-after][wwl-procesing="true"] {
+    background-image: url(./assets/images/load.gif) !important;
+    width:104px !important;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 6px 0 !important;
 }
 
 [data-tinv-wl-action="remove"],

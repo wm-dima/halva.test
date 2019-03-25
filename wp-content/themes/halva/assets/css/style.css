@@ -693,7 +693,7 @@ header {
     /* align-self: center; */
     /* display: flex; */
     /* justify-content: center; */
-    margin-top: 25px;
+    /* margin-top: 25px; */
 }
 .item-name {
     font-family: 'Museo Sans Cyrl 500';
@@ -1654,7 +1654,7 @@ footer {
 }
 .catalog-items {
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
     flex-wrap: wrap;
 }
 .catalog-navigation {
@@ -1726,6 +1726,7 @@ footer {
     width: 242px !important;
     min-height: 365px;
     margin-bottom: 25px;
+    margin-left: 16px;
 }
 .price , .manufacturers , .type-acustic , .power , .size , .quantity-lines , .resistance{
     margin-bottom: 20px;
@@ -2601,7 +2602,7 @@ footer {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 284px;
+    width: 246px;
     /* margin-right: 50px; */
 }
 .basket-item-img {
@@ -2611,7 +2612,8 @@ footer {
 .quantity-basket {
     display: flex;
     align-items: center;
-    margin-right: 30px;
+    margin-right: 42.5px;
+    margin-left: 30.5px;
 }
 .minus , .plus {
     -moz-user-select: none;
@@ -2626,6 +2628,10 @@ footer {
     width:10px;
     height: 3px;
     background: url(../images/minus.png);
+    box-sizing: border-box;
+    padding: 10px 7px;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 .plus {
     width:17px;
@@ -3199,7 +3205,8 @@ RS */
 }
 .basket-item-img img {
     width:200px !important;
-    height:200px !important;
+    height: auto !important;
+    object-fit: contain;
 }
 
 /*Если что, удалить*/
@@ -3245,4 +3252,7 @@ RS */
 }
 .item-navigation ul li:last-child {
     border: 3px solid #ff9c00;
+}
+.empty-wcp-categories , .any-campared-attrs , .any-wish-prods {
+    font-family: 'Museo Sans Cyrl 300';
 }
