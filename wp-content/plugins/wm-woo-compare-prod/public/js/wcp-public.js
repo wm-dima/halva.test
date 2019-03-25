@@ -43,10 +43,6 @@ function compare_controller(e, type = 'compare_remove_event' ){
 	}
 }
 
-function before_remove(e){
-	if ( e.target.getAttribute('data-event-after') == 'compare_list_event' ) update_wcp_categories();
-}
-
 function update_wcp_categories(){
 	var xhttp = new XMLHttpRequest();
 	xhttp.open('POST', my_ajax_url.ajax_url +"?action=wcp_get_compared_cat" , true);
@@ -56,8 +52,7 @@ function update_wcp_categories(){
 		if (xhttp.readyState == 4) {
 			if (xhttp.status == 200) {
 				document.querySelector('.item-navigation').innerHTML = xhttp.response;
-			} else {
-				// alert('Что-то пошло не так, попробуйте позже.');
+				console.log(xhttp.response);
 			}
 		}
 	}
@@ -94,6 +89,7 @@ function remove_from_compare(id, type){
 	xhttp.onreadystatechange = function() {
 		if (xhttp.readyState == 4) {
 			if (xhttp.status == 200) {
+				// if (true) update_wcp_categories(); 
 				wcp_response = JSON.parse(xhttp.response );
 				document.querySelector('[data-item-id="' + wcp_response.last_removed_product + '"][data-wm-wcp]').removeAttribute('wcp-procesing');
 				if(wcp_response.success){

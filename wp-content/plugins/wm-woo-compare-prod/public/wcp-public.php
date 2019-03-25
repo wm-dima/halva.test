@@ -57,7 +57,7 @@ class WCP_Public {
 		if ( empty( $in_cookie ) ) { 
 			setcookie(  
 				'wcp_compare',  
-				json_encode( array ('0'=>$id) ),  
+				json_encode( array ($id) ),  
 				time()+60*60*24*380, 
 				'/' 
 			); 
@@ -65,7 +65,7 @@ class WCP_Public {
 			$in_cookie[] = $id; 
 			setcookie(  
 				'wcp_compare',  
-				json_encode( $in_cookie ),  
+				json_encode( array_values( $in_cookie) ), 
 				time()+60*60*24*380, 
 				'/' 
 			); 
@@ -93,9 +93,13 @@ class WCP_Public {
  
  
 	public function rm_from_cookie( $id ) { 
-		$in_cookie = json_decode( $_COOKIE['wcp_compare'], true ); 
+		$in_cookie = json_decode( $_COOKIE['wcp_compare'], true );
+		// $in_cookie = json_decode( $_COOKIE['wcp_compare'], JSON_FORCE_OBJECT );
 		unset( $in_cookie[array_search( $id, $in_cookie )] ); 
 		unset( $this->all_prods[array_search( $id, $this->all_prods )] ); 
+		// var_dump($in_cookie);
+		// var_dump(json_encode( array_values( $in_cookie ) ));
+		// die();
 		if ( empty( $in_cookie ) ) { 
 			setcookie(  
 				'wcp_compare',  
@@ -106,7 +110,7 @@ class WCP_Public {
 		} else { 
 			setcookie(  
 				'wcp_compare',  
-				json_encode( $in_cookie ),  
+				json_encode( array_values( $in_cookie) ),  
 				time()+60*60*24*380, 
 				'/' 
 			); 
