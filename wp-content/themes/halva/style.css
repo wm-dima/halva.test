@@ -895,3 +895,7 @@ body .inside-basket-nav ul{
     margin: 20px 20 0 0;
 }
 
+#in .item-navigation ul ul li:last-child {
+    border:0;
+    padding:0;
+} 
