@@ -3,7 +3,7 @@
             <?php get_template_part('templates/search', 'catalog'); ?>
             </div>
             <div class="wrapper">
-                <div class="match"> 
+                <div class="match" id="in"> 
                     <div class="item-navigation">
                         <ul>
                             <?php echo do_shortcode( '[get_comp_cats]' ); ?>
