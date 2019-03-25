@@ -230,6 +230,11 @@ class WWL_Public {
 		return $ids;
 	}
 
+	public function ajax_get_wish_cats(){
+		echo $this->get_wish_cats();
+		die;
+	}
+
 	public function get_wish_cats(){
 		$cats = $this->get_categories();
 		if (!$cats) return "<li class=\"wcp-compare-category--empty\">Для выбора категорий необходимо добавить товары в желания.</li>";
