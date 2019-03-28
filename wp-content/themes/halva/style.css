@@ -943,23 +943,6 @@ body .inside-basket-nav ul{
     border: 1px solid black;
 }
 
-.woocommerce a.button{
-/*    font-size: inherit!important; 
-    margin: inherit!important; 
-    line-height: inherit!important; 
-    cursor: inherit!important; 
-    position: inherit!important; 
-    text-decoration: inherit!important; 
-    overflow: inherit!important; 
-    padding: inherit!important; 
-    font-weight: inherit!important; 
-    border-radius: inherit!important; 
-    left: inherit!important; 
-    color: inherit!important; 
-    background-color: inherit!important; 
-    border: inherit!important; 
-    display: inline-inherit!important; 
-    background-image: inherit!important; 
-    box-shadow: inherit!important; 
-    text-shadow: inherit!important; */
+.page-numbers li {
+    padding-left: 10px
 }

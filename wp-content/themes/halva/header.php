@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <?php wp_head(); ?>  
 </head>
-<body <?php body_class(); ?> id="catalog-body">
+<body class="page-id-<?php echo get_the_ID(); ?>" id="catalog-body">
 <?php global $woocommerce; ?>
     <header>
         <div class="inside-header">
