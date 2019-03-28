@@ -908,7 +908,7 @@ body .inside-basket-nav ul{
 
 .befor-footer-checkout{
     float: right;
-    margin-right: 31%;
+    margin: 15px 31% 15px 0;
     font-size: 27px;
     border: 1px solid green;
     padding: 10 15;

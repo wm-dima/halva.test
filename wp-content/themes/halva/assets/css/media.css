@@ -203,6 +203,9 @@
     .want-in-basket { 
         margin-left: 0; 
     } 
+    .befor-footer-checkout{
+        margin-right: 25%;
+    }
  } 
 @media(max-width:1030px) { 
     .inside-news { 
