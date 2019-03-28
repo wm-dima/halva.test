@@ -2169,6 +2169,7 @@ footer {
     padding-left: 50px;
     cursor: pointer;
     appearance: none;
+    width: fit-content;
 }
 .select-div {
     position: relative;

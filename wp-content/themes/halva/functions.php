@@ -254,23 +254,22 @@ function wm_get_wishlist_count(){
 }
 
 
-function load_template_part() {
-    ob_start();
-    dynamic_sidebar('wm-manufactarer-filter');
-    $var = ob_get_contents();
-    ob_end_clean();
-    echo "<pre>";
-    $var = explode ( 'wm-the-widget-start', htmlspecialchars($var) );
-    var_dump($var);
-    // $links = explode('<a', $var);
-    die;
-    return $var;
-}
+// function load_template_part() {
+//     ob_start();
+//     dynamic_sidebar('wm-manufactarer-filter');
+//     $var = ob_get_contents();
+//     ob_end_clean();
+//     echo "<pre>";
+//     $var = explode ( 'wm-the-widget-start', htmlspecialchars($var) );
+//     var_dump($var);
+//     die;
+//     return $var;
+// }
 
 add_action( 'pre_get_posts', 'iconic_hide_out_of_stock_products' );
  
 function iconic_hide_out_of_stock_products( $q ) {
-    session_start();
+    @session_start();
     if ( ! ( isset ( $_SESSION['only_in_stock'] ) && $_SESSION['only_in_stock'] == true ) )  {
         return;
     }
@@ -294,7 +293,7 @@ function iconic_hide_out_of_stock_products( $q ) {
     }
  
     remove_action( 'pre_get_posts', 'iconic_hide_out_of_stock_products' );
- 
+
 }
 
 function prefix_send_email_to_admin() {
@@ -644,3 +643,46 @@ function the_get_more_comments() {
 }
 add_action("wp_ajax_get_more_comments", "the_get_more_comments");
 add_action("wp_ajax_nopriv_get_more_comments", "the_get_more_comments");
+
+function get_log_in_log_link(){
+    if (is_user_logged_in()) : ?>
+        <a href="<?php echo get_permalink( 258 ); ?>">Кабинет</a>
+        &nbsp | &nbsp
+        <a href="<?php echo wp_logout_url(get_permalink()); ?>">Выход</a>
+    <?php else : ?>
+        <a href="<?php echo wp_login_url(get_permalink()); ?>">Вход/Регистрация</a>
+    <?php endif;
+}
+
+
+add_action("wp_ajax_update_city", "save_user_city");
+add_action("wp_ajax_nopriv_update_city", "save_user_city");
+function save_user_city(){
+    global $current_user;
+    if ( is_user_logged_in() && isset($_POST['city']) && strlen($_POST['city']) > 3 ) 
+        if (
+            update_user_meta( $current_user->ID, 'user_city', esc_sql( $_POST['city'] ) )
+        ) {
+            $response = array (
+                'success' => true,
+                'city' => $_POST['city']
+            );  
+        } else {
+            $response = array (
+                'success' => false,
+                'city' => get_user_meta($current_user->ID, 'user_city', true)
+            );
+        }
+    echo json_encode($response);
+    die();
+}
+
+function get_user_city(){
+    global $current_user;
+    if (is_user_logged_in()) return get_user_meta($current_user->ID, 'user_city', true);
+    return 'Москва';
+}
+
+function get_comment_owner_city($user_id){
+    return ( $res = get_user_meta($user_id, 'user_city', true) ) == false ? 'Москва': $res;
+}

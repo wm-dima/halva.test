@@ -30,10 +30,10 @@
                             </div>
                             <div class="delivery-method">
                                 <?php if (is_user_logged_in()) : ?>
-                                    <a href="<?php echo wp_logout_url(get_permalink()); ?>" class="log-in">
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/user.png" alt="">  
-                                        Выход
-                                    </a>
+                                    <div class="log-in">
+                                        <a href="<?php echo get_permalink( 258 ); ?>" style="display: content">Кабинет &nbsp | &nbsp </a>
+                                        <a href="<?php echo wp_logout_url(get_permalink()); ?>"> Выход</a>
+                                    </div>
                                 <?php else : ?>
                                     <p>Для того чтобы процесс оформления покупки был ещё проще, <br>
                                         вы можете «Войти под Вашей учетной записью» или «Зарегистрироваться»</p>

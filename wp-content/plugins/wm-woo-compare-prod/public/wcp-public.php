@@ -175,7 +175,7 @@ class WCP_Public {
 			global $wpdb; 
 			return $wpdb->get_var('SELECT COUNT(product_id) FROM ' . $wpdb->prefix . 'client_id_product_id WHERE client_id = ' . get_current_user_id() . ';'); 
 		} else { 
-			return count( json_decode( $_COOKIE['wcp_compare'], true ) ); 
+			return @count( json_decode( $_COOKIE['wcp_compare'], true ) ); 
 		} 
 	} 
  
