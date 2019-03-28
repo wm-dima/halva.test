@@ -49,7 +49,7 @@ function add_to_wish(id, type = false){
 		if (xhttp.readyState == 4) {
 			if (xhttp.status == 200) {
 				response = JSON.parse(xhttp.response );
-				document.querySelector('[data-item-id="' + response.last_added_product + '"][data-wm-wwl]').removeAttribute('wwl-procesing');
+				document.querySelector('[data-item-id="' + response.last_added_product + '"][data-wm-wwl][wwl-procesing]').removeAttribute('wwl-procesing');
 				if(response.success){
 					last_added_product = response.last_added_product;
 					document.querySelector('body').dispatchEvent( eval( response.event ) );
@@ -73,7 +73,7 @@ function remove_from_wish(id, type = false){
 			if (xhttp.status == 200) {
 				if (document.querySelector('.want-left .want-catalog') != null) update_wwl_categories();
 				response = JSON.parse(xhttp.response );
-				document.querySelector('[data-item-id="' + response.last_removed_product + '"][data-wm-wwl]').removeAttribute('wwl-procesing');
+				document.querySelector('[data-item-id="' + response.last_removed_product + '"][data-wm-wwl][wwl-procesing]').removeAttribute('wwl-procesing');
 				if(response.success){
 					last_removed_product = response.last_removed_product;
 					document.querySelector('body').dispatchEvent( eval( response.event ) );
