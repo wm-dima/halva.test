@@ -938,3 +938,7 @@ body .inside-basket-nav ul{
     background-size: contain;
     background-repeat: no-repeat;
 }
+
+.feedback-form textarea{
+    border: 1px solid black;
+}
