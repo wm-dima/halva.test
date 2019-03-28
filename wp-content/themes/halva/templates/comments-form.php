@@ -22,7 +22,7 @@
         <?php
         endforeach;
         echo "</div>";
-        echo "<div class=\"load-more\"><p data-load-more='10'>Load more...</p></div>";
+        echo "<div class=\"load-more\"><p data-load-more='10'>Загрузить еще...</p></div>";
     } else { 
     ?>
         <p class="no-one-review">
