@@ -905,3 +905,27 @@ body .inside-basket-nav ul{
 .question-answer h3 {
     margin: 15px;
 }
+
+.befor-footer-checkout{
+    float: right;
+    margin-right: 31%;
+    font-size: 27px;
+    border: 1px solid green;
+    padding: 10 15;
+    border-radius: 24px;
+    font-weight: 600;
+    -webkit-box-shadow: 0px 0px 5px 3px rgba(20,232,9,1);
+    -moz-box-shadow: 0px 0px 5px 3px rgba(20,232,9,1);
+    box-shadow: 0px 0px 5px 3px rgba(20,232,9,1);
+    color: #ff9c00;
+    transition: all 1.5s;
+}
+
+.befor-footer-checkout:hover{
+    color: #1cbd00;
+    border-color: #ff9c00;
+    -webkit-box-shadow: 0px 0px 5px 3px #ff9c00;
+    -moz-box-shadow: 0px 0px 5px 3px #ff9c00;
+    box-shadow: 0px 0px 5px 3px #ff9c00;
+
+}

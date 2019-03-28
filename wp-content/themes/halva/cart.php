@@ -22,11 +22,6 @@
                     <div class="inside-basket-main">
                         <div class="basket-left">
                             <?php get_template_part('woocommerce/cart/cart'); ?>
-                                <!-- <div class="price-basket">
-                                    <p class="sum-price-p">Стоимость товаров</p>
-                                    <p class="final-price"><?php wc_cart_totals_subtotal_html(); ?> р.</p>
-                                </div> -->
-
                         </div>
                         <div class="basket-right">
                             <div class="price-basket">
@@ -50,6 +45,10 @@
                             </div>
                         </div>
                     </div>
+                    <a href="<?php echo get_permalink( wc_get_page_id( 'checkout' ) ); ?>" class="befor-footer-checkout">
+                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/g.png" alt="">
+                        Оформление
+                    </a>
                 </div>
             </div>
 <script src="<?php echo get_template_directory_uri() . '/assets/js/wm_catr_page.js' ?>"></script>
