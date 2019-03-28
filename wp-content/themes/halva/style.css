@@ -939,8 +939,10 @@ body .inside-basket-nav ul{
     background-repeat: no-repeat;
 }
 
-.feedback-form textarea{
-    border: 1px solid black;
+.feedback-form textarea,
+.feedback-form input,
+.feedback-form select{
+    border: 1px solid #aca2a2 !important;
 }
 
 .page-numbers li {
@@ -957,4 +959,23 @@ label[for="the-rating"]{
     border-radius: 25px;
     border: none;
     line-height: 100%;
+}
+
+select{
+border: none;
+position: relative;
+outline: none;
+padding: 5px;
+padding-right: 40px;
+}
+
+select:after{
+  content: "";
+  display: block;
+  width: 25px;
+  height: 25px;
+  /*background-image: url("/put_k_strelke");*/
+  position: absolute;
+  right: 5px;
+  top: 5px;
 }
