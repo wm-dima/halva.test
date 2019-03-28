@@ -187,7 +187,12 @@ get_header( 'shop' ); ?>
                                         <div class="specifications-item">
                                                 <?php  
                                                     $specifications = get_field( 'add_specifications' );
-                                                    if ( count( $specifications ) && is_array($specifications) ) {
+                                                    if (
+                                                        is_null($specifications) &&
+                                                        $specifications &&
+                                                        count( $specifications ) 
+                                                        && is_array($specifications) 
+                                                    ) {
                                                         echo "<h4>Характеристики</h4>";
                                                         foreach ($specifications as $key => $value): 
                                                 ?>
