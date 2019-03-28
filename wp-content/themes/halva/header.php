@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <?php wp_head(); ?>  
 </head>
-<body id="catalog-body">
+<body class="page-id-<?php echo get_the_ID(); ?>" id="catalog-body">
 <?php global $woocommerce; ?>
     <header>
         <div class="inside-header">
@@ -101,7 +101,7 @@
                                         <?php echo get_theme_mod( 'phone_2' ); ?>
                                     </a>
                                 </li>
-                                <li><a href="skype:<?php echo get_theme_mod( 'skype' ); ?>">Skype</a></li>
+                                <li><a href="watsapp:<?php echo get_theme_mod( 'watsapp' ); ?>">watsapp</a></li>
                             </ul>
                         </div>
                         <div class="soc-m">
@@ -115,9 +115,9 @@
                 </div>
             </div>
             <div class="body-black"></div>
-                <div class="logo-head"></div>
+            <div class="logo-head"></div>
             <div class="skype">
-                <a href="skype:<?php echo get_theme_mod( 'skype' ); ?>"><img src="<?php echo get_template_directory_uri(); ?>/assets/images/skype.png" alt=""></a>
+                <a href="<?php echo get_theme_mod( 'watsapp' ); ?>" class="watsapp"></a>
             </div>
         </div>
     </header>

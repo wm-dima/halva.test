@@ -9,7 +9,9 @@ document.querySelector('body').addEventListener('compare_was_added', wcp_state_t
 
 function wcp_state_to_remove(){
 	alert('Пробукт был добавлен в сравнение!');
-	document.querySelector('[data-item-id="' + wcp_last_added_product + '"][data-wm-wcp]').setAttribute('data-wm-wcp', 'remove');
+	let items = document.querySelector('[data-item-id="' + wcp_last_added_product + '"][data-wm-wcp]');
+	items.map = [].map;
+	items.map(item => (item.setAttribute('data-wm-wwl', 'remove')));
 	document.querySelector('.shop-icons .accept .number').innerText = document.querySelector('.shop-icons .accept .number').innerText * 1 + 1;
 }
 
@@ -17,7 +19,9 @@ document.querySelector('body').addEventListener('compare_was_removed', wcp_state
 
 function wcp_state_to_add(){
 	alert('Пробукт был удален из сравнения!');
-	document.querySelector('[data-item-id="' + wcp_last_removed_product + '"][data-wm-wcp]').setAttribute('data-wm-wcp', 'add');
+	let items = document.querySelector('[data-item-id="' + wcp_last_removed_product + '"][data-wm-wcp]');
+	items.map = [].map;
+	items.map(item => (item.setAttribute('data-wm-wwl', 'add')));
 	document.querySelector('.shop-icons .accept .number').innerText = document.querySelector('.shop-icons .accept .number').innerText * 1 - 1;
 }
 
@@ -66,7 +70,7 @@ function add_to_compare(id, type = false){
 		if (xhttp.readyState == 4) {
 			if (xhttp.status == 200) {
 				wcp_response = JSON.parse(xhttp.response );
-				document.querySelector('[data-item-id="' + wcp_response.last_added_product + '"][data-wm-wcp]').removeAttribute('wcp-procesing');
+				document.querySelector('[data-item-id="' + wcp_response.last_added_product + '"][data-wm-wcp][wcp-procesing]').removeAttribute('wcp-procesing');
 				if(wcp_response.success){
 					wcp_last_added_product = wcp_response.last_added_product;
 					document.querySelector('body').dispatchEvent( eval( wcp_response.event ) );
@@ -90,7 +94,7 @@ function remove_from_compare(id, type){
 			if (xhttp.status == 200) {
 				if (document.querySelector('.item-navigation') != null) update_wcp_categories(); 
 				wcp_response = JSON.parse(xhttp.response );
-				document.querySelector('[data-item-id="' + wcp_response.last_removed_product + '"][data-wm-wcp]').removeAttribute('wcp-procesing');
+				document.querySelector('[data-item-id="' + wcp_response.last_removed_product + '"][data-wm-wcp][wcp-procesing]').removeAttribute('wcp-procesing');
 				if(wcp_response.success){
 					wcp_last_removed_product = wcp_response.last_removed_product;
 					document.querySelector('body').dispatchEvent( eval( wcp_response.event ) );
