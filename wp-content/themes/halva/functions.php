@@ -62,14 +62,14 @@ function mytheme_customize_register( $wp_customize ) {
         )
     );
 
-    /*SKYPE*/
+    /*watsapp*/
     $wp_customize->add_setting(
-        'skype'
+        'watsapp'
     );
     $wp_customize->add_control(
-        'skype',
+        'watsapp',
         array(
-            'label' => 'Skype',
+            'label' => 'watsapp',
             'section' => 'main_option',
             'type' => 'text',
         )
