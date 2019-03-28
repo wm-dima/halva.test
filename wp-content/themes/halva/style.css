@@ -563,7 +563,7 @@ body .item-info{
 
 
 .feedback-form .comment-form-rating{
-    padding: 20px;
+    /*padding: 20px;*/
 }
 
 .feedback-form .comment-form-rating select{
@@ -945,4 +945,16 @@ body .inside-basket-nav ul{
 
 .page-numbers li {
     padding-left: 10px
+}
+
+label[for="the-rating"]{
+    display: none;
+}
+
+#the-rating{
+    margin-left: 35px;
+    padding: 16px;
+    border-radius: 25px;
+    border: none;
+    line-height: 100%;
 }
