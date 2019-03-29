@@ -907,26 +907,32 @@ body .inside-basket-nav ul{
 }
 
 .befor-footer-checkout{
-    float: right;
-    margin: 15px 31% 15px 0;
-    font-size: 27px;
-    border: 1px solid green;
-    padding: 10 15;
-    border-radius: 24px;
-    font-weight: 600;
-    -webkit-box-shadow: 0px 0px 5px 3px rgba(20,232,9,1);
-    -moz-box-shadow: 0px 0px 5px 3px rgba(20,232,9,1);
-    box-shadow: 0px 0px 5px 3px rgba(20,232,9,1);
-    color: #ff9c00;
-    transition: all 1.5s;
+   font-family: 'Museo Sans Cyrl 300';
+   font-size: 19px;
+   display: block;
+   width: 162px;
+   line-height: 50px;
+   padding:0px 30px;
+   border-radius: 27px;
+   -webkit-border-radius: 27px;
+   -moz-border-radius: 27px;
+   -ms-border-radius: 27px;
+   -o-border-radius: 27px;
+   background: #2bc22b;
+   transition: 0.3s all;
+   -webkit-transition: 0.3s all;
+   /* color: #fff; */
+   -moz-transition: 0.3s all;
+   -ms-transition: 0.3s all;
+   -o-transition: 0.3s all;
+   margin: 0 auto;
 }
-
+.befor-footer-checkout img{
+    margin-right: 5px;
+ }
 .befor-footer-checkout:hover{
-    color: #1cbd00;
-    border-color: #ff9c00;
-    -webkit-box-shadow: 0px 0px 5px 3px #ff9c00;
-    -moz-box-shadow: 0px 0px 5px 3px #ff9c00;
-    box-shadow: 0px 0px 5px 3px #ff9c00;
+    background: #ff9c00;
+    color: #fff;
 }
 
 .skype .watsapp{
