@@ -213,7 +213,7 @@
     } 
 } 
 @media(max-width:1025px) { 
-    .phones , .log-in{ 
+    .phones , .location{ 
         display: none; 
     } 
     .call-back { 

@@ -161,6 +161,7 @@ function my_them_load_css_and_js() {
     wp_enqueue_style( 'wm-the-museo', get_template_directory_uri() . '/assets/fonts/museo.css');
     wp_enqueue_style( 'wm-the-swiper.min', get_template_directory_uri() . '/assets/css/swiper.min.css');
     wp_enqueue_style( 'wm-the-media-css', get_template_directory_uri() . '/assets/css/media.css');
+    wp_enqueue_style( 'wm-the-fancy-css', get_template_directory_uri() . '/assets/css/jquery.fancybox.css');
 
     // wp_enqueue_style( 'wm-the-generic', get_template_directory_uri() . '/assets/css/generic.css');
     wp_enqueue_style( 'wm-the-item-slider', get_template_directory_uri() . '/assets/css/item-slider.css');
@@ -180,6 +181,7 @@ function my_them_load_css_and_js() {
 
     wp_enqueue_script( 'wm-the-feedback_popup.js', get_template_directory_uri() . '/assets/js/wm_feedback_popup.js', [], null, false );
     wp_enqueue_script( 'wm-the-buy_in_click', get_template_directory_uri() . '/assets/js/buy_in_click.js', [], null, false );
+    wp_enqueue_script( 'wm-the-fancy_box', get_template_directory_uri() . '/assets/js/jquery.fancybox.pack.js', [], null, false );
 
 
     wp_enqueue_script( 'wm-the-wm-main', get_template_directory_uri() . '/assets/js/main.js',[], null, true );
@@ -416,7 +418,7 @@ function wm_get_single_prod_galegy( $id ){
     // die;
     $html = '<ul>';
         foreach ($images as $key => $value) {
-            $html .= '<li><img src="' . $value . '"  alt=""></li>';
+            $html .= '<li><a class="fancybox" rel="group" href="http://halva.test/wp-content/themes/halva/assets/images/subwoofer2.png"><img src="' . $value . '"  alt=""></a></li>';
         }
     $html .= '</ul>';
     return $html;
