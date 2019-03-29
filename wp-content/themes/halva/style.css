@@ -979,3 +979,15 @@ select:after{
   right: 5px;
   top: 5px;
 }
+
+.select-div.buy-opt input{
+    height: inherit;
+    max-width: inherit;
+}
+
+.select-div.buy-opt{
+    height: 37px;
+    margin: 0;
+    max-width: 160px;
+    margin-right: 20px;
+}

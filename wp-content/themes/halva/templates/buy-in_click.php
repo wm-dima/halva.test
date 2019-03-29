@@ -19,8 +19,8 @@
 				<label for="pop-up-tel" class="place-holder-text">Телефон</label>
 			</div>
 			<div class="inp-tel-wrap">
-				<input type="text" name="address" id="pop-up-address">
-				<label for="pop-up-address" class="place-holder-text">Адрес</label>
+				<input type="text" name="address" id="pop-up-address" value="<?php echo get_user_city(); ?>">
+				<label for="pop-up-address" class="place-holder-text input--not-empty">Адрес</label>
 			</div>
 			<div class="feedback-pop-up-submit">
 				<input type="submit">

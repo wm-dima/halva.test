@@ -134,15 +134,10 @@ get_header( 'shop' ); ?>
                                         <div class="delivery-item">
                                             <div class="calculate">
                                                 <p>Доставка до<br class="brhide">&mdash;</p>
-                                                <div class="select-div">
-                                                    <select class="select-city">
-                                                        <option>
-                                                            Москва
-                                                        </option>
-                                                        <option>Пункт 2</option>
-                                                    </select>
+                                                <div class="select-div buy-opt">
+                                                    <input value="<?php echo get_user_city(); ?>" type="text" id="select-city">
                                                 </div>
-                                                <a href="" class="calc">Рассчитать</a>
+                                                <a href="" class="calc"  onclick="calcBuyInClick(event)">Рассчитать</a>
                                             </div>
                                         </div>
                                         <div class="payment-info">
