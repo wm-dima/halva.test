@@ -514,6 +514,7 @@ body .item-info{
     display: flex;
     justify-content: space-around;
     align-items: center;
+    margin-top: 30px;
 }
 
 #commentform .fields > div {
@@ -567,7 +568,7 @@ body .item-info{
 }
 
 .feedback-form .comment-form-rating select{
-    margin-left: 35px;
+    margin-left: 0;
     padding: 10px;
 }
 
@@ -612,7 +613,7 @@ input[type="text"] {
     font-family: 'Museo Sans Cyrl 500';
     font-size: 16px;
     box-sizing: border-box;
-    padding-left: 26px;
+    /* padding-left: 26px; */
 }
 input[type="submit"] {
     height:50px;
@@ -868,6 +869,9 @@ body .inside-basket-nav ul{
 }
 .load-more {
     cursor: pointer;
+    font-family: 'Museo Sans Cyrl 300';
+    font-weight: bolder;
+    text-decoration: underline;
 }
 .delete-elem {
     background-position: 0 0 !important;
@@ -960,11 +964,12 @@ label[for="the-rating"]{
 }
 
 #the-rating{
-    margin-left: 35px;
+    margin-left: 0;
     padding: 16px;
     border-radius: 25px;
     border: none;
     line-height: 100%;
+    margin-bottom: 20px;
 }
 
 select{
@@ -988,6 +993,7 @@ select:after{
 .select-div.buy-opt input{
     height: inherit;
     max-width: inherit;
+    text-align: center;
 }
 
 .select-div.buy-opt{
