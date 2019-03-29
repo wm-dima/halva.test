@@ -78,7 +78,7 @@
                             do_action( 'woocommerce_no_products_found' );
                         }
                         ?>
-                        <?php wc_get_template_part( 'loop/pagination' ); ?>
+                        <?php // wc_get_template_part( 'loop/pagination' ); ?>
                     </div>
                 </div>
             </div>

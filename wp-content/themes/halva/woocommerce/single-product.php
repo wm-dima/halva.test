@@ -134,15 +134,10 @@ get_header( 'shop' ); ?>
                                         <div class="delivery-item">
                                             <div class="calculate">
                                                 <p>Доставка до<br class="brhide">&mdash;</p>
-                                                <div class="select-div">
-                                                    <select class="select-city">
-                                                        <option>
-                                                            Москва
-                                                        </option>
-                                                        <option>Пункт 2</option>
-                                                    </select>
+                                                <div class="select-div buy-opt">
+                                                    <input value="<?php echo get_user_city(); ?>" type="text" id="select-city">
                                                 </div>
-                                                <a href="" class="calc">Рассчитать</a>
+                                                <a href="" class="calc"  onclick="calcBuyInClick(event)">Рассчитать</a>
                                             </div>
                                         </div>
                                         <div class="payment-info">
@@ -187,7 +182,12 @@ get_header( 'shop' ); ?>
                                         <div class="specifications-item">
                                                 <?php  
                                                     $specifications = get_field( 'add_specifications' );
-                                                    if ( count( $specifications ) && is_array($specifications) ) {
+                                                    if (
+                                                        is_null($specifications) &&
+                                                        $specifications &&
+                                                        count( $specifications ) 
+                                                        && is_array($specifications) 
+                                                    ) {
                                                         echo "<h4>Характеристики</h4>";
                                                         foreach ($specifications as $key => $value): 
                                                 ?>
@@ -233,49 +233,60 @@ get_header( 'shop' ); ?>
                                         <?php if ( have_posts() ) :
                                         foreach ($ids as $key => $value) : 
                                             $product = wc_get_product( $value );
+                                            global $product;
                                         ?>
-
                                             <div class="swiper-slide">
-                                            <div class="catalog-item hi-1" data-wm-prod-id="<?php echo $value; ?>">
-                                                <div class="item-info">
-                                                    <a href="<?php echo get_permalink($value); ?>">
-                                                        <div class="item-logo">
-                                                            <div class="img-padding">
-                                                                <img src="<?php echo wm_get_main_img( $value ); ?>" alt="">
-                                                            </div>
-                                                        </div>
-                                                   </a>
-                                                    <a href="<?php echo get_permalink($value); ?>">
-                                                        <p class="item-name"><?php echo $product->name; ?></p>
-                                                    </a>
-                                                    <div class="item-price"><span class="price-value"><?php echo $product->get_price_html(); ?></span> руб.</div>
-                                                    <div class="item-icons">
-                                                        <div class="item-like"><?php  echo do_shortcode( '[ti_wishlists_addtowishlist]' ); ?> </div>
-                                                        <div 
-                                                            class="item-balance" 
-                                                            data-wm-wcp="<?php echo do_shortcode( '[is_in_compare_list]' ) == 1 ? 'remove' : 'add'; ?>">
-                                                        </div>
-                                                    </div>
-                                                </div>    
-                                                <div class="in-basket">
-                                                    <?php if ( $product->stock_status == 'outofstock' ): ?>
-                                                        <div class="out-of-stock"><button>Нет в наличие</button></div>
-                                                    <?php else: ?>
-                                                        <a 
-                                                            href="/shop/?add-to-cart=<?php echo $value; ?>" 
-                                                            data-quantity="1" 
-                                                            class="button product_type_simple add_to_cart_button ajax_add_to_cart" 
-                                                            data-product_id="<?php echo $value; ?>" 
-                                                            data-product_sku="" 
-                                                            rel="nofollow"
-                                                        >
-                                                            <button>В корзину</button>
-                                                        </a>
-                                                    <?php endif ?>
-                                                </div>
-                                            </div>
-                                            </div>
+    <div class="hit-item hi-1" data-wm-prod-id="<?php echo $product->id; ?>">
+        <div class="item-info">
+            <a href="<?php echo get_permalink( $product->id );?>">
+                <div class="item-logo">
+                    <div class="img-padding">
+                        <img src="<?php echo wm_get_main_img( $product->id ); ?>" alt="">
+                    </div>
+                </div>
+            </a>
+            <a href="<?php echo get_permalink( $product->id );?>">
+                <p class="item-name"><?php echo $product->name; ?></p>
+            </a>
+            <div class="item-price"><span class="price-value"><?php echo $product->get_price_html(); ?></span> руб.</div>
+                <div class="item-icons wm-for-balance">
+                    <div 
+                        class="item-like" 
+                        data-wm-wwl="<?php echo do_shortcode( '[is_in_wish_list]' ) == 1 ? 'remove' : 'add'; ?>"
+                        data-item-id="<?php echo $product->id; ?>"
+                        data-event-after="wish_event_simple"
+                    >
+                    </div>
+                    <div 
+                        class="item-balance" 
+                        data-wm-wcp="<?php echo do_shortcode( '[is_in_compare_list]' ) == 1 ? 'remove' : 'add'; ?>"
+                        data-item-id="<?php echo $product->id; ?>"
+                        data-event-after="compare_event_simple"
+                        >
+                    </div>
+                </div>
+                <div></div>
+        </div>    
 
+       <div class="in-basket">
+        <?php if ($product->stock_status != 'outofstock'): ?>
+            <a 
+                href="/shop/?add-to-cart=<?php echo $product->id; ?>" 
+                data-quantity="1" 
+                class="button product_type_simple add_to_cart_button ajax_add_to_cart" 
+                data-product_id="<?php echo $product->id; ?>" 
+                data-product_sku="" 
+                rel="nofollow"
+            >
+                <button>В корзину</button>
+            </a>
+        <?php else: ?>
+            <div class="out-of-stock"><button>Нет в наличие</button></div>
+        <?php endif ?>
+        </div>
+    </div> 
+
+                                            </div>
                                         <?php endforeach; endif; ?>
 
                                         </div>

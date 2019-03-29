@@ -172,7 +172,7 @@ class WWL_Public {
 			global $wpdb;
 			return $wpdb->get_var('SELECT COUNT(product_id) FROM ' . $wpdb->prefix . 'client_id_wishlist_id WHERE client_id = ' . get_current_user_id() . ';');
 		} else {
-			return count( json_decode( $_COOKIE['wwl_wish'], true ) );
+			return @count( json_decode( $_COOKIE['wwl_wish'], true ) ) ;
 		}
 	}
 
