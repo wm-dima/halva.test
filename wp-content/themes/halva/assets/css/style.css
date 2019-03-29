@@ -3268,3 +3268,6 @@ RS */
 .added_to_cart {
     display: block;
 }
+.calculate .calc {
+    margin-top: 0;
+}
