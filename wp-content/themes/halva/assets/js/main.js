@@ -14,6 +14,15 @@ document.addEventListener('DOMContentLoaded', function(){
 	});
 })
 
+	$(document).ready(function() {
+		$(".fancybox").fancybox({
+			minWidth: 600,
+			arrows: false
+		});
+	});
+
+
+
 // try{
 // 	var xhttp = new XMLHttpRequest();
 // 	xhttp.open('POST', "/?wc-ajax=wm-get-prods" , true);

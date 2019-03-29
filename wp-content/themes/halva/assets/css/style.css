@@ -2058,7 +2058,9 @@ footer {
     text-transform: uppercase;
     border-radius: 26px;
     background: #ff9c00;
-    margin-bottom: 38px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    cursor: pointer;
 }
 .get-price-list {
     padding:0px 50px;
@@ -2094,8 +2096,8 @@ footer {
     text-transform: uppercase;
     border:3px solid #ff9c00;
     border-radius: 26px;
-    padding: 0px 68px;
-    line-height:44px;
+    padding: 0px 42px;
+    line-height: 46px;
     display: inline-block;
     margin-bottom: 29px;
 }
@@ -3256,4 +3258,16 @@ RS */
 }
 .empty-wcp-categories , .any-campared-attrs , .any-wish-prods {
     font-family: 'Museo Sans Cyrl 300';
+}
+.pop-up {
+    font-family: 'Museo Sans Cyrl 300';
+}
+.pod-info-wrap p {
+    margin-right: 10px;
+}
+.added_to_cart {
+    display: block;
+}
+.calculate .calc {
+    margin-top: 0;
 }
