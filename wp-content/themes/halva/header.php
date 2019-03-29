@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <?php wp_head(); ?>  
 </head>
-<body id="catalog-body">
+<body class="page-id-<?php echo get_the_ID(); ?>" id="catalog-body">
 <?php global $woocommerce; ?>
     <header>
         <div class="inside-header">
@@ -18,7 +18,7 @@
                     <div class="location">
                         <ul>
                             <li><img src="<?php echo get_template_directory_uri(); ?>/assets/images/map.png" alt=""></li>
-                            <li>Москва</li>
+                            <li><?php echo get_user_city(); ?></li>
                         </ul>
                     </div>
                     <a href="">
@@ -26,11 +26,7 @@
                             <ul>
                                 <li><img src="<?php echo get_template_directory_uri(); ?>/assets/images/user.png" alt=""></li>
                                 <li>
-                                    <?php if (is_user_logged_in()) : ?>
-                                        <a href="<?php echo wp_logout_url(get_permalink()); ?>">Выход</a>
-                                    <?php else : ?>
-                                        <a href="<?php echo wp_login_url(get_permalink()); ?>">Вход/Регистрация</a>
-                                    <?php endif;?>
+                                    <?php get_log_in_log_link();?>
                                 </li>
                             </ul>
                         </div>
@@ -71,13 +67,9 @@
                         </div>
                         <div class="loc-and-log">
                             <ul>
-                                <li><a href="">Москва</a></li>
+                                <li><a href=""><?php echo get_user_city(); ?></a></li>
                                 <li>
-                                    <?php if (is_user_logged_in()) : ?>
-                                        <a href="<?php echo wp_logout_url(get_permalink()); ?>">Выход</a>
-                                    <?php else : ?>
-                                        <a href="<?php echo wp_login_url(get_permalink()); ?>">Вход/Регистрация</a>
-                                    <?php endif;?>                                    
+                                    <?php get_log_in_log_link();?>                                    
                                 </li>
                             </ul>
                         </div>
@@ -101,7 +93,7 @@
                                         <?php echo get_theme_mod( 'phone_2' ); ?>
                                     </a>
                                 </li>
-                                <li><a href="skype:<?php echo get_theme_mod( 'skype' ); ?>">Skype</a></li>
+                                <li><a href="watsapp:<?php echo get_theme_mod( 'watsapp' ); ?>">watsapp</a></li>
                             </ul>
                         </div>
                         <div class="soc-m">
@@ -115,9 +107,9 @@
                 </div>
             </div>
             <div class="body-black"></div>
-                <div class="logo-head"></div>
+            <div class="logo-head"></div>
             <div class="skype">
-                <a href="skype:<?php echo get_theme_mod( 'skype' ); ?>"><img src="<?php echo get_template_directory_uri(); ?>/assets/images/skype.png" alt=""></a>
+                <a href="<?php echo get_theme_mod( 'watsapp' ); ?>" class="watsapp"></a>
             </div>
         </div>
     </header>

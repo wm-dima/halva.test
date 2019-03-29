@@ -57,7 +57,7 @@ class WWL_Public {
 		if ( empty( $in_cookie ) ) {
 			setcookie( 
 				'wwl_wish', 
-				json_encode( array ('0'=>$id) ), 
+				json_encode( array ($id) ), 
 				time()+60*60*24*380,
 				'/'
 			);
@@ -65,7 +65,7 @@ class WWL_Public {
 			$in_cookie[] = $id;
 			setcookie( 
 				'wwl_wish', 
-				json_encode( $in_cookie ), 
+				json_encode( array_values( $in_cookie) ),
 				time()+60*60*24*380,
 				'/'
 			);
@@ -107,7 +107,7 @@ class WWL_Public {
 		} else {
 			setcookie( 
 				'wwl_wish', 
-				json_encode( $in_cookie ), 
+				json_encode( array_values( $in_cookie) ),
 				time()+60*60*24*380,
 				'/'
 			);
@@ -172,7 +172,7 @@ class WWL_Public {
 			global $wpdb;
 			return $wpdb->get_var('SELECT COUNT(product_id) FROM ' . $wpdb->prefix . 'client_id_wishlist_id WHERE client_id = ' . get_current_user_id() . ';');
 		} else {
-			return count( json_decode( $_COOKIE['wwl_wish'], true ) );
+			return @count( json_decode( $_COOKIE['wwl_wish'], true ) ) ;
 		}
 	}
 
@@ -188,6 +188,7 @@ class WWL_Public {
 		global $wpdb;
 
 		$ids = $this->get_all_prods();
+		if (empty($ids) || is_null($ids)) return false;
 		$query_ids = '( ';
 		foreach ($ids as $key => $value) {
 			$query_ids .= $value . ', ';
@@ -229,12 +230,18 @@ class WWL_Public {
 		return $ids;
 	}
 
+	public function ajax_get_wish_cats(){
+		echo $this->get_wish_cats();
+		die;
+	}
+
 	public function get_wish_cats(){
 		$cats = $this->get_categories();
+		if (!$cats) return "<li class=\"wcp-compare-category--empty\">Для выбора категорий необходимо добавить товары в желания.</li>";
 		$res = '';
 		foreach ($cats as $key => $value) {
-			if ($key == 0 ) $res .= "<li class=\"wcp-compare-category wcp-compare-category--active\"><a href=\"\">{$value->name}</li></a>" ;
-			else $res .= "<li class=\"wcp-compare-category\"><a href=\"?category={$value->term_id}\">{$value->name}</li></a>" ;
+			if ($key == 0 ) $res .= "<li class=\"wcp-compare-category wcp-compare-category--active\"><a href=\"\">{$value->name}</a></li>" ;
+			else $res .= "<li class=\"wcp-compare-category\"><a href=\"?category={$value->term_id}\">{$value->name}</a></li>" ;
 		}
 		return $res;
 	}

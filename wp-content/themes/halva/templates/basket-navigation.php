@@ -8,18 +8,6 @@
                         Корзина
                     </a>
                 </li>
-          <!--       <li>
-                    <a href="">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/truck.png" alt="">
-                        Доставка
-                    </a>
-                </li>
-                <li>
-                    <a href="">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/wallet.png" alt="">
-                        Оплата
-                    </a>
-                </li> -->
                 <li>
                     <a href="<?php echo get_permalink( wc_get_page_id( 'checkout' ) ); ?>">
                         <img src="<?php echo get_template_directory_uri(); ?>/assets/images/g.png" alt="">

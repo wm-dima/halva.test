@@ -183,6 +183,9 @@ class Wwl {
 		$this->loader->add_action('wp_ajax_nopriv_get_all_wishd', $plugin_public, 'get_all_wishd_products');
 		$this->loader->add_action('template_include', $plugin_public, 'wwl_pages_controller');
 
+		$this->loader->add_action('wp_ajax_wwl_get_compared_cat', $plugin_public, 'ajax_get_wish_cats');
+		$this->loader->add_action('wp_ajax_nopriv_wwl_get_compared_cat', $plugin_public, 'ajax_get_wish_cats');
+
 
 
 		$this->loader->add_shortcode('show_wish_prods', $plugin_public, 'show_wish_prods');

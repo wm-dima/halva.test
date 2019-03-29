@@ -22,7 +22,7 @@
         <?php
         endforeach;
         echo "</div>";
-        echo "<div class=\"load-more\"><p data-load-more='10'>Load more...</p></div>";
+        echo "<div class=\"load-more\"><p data-load-more='10'>Загрузить еще...</p></div>";
     } else { 
     ?>
         <p class="no-one-review">
@@ -36,31 +36,33 @@
     ?>
     </div>
 <script>
-document.querySelector('[data-load-more]').addEventListener('click', function(e){
-    var xhttp = new XMLHttpRequest();
-    xhttp.open('POST', '<?php echo admin_url('admin-ajax.php'); ?>?action=get_more_comments', true);
-    xhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    xhttp.send('offset=' + this.getAttribute('data-load-more'));
-    xhttp.onreadystatechange = function() {
-        if (xhttp.readyState == 4) {
-            if (xhttp.status == 200) {
-                obj = JSON.parse(xhttp.response );
-                if(obj.success){
-                    document.querySelector('#comments-wrap').innerHTML = document.querySelector('#comments-wrap').innerHTML + obj.res;
-                    document.querySelector('[data-load-more]').setAttribute(
-                        'data-load-more', 
-                        document.querySelector('[data-load-more]').getAttribute('data-load-more') * 1 + 10
-                    );
-                    if (obj.count < 10) {
-                        document.querySelector('[data-load-more]').classList.add('wm-hid');
+    try{
+        document.querySelector('[data-load-more]').addEventListener('click', function(e){
+            var xhttp = new XMLHttpRequest();
+            xhttp.open('POST', '<?php echo admin_url('admin-ajax.php'); ?>?action=get_more_comments', true);
+            xhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhttp.send('offset=' + this.getAttribute('data-load-more'));
+            xhttp.onreadystatechange = function() {
+                if (xhttp.readyState == 4) {
+                    if (xhttp.status == 200) {
+                        obj = JSON.parse(xhttp.response );
+                        if(obj.success){
+                            document.querySelector('#comments-wrap').innerHTML = document.querySelector('#comments-wrap').innerHTML + obj.res;
+                            document.querySelector('[data-load-more]').setAttribute(
+                                'data-load-more', 
+                                document.querySelector('[data-load-more]').getAttribute('data-load-more') * 1 + 10
+                            );
+                            if (obj.count < 10) {
+                                document.querySelector('[data-load-more]').classList.add('wm-hid');
+                            }
+                        } else {
+                            wm_ajax_err();
+                        }
+                    } else {
+                        wm_ajax_err();
                     }
-                } else {
-                    wm_ajax_err();
                 }
-            } else {
-                wm_ajax_err();
             }
-        }
-    }
-})
+        })
+    } catch(er){}
 </script>

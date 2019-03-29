@@ -563,7 +563,7 @@ body .item-info{
 
 
 .feedback-form .comment-form-rating{
-    padding: 20px;
+    /*padding: 20px;*/
 }
 
 .feedback-form .comment-form-rating select{
@@ -895,7 +895,98 @@ body .inside-basket-nav ul{
     margin: 20px 20 0 0;
 }
 
-#in .item-navigation ul ul li:last-child {
-    border:0;
-    padding:0;
-} 
+.page-id-94 .item-navigation ul li:last-child a,
+.page-id-16 .item-navigation ul li:last-child a {
+    border: none !important;
+}
+
+
+.question-answer hr,
+.question-answer h3 {
+    margin: 15px;
+}
+
+.befor-footer-checkout{
+    float: right;
+    margin: 15px 31% 15px 0;
+    font-size: 27px;
+    border: 1px solid green;
+    padding: 10 15;
+    border-radius: 24px;
+    font-weight: 600;
+    -webkit-box-shadow: 0px 0px 5px 3px rgba(20,232,9,1);
+    -moz-box-shadow: 0px 0px 5px 3px rgba(20,232,9,1);
+    box-shadow: 0px 0px 5px 3px rgba(20,232,9,1);
+    color: #ff9c00;
+    transition: all 1.5s;
+}
+
+.befor-footer-checkout:hover{
+    color: #1cbd00;
+    border-color: #ff9c00;
+    -webkit-box-shadow: 0px 0px 5px 3px #ff9c00;
+    -moz-box-shadow: 0px 0px 5px 3px #ff9c00;
+    box-shadow: 0px 0px 5px 3px #ff9c00;
+}
+
+.skype .watsapp{
+    width: 33px;
+    height: 40px;
+    display: block;
+    background-image: url(./assets/images/watsapp.png) !important;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.feedback-form textarea,
+.feedback-form input,
+.feedback-form select{
+    border: 1px solid #aca2a2 !important;
+}
+
+.page-numbers li {
+    padding-left: 10px
+}
+
+label[for="the-rating"]{
+    display: none;
+}
+
+#the-rating{
+    margin-left: 35px;
+    padding: 16px;
+    border-radius: 25px;
+    border: none;
+    line-height: 100%;
+}
+
+select{
+border: none;
+position: relative;
+outline: none;
+padding: 5px;
+padding-right: 40px;
+}
+
+select:after{
+  content: "";
+  display: block;
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}
+
+.select-div.buy-opt input{
+    height: inherit;
+    max-width: inherit;
+}
+
+.select-div.buy-opt{
+    height: 37px;
+    margin: 0;
+    max-width: 160px;
+    margin-right: 20px;
+}
