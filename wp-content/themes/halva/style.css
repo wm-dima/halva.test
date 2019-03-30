@@ -1012,7 +1012,7 @@ select:after{
     background: #fff;
     cursor: pointer;
     font-family: 'Museo Sans Cyrl 300';
-    height: 40px;
+    min-height: 40px;
     padding: 0px 40px;
     display: flex;
     align-items: center;
