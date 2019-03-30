@@ -1028,6 +1028,10 @@ select:after{
     width:130px;
     font-size: 15px;
 }
+#city-form input[type="text"] {
+    box-sizing: border-box;
+    padding-left: 20px;
+}
 #city-form p {
     font-family: 'Museo Sans Cyrl 300';
     margin-bottom: 20px;
