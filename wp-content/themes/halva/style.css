@@ -1002,3 +1002,41 @@ select:after{
     max-width: 160px;
     margin-right: 20px;
 }
+
+.nav-tabs ul  {
+    display: flex;
+}
+.nav-tabs ul li{
+    list-style: none;
+    border: 1px solid #d8d8d8;
+    background: #fff;
+    cursor: pointer;
+    font-family: 'Museo Sans Cyrl 300';
+    min-height: 40px;
+    padding: 0px 40px;
+    display: flex;
+    align-items: center;
+    border-radius: 7px;
+    margin-right: 10px;
+    font-weight: 800;
+}
+.nav--active {
+    background: #f5af40 !important;
+}
+#city-form input[type="submit"] {
+    height: 50px;
+    width:130px;
+    font-size: 15px;
+}
+#city-form input[type="text"] {
+    box-sizing: border-box;
+    padding-left: 20px;
+}
+#city-form p {
+    font-family: 'Museo Sans Cyrl 300';
+    margin-bottom: 20px;
+}
+[data-tab] h1 , #tablepress-1_wrapper{
+    font-family: 'Museo Sans Cyrl 300';
+    
+}
