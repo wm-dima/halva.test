@@ -108,7 +108,7 @@
             </div>
             <div class="body-black"></div>
             <div class="logo-head"></div>
-            <div class="skype">
+            <div class="skype" title="Whatsapp">
                 <a href="<?php echo get_theme_mod( 'watsapp' ); ?>" class="watsapp"></a>
             </div>
         </div>
