@@ -18,10 +18,10 @@
 		</ul>
 	</div>
 	<div data-tab="info" class="tab--active">
-		<h1>info</h1>
+		<h1>Информация</h1>
 		<form action="<?php echo admin_url('admin-ajax.php'); ?>" method="post" id="city-form">
-			<p>Ваш текущий город: <p id="current-city"><?php echo get_user_city(); ?></p></p>
-			<input type="text" name="city" style="border: 1px solid #aba2a2">
+			<p>Ваш текущий город: <p id="current-city" class="wm-hid"><?php echo get_user_city(); ?></p></p>
+			<input type="text" name="city" value="<?php echo get_user_city(); ?>" style="border: 1px solid #aba2a2">
 			<input type="submit">
 		</form>
 	</div>
