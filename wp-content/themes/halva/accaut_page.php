@@ -29,6 +29,7 @@
 		<h1>Цена на продукты для оптовых покупателей</h1>
 		<div class="content">
 			<?php //echo do_shortcode( '[table id=1 /]' ); ?>
+			<?php echo get_bulk_disc_prods(); ?>
 		</div>
 	</div>
 </div>

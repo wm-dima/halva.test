@@ -239,6 +239,11 @@ if ( !class_exists( 'Woo_Bulk_Discount_Plugin_t4m' ) ) {
 		 */
 		public function filter_subtotal_price( $price, $values ) {
 
+
+// $price = str_replace(['&nbsp;' , ','], '', $price);
+
+// var_dump($values);
+// die;
 			if ( !$values || !$values['data'] ) {
 				return $price;
 			}
@@ -262,11 +267,19 @@ if ( !class_exists( 'Woo_Bulk_Discount_Plugin_t4m' ) ) {
 				return $price; // no price modification
 			}
 			$new_css = esc_attr( get_option( 'woocommerce_t4m_css_new_price', 'color: #4AB915; font-weight: bold;' ) );
-			$bulk_info = sprintf( __( 'Incl. %s discount', 'wc_bulk_discount' ), ( get_option( 'woocommerce_t4m_discount_type', '' ) == 'flat' || get_option( 'woocommerce_t4m_discount_type', '' ) == 'fixed' ? get_woocommerce_currency_symbol() . $coeff : ( round( ( 1 - $coeff ) * 100, 2 ) . "%" ) ) );
+			$wm_disc_type = get_option( 'woocommerce_t4m_discount_type', '' );
+			$wm_disc = ( get_option( 'woocommerce_t4m_discount_type', '' ) == 'flat' || get_option( 'woocommerce_t4m_discount_type', '' ) == 'fixed' ? get_woocommerce_currency_symbol() . $coeff : ( round( ( 1 - $coeff ) * 100, 2 ) . "%" ) );
+			$bulk_info = sprintf( __( 'Incl. %s discount', 'wc_bulk_discount' ), $wm_disc );
 
+// die;
+setlocale(LC_MONETARY, 'en_US');
+$wm_new_price = number_format( $values['line_subtotal'], 2 );
+$wm_new_price = str_replace('.00', '', $wm_new_price);
+// var_dump($wm_new_price);
+// die;
 			return "<span class='discount-info' title='$bulk_info'>" .
-			"<span>$price</span>" .
-			"<span class='new-price' style='$new_css'> ($bulk_info)</span></span>";
+			"<span>$wm_new_price</span>" .
+			"<span class='new-price' style='$new_css' data-the-disc='$wm_disc' data-disc-type='$wm_disc_type'> ($bulk_info)</span></span>";
 
 		}
 
