@@ -1045,3 +1045,7 @@ select:after{
 #tablepress-1_filter{
     display: none;
 }
+
+#customer_details .col-1 [type="text"]{
+  padding-left: 26px
+}
