@@ -1040,3 +1040,8 @@ select:after{
     font-family: 'Museo Sans Cyrl 300';
     
 }
+
+
+#tablepress-1_filter{
+    display: none;
+}

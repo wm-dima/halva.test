@@ -412,30 +412,13 @@ function wm_get_images( $id ){
     return array_merge($main_img, $additional_img);
 }
 
-function wm_get_prod_imgs_ids( $id ){
-    global $wpdb;
-    $sql = 'SELECT meta_key, meta_value from ' . $wpdb->prefix . 'postmeta where post_id = ' . $id . 
-           ' AND ( meta_key = \'_product_image_gallery\' OR meta_key = \'_thumbnail_id\' );';
-    $res = $wpdb->get_results( $sql );
-    foreach ($res as $key => $value) {
-        if ($value->meta_value) {
-            $ids .= ','.$value->meta_value;
-        }
-    }
-    return explode(',', $ids);   
-}
-
-
 function wm_get_single_prod_galegy( $id ){
-    $ids = array_reverse( wm_get_prod_imgs_ids( $id ) );
+    $images = wm_get_images( $id );
+    // var_dump($images);
+    // die;
     $html = '<ul>';
-        foreach ($ids as $key => $the_id) {
-            if ($the_id) {
-                $the_id;
-                $the_full = wp_get_attachment_image_url($the_id, 'full');
-                $the_thumbnail = wp_get_attachment_image_url($the_id, 'thumbnail');
-                $html .= '<li><a class="fancybox" rel="group" href="'.$the_full.'"><img src="' . $the_thumbnail . '"  alt=""></a></li>';
-            }
+        foreach ($images as $key => $value) {
+            $html .= '<li><a class="fancybox" rel="group" href="http://halva.test/wp-content/themes/halva/assets/images/subwoofer2.png"><img src="' . $value . '"  alt=""></a></li>';
         }
     $html .= '</ul>';
     return $html;
