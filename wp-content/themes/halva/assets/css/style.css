@@ -15,7 +15,10 @@ header {
     min-height: 95px;
     padding: 0 50px 0 50px;
 }
-
+#whole-sale-table td {
+    background:#fff;
+    padding:10px;
+}
 .inside-header {
     display: -webkit-box;
     display: -ms-flexbox;

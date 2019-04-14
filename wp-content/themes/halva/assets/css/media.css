@@ -623,6 +623,12 @@
     .want-left { 
         margin-bottom: 30px; 
     } 
+    .content {
+        overflow-x: scroll;
+    }
+    #whole-sale-table {
+        width: 150% !important;
+    }
 } 
 @media(max-width:610px) { 
     .header-wrap-right , .skype , .logo , .header-wrap { 
@@ -1022,6 +1028,9 @@
     .menu-mob { 
         top: 0; 
     } 
+    #whole-sale-table {
+        width: 200% !important;
+    }
 } 
 @media(max-width:425px) { 
     .column { 
@@ -1334,6 +1343,21 @@
     #commentform .fields > div { 
         width: 270px; 
     } 
+    .nav-tabs ul {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+    .nav-tabs ul li {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 7px;
+        margin-right: 10px;
+        font-weight: 800;
+        margin-bottom: 10px;
+        text-align: center;
+    }
 } 
 @media(max-width:360px) {  
     .connected-carousels .carousel-navigation { 
@@ -1462,6 +1486,9 @@
         height: 55px; 
         padding: 0px 0px 0px 40px; 
     } 
+    #whole-sale-table {
+        width: 250% !important;
+    }
 } 
 @media(max-width:330px) { 
     .slide-wrapper { 

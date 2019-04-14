@@ -728,13 +728,13 @@ function get_bulk_disc_prods(){
     $res = $wpdb->get_results( $sql );
     switch ($disc_type) {
         case 'fixed':
-            $salery_type = 'Скидка считается от общего количества заказа';
+            $salery_type = '<p>Скидка считается от общего количества заказа</p>';
             break;
         case 'flat':
-            $salery_type = 'Скидка считается к каждому товару';
+            $salery_type = '<p>Скидка считается к каждому товару</p>';
             break;
         case 'percent':
-            $salery_type = 'Скидка считается как % от суммы';
+            $salery_type = '<p>Скидка считается как % от суммы</p>';
             break;
         
     }

@@ -1053,6 +1053,10 @@ select:after{
     font-family: 'Museo Sans Cyrl 300';
     width: 100%;
 }
+.content > p{
+    font-family: 'Museo Sans Cyrl 300';
+    margin-bottom: 20px;
+}
 #whole-sale-table tbody > tr:first-child > td{
     font-weight: 700;
     /* margin-bottom: 20px; */
@@ -1067,4 +1071,7 @@ select:after{
     width: 40px;
     text-align-last: center;
     margin:0 5px
+}
+span[data-wm-plus="48"] , span[data-wm-minus="48"] {
+    cursor: pointer;
 }
