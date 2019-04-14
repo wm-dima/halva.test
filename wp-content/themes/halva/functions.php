@@ -688,3 +688,107 @@ function get_user_city(){
 function get_comment_owner_city($user_id){
     return ( $res = get_user_meta($user_id, 'user_city', true) ) == false ? 'Москва': $res;
 }
+
+function type_of_discount (){
+    global $wpdb;
+    $sql = "SELECT * FROM {$wpdb->prefix}options WHERE option_name = 'woocommerce_t4m_discount_type'";
+    $res = $wpdb->get_results( $sql );
+    return $res[0]->option_value ? $res[0]->option_value : 'percent';
+}
+
+function get_bulk_disc_prods(){
+    global $wpdb;
+    $disc_type = type_of_discount();
+    switch ($disc_type) {
+        case 'fixed':
+            $type_get = '_bulkdiscount_discount_fixed_1';
+            break;
+        case 'flat':
+            $type_get = '_bulkdiscount_discount_flat_1';
+            break;
+        case 'percent':
+            $type_get = '_bulkdiscount_discount_1';
+            break;
+        
+    }
+    $sql = "
+        SELECT t1.post_id, t3.meta_value as qnt, t2.meta_value as discount_fixed
+        FROM {$wpdb->prefix}postmeta t1
+        INNER JOIN {$wpdb->prefix}postmeta t2 ON t1.post_id = t2.post_id
+        INNER JOIN {$wpdb->prefix}postmeta t3 ON t1.post_id = t3.post_id
+        WHERE  
+            t1.meta_key = '_bulkdiscount_enabled' 
+        AND  
+            t1.meta_value = 'yes'
+        AND 
+            t2.meta_key = '$type_get'
+        AND 
+            t3.meta_key = '_bulkdiscount_quantity_1'
+            ";
+    $res = $wpdb->get_results( $sql );
+    switch ($disc_type) {
+        case 'fixed':
+            $salery_type = 'Скидка считается от общего количества заказа';
+            break;
+        case 'flat':
+            $salery_type = 'Скидка считается к каждому товару';
+            break;
+        case 'percent':
+            $salery_type = 'Скидка считается как % от суммы';
+            break;
+        
+    }
+    $html = $salery_type;
+    $html .= "<table id='whole-sale-table'>
+          <tr>
+            <td>Название</td>
+            <td>Фото</td>
+            <td>Мин. заказ</td>
+            <td>Скидка</td>
+            <td></td>
+          </tr>";
+    foreach ($res as $key => $value) {
+        $html .= "<tr>";
+            $html .= "<td>";
+                $html .= '<a href="'.get_permalink( $value->post_id ).'">';
+                    $html .= get_the_title( $value->post_id );
+                $html .= '</a>';
+            $html .= "</td>";
+            $html .= "<td>";
+                $html .= '<a href="'.get_permalink( $value->post_id ).'">';
+                    $html .= '<img src="'.wm_get_main_img ( $value->post_id ).'" alt="">';
+                $html .= '</a>';
+            $html .= "</td>";
+            $html .= "<td>";
+                $html .= $value->qnt;
+            $html .= "</td>";
+            $html .= "<td>";
+                $html .= $value->discount_fixed . ( $disc_type == 'percent' ? '%' : '');
+            $html .= "</td>";
+            $html .= "<td>";
+                $html .= cabinet_add_to_cart( $value->post_id, $value->qnt);
+            $html .= "</td>";
+        $html .= "</tr>";
+    }
+    $html .= "</table>";
+    echo $html;
+}
+
+function cabinet_add_to_cart ($id, $min){
+    if(get_post_meta( $id, '_stock_status', true ) == 'instock'){
+        $to_cart_html = '<a 
+                    href="/shop/?add-to-cart='.$id.'" 
+                    data-quantity="'.$min.'" 
+                    class="button product_type_simple add_to_cart_button ajax_add_to_cart" 
+                    data-product_id="'.$id.'" 
+                    data-product_sku="" 
+                    rel="nofollow"
+                >В корзину</a>';
+        $to_cart_html .= '<span data-wm-plus="'.$id.'">+</span>';
+        $to_cart_html .= '<input data-wm-number-prod="'.$id.'" type="number" min="'.$min.'" value="'.$min.'">';
+        $to_cart_html .= '<span data-wm-minus="'.$id.'" data-wm-minus-min="'.$min.'">-</span>';
+    } else {
+        $to_cart_html = '<p>На складе</p>';
+    }
+    return $to_cart_html;
+}

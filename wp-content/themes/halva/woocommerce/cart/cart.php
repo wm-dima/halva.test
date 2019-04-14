@@ -46,6 +46,11 @@ do_action( 'woocommerce_before_cart' ); ?>
                             <p class="want-name"><?php echo $cart_item['data']->name; ?></p>
                             <p class="articul">Артикул: <?php echo $cart_item['data']->sku; ?></p>
                             <p class="price"><span class="price-value"><?php echo $cart_item['data']->get_price_html(); ?></span> руб.</p>
+                            <span class="single-sub-total">
+	                        	<?php
+									echo apply_filters( 'woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] ), $cart_item, $cart_item_key ); // PHPCS: XSS ok.
+								?>
+							</span>
                         </div>
                         <div class="quantity-basket">
                             <div class="minus"></div>
@@ -116,5 +121,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 		// do_action( 'woocommerce_cart_collaterals' );
 	?>
 </div>
-
+<script>
+</script>
 <?php do_action( 'woocommerce_after_cart' ); ?>
+
