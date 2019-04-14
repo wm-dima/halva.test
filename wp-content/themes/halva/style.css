@@ -1075,3 +1075,7 @@ select:after{
 span[data-wm-plus="48"] , span[data-wm-minus="48"] {
     cursor: pointer;
 }
+
+#whole-sale-table {
+    margin-bottom: 35px;
+}
