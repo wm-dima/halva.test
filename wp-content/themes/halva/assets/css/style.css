@@ -2808,6 +2808,7 @@ footer {
     margin-bottom: 25px;
     box-shadow: 7px 3px 34px -9px #b1b1b1;
     border-radius: 5px;
+    /* padding-top: 30px; */
 }
 .add_to_cart_button {
     margin-bottom:0;
@@ -2815,6 +2816,7 @@ footer {
 .d21 {
     padding: 0px 22px;
     margin-bottom: 23px;
+    padding-top: 35px;
 }
 
 .element-name {
@@ -3212,7 +3214,7 @@ RS */
     object-fit: contain;
 }
 
-/*Если что, удалить*/
+/*Ð•ÑÐ»Ð¸ Ñ‡Ñ‚Ð¾, ÑƒÐ´Ð°Ð»Ð¸Ñ‚ÑŒ*/
 .delivery-method .log-in img {
     margin-right: 10px;
 }
