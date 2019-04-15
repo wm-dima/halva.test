@@ -13,11 +13,11 @@
 <div class="center-wrap wrapper">
 	<div class="nav-tabs">
 		<ul>
-			<li data-tab-nav="info" class="nav--active">Настройка информации</li>
-			<li data-tab-nav="price">Цены для для оптовых закупок</li>
+			<li data-tab-nav="price" class="nav--active">Цены для для оптовых закупок</li>
+			<li data-tab-nav="info">Настройка информации</li>
 		</ul>
 	</div>
-	<div data-tab="info" class="tab--active">
+	<div data-tab="info" class="wm-hid">
 		<h1>Информация</h1>
 		<form action="<?php echo admin_url('admin-ajax.php'); ?>" method="post" id="city-form">
 			<p>Ваш текущий город: <p id="current-city" class="wm-hid"><?php echo get_user_city(); ?></p></p>
@@ -25,10 +25,9 @@
 			<input type="submit">
 		</form>
 	</div>
-	<div data-tab="price" class="wm-hid">
+	<div data-tab="price" class="tab--active">
 		<h1>Цена на продукты для оптовых покупателей</h1>
-		<div class="content">
-			<?php //echo do_shortcode( '[table id=1 /]' ); ?>
+		<div class="content" id="content">
 			<?php echo get_bulk_disc_prods(); ?>
 		</div>
 	</div>

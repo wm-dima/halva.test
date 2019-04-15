@@ -696,21 +696,66 @@ function type_of_discount (){
     return $res[0]->option_value ? $res[0]->option_value : 'percent';
 }
 
-function get_bulk_disc_prods(){
+function get_bulk_disc_prods($slug = false, $name = false, $id = false){
     global $wpdb;
+
     $disc_type = type_of_discount();
     switch ($disc_type) {
         case 'fixed':
+            $salery_type = '<p>Скидка считается от общего количества заказа</p>';
             $type_get = '_bulkdiscount_discount_fixed_1';
             break;
         case 'flat':
+            $salery_type = '<p>Скидка считается к каждому товару</p>';
             $type_get = '_bulkdiscount_discount_flat_1';
             break;
         case 'percent':
+            $salery_type = '<p>Скидка считается как % от суммы</p>';
             $type_get = '_bulkdiscount_discount_1';
             break;
         
     }
+    $sale_cats = get_sale_cats( get_cabinet_all_cats( $type_get ) );
+    $sql = "
+        SELECT t1.post_id, t3.meta_value as qnt, t2.meta_value as discount_fixed
+        FROM {$wpdb->prefix}postmeta t1
+        INNER JOIN {$wpdb->prefix}postmeta t2 ON t1.post_id = t2.post_id
+        INNER JOIN {$wpdb->prefix}postmeta t3 ON t1.post_id = t3.post_id ";
+        if ($slug) {
+            $sql .= " LEFT JOIN {$wpdb->prefix}term_relationships tr on tr.object_id = t1.post_id ";
+            $sql .= " LEFT JOIN {$wpdb->prefix}terms terms on terms.term_id = tr.term_taxonomy_id ";
+        }
+        if ($name) {
+            $sql .= " LEFT JOIN {$wpdb->prefix}posts p on p.ID = t1.post_id ";
+        }
+        $sql .= " WHERE  
+            t1.meta_key = '_bulkdiscount_enabled' 
+        AND  
+            t1.meta_value = 'yes'
+        AND 
+            t2.meta_key = '" . $type_get . "'
+        AND 
+            t3.meta_key = '_bulkdiscount_quantity_1'
+            ";
+    if ($id) {
+        $id = esc_sql( $id );
+        $sql .= " AND t1.post_id = $id ";
+    }
+    if ($slug) {
+        $slug = esc_sql( $slug );
+        $sql .= " AND terms.slug = '$slug'";
+    }
+    if ($name) {
+        $name = $wpdb->esc_like( $name );
+        $name = esc_sql( $name );
+        $sql .= " AND p.post_title LIKE '%$name%'";
+    }
+    $res = $wpdb->get_results( $sql );
+    return get_cab_sale_html($res, $sale_cats, $salery_type);
+}
+
+function get_cabinet_all_cats($type_get){
+    global $wpdb;
     $sql = "
         SELECT t1.post_id, t3.meta_value as qnt, t2.meta_value as discount_fixed
         FROM {$wpdb->prefix}postmeta t1
@@ -725,30 +770,65 @@ function get_bulk_disc_prods(){
         AND 
             t3.meta_key = '_bulkdiscount_quantity_1'
             ";
-    $res = $wpdb->get_results( $sql );
-    switch ($disc_type) {
-        case 'fixed':
-            $salery_type = '<p>Скидка считается от общего количества заказа</p>';
-            break;
-        case 'flat':
-            $salery_type = '<p>Скидка считается к каждому товару</p>';
-            break;
-        case 'percent':
-            $salery_type = '<p>Скидка считается как % от суммы</p>';
-            break;
-        
+    $res_total = $wpdb->get_results( $sql );
+    $ids = '(';
+    foreach ($res_total as $key => $value) {
+        $ids .= $value->post_id . ', ';
     }
-    $html = $salery_type;
-    $html .= "<table id='whole-sale-table'>
+    return substr($ids, 0, -2) . ')';
+}
+
+function get_cab_sale_html($res, $sale_cats, $salery_type){
+    $html = '';
+    $cats_html = '';
+    foreach ($sale_cats as $key => $value) {
+        $cats_html .= '<span class="cat-variant" data-cat-slug="'.$value->slug.'">';
+        $cats_html .= $value->name;
+        $cats_html .= '</span>';
+    }
+    $html .= $salery_type;
+    $html .= '<div id="cats-variants">';
+    $html .= $cats_html;
+    $html .= '</div>';
+    $html .= '<div id="name-variants">';
+    $html .= '<input type="text" placeholder="Поиск по названию">';
+    $html .= '</div>';
+    $html .= '<div id="id-variants">';
+    $html .= '<input type="text" placeholder="Поиск по ID">';
+    $html .= '</div>';
+    $html .= '<div id="apply-variants">';
+    $html .= 'Применить';
+    $html .= '</div>';
+    $html .= '<div id="applyed-filters">';
+        $html .= '<div id="applyed-filter-cat" class="wm-hid">';
+            $html .= '<span class="filter-value"><span>';
+            $html .= '<span class="filter-remove" data-filter-name="slug">x<span>';
+        $html .= '</div>';
+        $html .= '<div id="applyed-filter-name" class="wm-hid">';
+            $html .= '<span class="filter-value"><span>';
+            $html .= '<span class="filter-remove" data-filter-name="name">x<span>';
+        $html .= '</div>';
+        $html .= '<div id="applyed-filter-id" class="wm-hid">';
+            $html .= '<span class="filter-value"><span>';
+            $html .= '<span class="filter-remove" data-filter-name="id">x<span>';
+        $html .= '</div>';
+    $html .= '</div>';
+
+    $html .= '<table id="whole-sale-table" data-caunt-total="'.count($res).'">
           <tr>
+            <td>id</td>
             <td>Название</td>
             <td>Фото</td>
             <td>Мин. заказ</td>
             <td>Скидка</td>
             <td></td>
-          </tr>";
+            <td></td>
+          </tr>';
     foreach ($res as $key => $value) {
         $html .= "<tr>";
+            $html .= "<td>";
+                $html .= $value->post_id;
+            $html .= "</td>";
             $html .= "<td>";
                 $html .= '<a href="'.get_permalink( $value->post_id ).'">';
                     $html .= get_the_title( $value->post_id );
@@ -768,10 +848,13 @@ function get_bulk_disc_prods(){
             $html .= "<td>";
                 $html .= cabinet_add_to_cart( $value->post_id, $value->qnt);
             $html .= "</td>";
+            $html .= "<td>";
+                $html .= "<p>Всего:<span data-total></span></p>";
+            $html .= "</td>";
         $html .= "</tr>";
     }
     $html .= "</table>";
-    echo $html;
+    return $html;
 }
 
 function cabinet_add_to_cart ($id, $min){
@@ -792,3 +875,42 @@ function cabinet_add_to_cart ($id, $min){
     }
     return $to_cart_html;
 }
+
+function get_sale_cats($id_str){
+    global $wpdb;
+    $sql = "SELECT DISTINCT t.name, t.slug
+        FROM {$wpdb->prefix}terms t 
+            LEFT JOIN {$wpdb->prefix}term_relationships tr ON t.term_id = tr.term_taxonomy_id
+            LEFT JOIN {$wpdb->prefix}term_taxonomy tt on tt.term_taxonomy_id = t.term_id
+        WHERE
+            tr.object_id IN " . $id_str . "
+            and tt.taxonomy = 'product_cat'";
+    return $wpdb->get_results( $sql );
+}
+
+function do_cabinet_sale_filters(){
+    if (isset($_POST['slug']) && $_POST['slug']) {
+        $slug = $_POST['slug'];
+    } else {
+        $slug = false;
+    }
+    if (isset($_POST['name']) && $_POST['name']) {
+        $name = $_POST['name'];
+    } else {
+        $name = false;
+    }
+    if (isset($_POST['id']) && $_POST['id']) {
+        $id = $_POST['id'];
+    } else {
+        $id = false;
+    }
+    $response = [
+        'success' => true,
+        'html' => get_bulk_disc_prods($slug, $name, $id)
+    ];
+    echo json_encode($response);
+    die;
+}
+
+add_action("wp_ajax_apply_cabinet_sale_filters", "do_cabinet_sale_filters");
+add_action("wp_ajax_nopriv_apply_cabinet_sale_filters", "do_cabinet_sale_filters");

@@ -77,7 +77,6 @@ $table_prefix  = 'wp_';
  *
  * @link https://codex.wordpress.org/Debugging_in_WordPress
  */
-define('WP_DEBUG', false);
 
 /* That's all, stop editing! Happy blogging. */
 
@@ -87,3 +86,5 @@ if ( !defined('ABSPATH') )
 
 /** Sets up WordPress vars and included files. */
 require_once(ABSPATH . 'wp-settings.php');
+define('WP_DEBUG', true);
+define('WP_DEBUG_DISPLAY', true);

@@ -1079,3 +1079,23 @@ span[data-wm-plus="48"] , span[data-wm-minus="48"] {
 #whole-sale-table {
     margin-bottom: 35px;
 }
+
+#cats-variants{
+    display: flex;
+    flex-direction: column;
+
+}
+
+#whole-sale-table.process, 
+#whole-sale-table.process td, 
+#whole-sale-table.process tr {
+    background-color: #3e3e3e7d;
+} 
+
+.page-id-258 [data-tab="price"] input[type="text"]{
+    padding-left: 20px;
+}
+
+#apply-variants.active{
+    background-color: green;
+}
