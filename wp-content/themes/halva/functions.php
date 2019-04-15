@@ -835,7 +835,7 @@ function get_cab_sale_html($res, $sale_cats, $salery_type){
                 $html .= '</a>';
             $html .= "</td>";
             $html .= "<td>";
-                $html .= '<a href="'.get_permalink( $value->post_id ).'">';
+                $html .= '<a class="fancybox" rel="group" href="'.wm_get_main_img ( $value->post_id ).'">';
                     $html .= '<img src="'.wm_get_main_img ( $value->post_id ).'" alt="">';
                 $html .= '</a>';
             $html .= "</td>";
