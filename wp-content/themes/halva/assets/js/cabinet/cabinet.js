@@ -40,18 +40,21 @@ document.querySelector('#whole-sale-table').addEventListener('click', function(e
 		let newVal = ++document.querySelector('[data-wm-number-prod="'+e.target.getAttribute('data-wm-plus')+'"]').value;
 		document.querySelector('[data-wm-number-prod="'+e.target.getAttribute('data-wm-plus')+'"]').value = newVal;
 		document.querySelector('a[data-product_id="'+e.target.getAttribute('data-wm-plus')+'"]').setAttribute('data-quantity', newVal);
+		change_price_by_tr(e.target.closest('tr[data-price]'));
 	}
 	if (e.target.hasAttribute('data-wm-minus')) {
 		let newVal = document.querySelector('[data-wm-number-prod="'+e.target.getAttribute('data-wm-minus')+'"]').value - 1;
 		if (newVal < e.target.getAttribute('data-wm-minus-min')) return;
 		document.querySelector('[data-wm-number-prod="'+e.target.getAttribute('data-wm-minus')+'"]').value = newVal;
 		document.querySelector('a[data-product_id="'+e.target.getAttribute('data-wm-minus')+'"]').setAttribute('data-quantity', newVal);
+		change_price_by_tr(e.target.closest('tr[data-price]'));
 	}
 });
 
 document.querySelectorAll('[data-wm-number-prod][type="number"]').forEach(function(item){
 	item.addEventListener('change', function(e){
 		document.querySelector('a[data-product_id="'+e.target.getAttribute('data-wm-number-prod')+'"]').setAttribute('data-quantity', e.target.value);
+		change_price_by_tr(e.target.closest('tr[data-price]'));
 	});
 })
 
@@ -135,3 +138,36 @@ function fill_query_params(){
 	}
 }
 table_filters_listeners();
+
+function get_calc_price(singlePrice, qnt, discount){
+	switch (disc_type) {
+		case 'fixed':
+			return fixed_price_calc(singlePrice, qnt, discount);
+		case 'flat':
+			return flat_price_calc(singlePrice, qnt, discount);
+		case 'percent':
+			return percent_price_calc(singlePrice, qnt, discount);
+	}
+}
+
+function fixed_price_calc(singlePrice, qnt, discount){
+	return singlePrice * 1 * qnt - discount;
+}
+function flat_price_calc(singlePrice, qnt, discount){
+	return ( singlePrice * 1 - discount) * qnt;
+}
+function percent_price_calc(singlePrice, qnt, discount){
+	return ( singlePrice * 1 * qnt ) / 100 * discount; 
+}
+
+document.querySelectorAll('[data-quantity]').forEach(i => {
+	i.closest('tr[data-price]').querySelector('[data-total-wrap]').classList.remove('wm-hid');
+	change_price_by_tr( i.closest('tr[data-price]') )
+});
+
+function change_price_by_tr(tr){
+	let singlePrice = tr.getAttribute('data-price');
+	let discount = tr.getAttribute('data-value-discount');
+	let qnt = tr.querySelector('a.ajax_add_to_cart').getAttribute('data-quantity');
+	tr.querySelector('span[data-total]').innerText = get_calc_price(singlePrice, qnt, discount);
+}

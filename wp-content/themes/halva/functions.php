@@ -713,14 +713,14 @@ function get_bulk_disc_prods($slug = false, $name = false, $id = false){
             $salery_type = '<p>Скидка считается как % от суммы</p>';
             $type_get = '_bulkdiscount_discount_1';
             break;
-        
     }
     $sale_cats = get_sale_cats( get_cabinet_all_cats( $type_get ) );
     $sql = "
-        SELECT t1.post_id, t3.meta_value as qnt, t2.meta_value as discount_fixed
+        SELECT t1.post_id, t3.meta_value as qnt, t2.meta_value as discount, pm.meta_value as price 
         FROM {$wpdb->prefix}postmeta t1
         INNER JOIN {$wpdb->prefix}postmeta t2 ON t1.post_id = t2.post_id
-        INNER JOIN {$wpdb->prefix}postmeta t3 ON t1.post_id = t3.post_id ";
+        INNER JOIN {$wpdb->prefix}postmeta t3 ON t1.post_id = t3.post_id 
+        LEFT JOIN {$wpdb->prefix}postmeta pm on t1.post_id = pm.post_id ";
         if ($slug) {
             $sql .= " LEFT JOIN {$wpdb->prefix}term_relationships tr on tr.object_id = t1.post_id ";
             $sql .= " LEFT JOIN {$wpdb->prefix}terms terms on terms.term_id = tr.term_taxonomy_id ";
@@ -732,6 +732,8 @@ function get_bulk_disc_prods($slug = false, $name = false, $id = false){
             t1.meta_key = '_bulkdiscount_enabled' 
         AND  
             t1.meta_value = 'yes'
+        AND 
+            pm.meta_key = '_regular_price'
         AND 
             t2.meta_key = '" . $type_get . "'
         AND 
@@ -751,13 +753,13 @@ function get_bulk_disc_prods($slug = false, $name = false, $id = false){
         $sql .= " AND p.post_title LIKE '%$name%'";
     }
     $res = $wpdb->get_results( $sql );
-    return get_cab_sale_html($res, $sale_cats, $salery_type);
+    return get_cab_sale_html($res, $sale_cats, $salery_type, $disc_type);
 }
 
 function get_cabinet_all_cats($type_get){
     global $wpdb;
     $sql = "
-        SELECT t1.post_id, t3.meta_value as qnt, t2.meta_value as discount_fixed
+        SELECT t1.post_id, t3.meta_value as qnt, t2.meta_value as discount
         FROM {$wpdb->prefix}postmeta t1
         INNER JOIN {$wpdb->prefix}postmeta t2 ON t1.post_id = t2.post_id
         INNER JOIN {$wpdb->prefix}postmeta t3 ON t1.post_id = t3.post_id
@@ -778,7 +780,7 @@ function get_cabinet_all_cats($type_get){
     return substr($ids, 0, -2) . ')';
 }
 
-function get_cab_sale_html($res, $sale_cats, $salery_type){
+function get_cab_sale_html($res, $sale_cats, $salery_type, $disc_type){
     $html = '';
     $cats_html = '';
     foreach ($sale_cats as $key => $value) {
@@ -825,7 +827,7 @@ function get_cab_sale_html($res, $sale_cats, $salery_type){
             <td></td>
           </tr>';
     foreach ($res as $key => $value) {
-        $html .= "<tr>";
+        $html .= '<tr data-price="'.$value->price.'" data-value-discount="'.$value->discount.'">';
             $html .= "<td>";
                 $html .= $value->post_id;
             $html .= "</td>";
@@ -843,17 +845,18 @@ function get_cab_sale_html($res, $sale_cats, $salery_type){
                 $html .= $value->qnt;
             $html .= "</td>";
             $html .= "<td>";
-                $html .= $value->discount_fixed . ( $disc_type == 'percent' ? '%' : '');
+                $html .= $value->discount . ( $disc_type == 'percent' ? '%' : '');
             $html .= "</td>";
             $html .= "<td>";
                 $html .= cabinet_add_to_cart( $value->post_id, $value->qnt);
             $html .= "</td>";
             $html .= "<td>";
-                $html .= "<p>Всего:<span data-total></span></p>";
+                $html .= "<p class='wm-hid' data-total-wrap>Всего:<span data-total></span></p>";
             $html .= "</td>";
         $html .= "</tr>";
     }
     $html .= "</table>";
+    $html .= "<script>var disc_type = '".$disc_type."'</script>";
     return $html;
 }
 
