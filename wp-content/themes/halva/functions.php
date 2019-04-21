@@ -803,16 +803,16 @@ function get_cab_sale_html($res, $sale_cats, $salery_type, $disc_type){
     $html .= '</div>';
     $html .= '<div id="applyed-filters">';
         $html .= '<div id="applyed-filter-cat" class="wm-hid">';
-            $html .= '<span class="filter-value"><span>';
-            $html .= '<span class="filter-remove" data-filter-name="slug">x<span>';
+            $html .= '<span class="filter-value"></span>';
+            $html .= '<span class="filter-remove" data-filter-name="slug">x</span>';
         $html .= '</div>';
         $html .= '<div id="applyed-filter-name" class="wm-hid">';
-            $html .= '<span class="filter-value"><span>';
-            $html .= '<span class="filter-remove" data-filter-name="name">x<span>';
+            $html .= '<span class="filter-value"></span>';
+            $html .= '<span class="filter-remove" data-filter-name="name">x</span>';
         $html .= '</div>';
         $html .= '<div id="applyed-filter-id" class="wm-hid">';
-            $html .= '<span class="filter-value"><span>';
-            $html .= '<span class="filter-remove" data-filter-name="id">x<span>';
+            $html .= '<span class="filter-value"></span>';
+            $html .= '<span class="filter-remove" data-filter-name="id">x</span>';
         $html .= '</div>';
     $html .= '</div>';
 
@@ -823,7 +823,7 @@ function get_cab_sale_html($res, $sale_cats, $salery_type, $disc_type){
             <td>Фото</td>
             <td>Мин. заказ</td>
             <td>Скидка</td>
-            <td></td>
+            <td>В корзину</td>
             <td></td>
           </tr>';
     foreach ($res as $key => $value) {

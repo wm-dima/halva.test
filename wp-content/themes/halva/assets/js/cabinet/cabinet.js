@@ -35,28 +35,6 @@ document.querySelector('#city-form').addEventListener('submit', function(e){
 		}
 });
 
-document.querySelector('#whole-sale-table').addEventListener('click', function(e){
-	if (e.target.hasAttribute('data-wm-plus')) {
-		let newVal = ++document.querySelector('[data-wm-number-prod="'+e.target.getAttribute('data-wm-plus')+'"]').value;
-		document.querySelector('[data-wm-number-prod="'+e.target.getAttribute('data-wm-plus')+'"]').value = newVal;
-		document.querySelector('a[data-product_id="'+e.target.getAttribute('data-wm-plus')+'"]').setAttribute('data-quantity', newVal);
-		change_price_by_tr(e.target.closest('tr[data-price]'));
-	}
-	if (e.target.hasAttribute('data-wm-minus')) {
-		let newVal = document.querySelector('[data-wm-number-prod="'+e.target.getAttribute('data-wm-minus')+'"]').value - 1;
-		if (newVal < e.target.getAttribute('data-wm-minus-min')) return;
-		document.querySelector('[data-wm-number-prod="'+e.target.getAttribute('data-wm-minus')+'"]').value = newVal;
-		document.querySelector('a[data-product_id="'+e.target.getAttribute('data-wm-minus')+'"]').setAttribute('data-quantity', newVal);
-		change_price_by_tr(e.target.closest('tr[data-price]'));
-	}
-});
-
-document.querySelectorAll('[data-wm-number-prod][type="number"]').forEach(function(item){
-	item.addEventListener('change', function(e){
-		document.querySelector('a[data-product_id="'+e.target.getAttribute('data-wm-number-prod')+'"]').setAttribute('data-quantity', e.target.value);
-		change_price_by_tr(e.target.closest('tr[data-price]'));
-	});
-})
 
 let sale_query = {
 	slug: null,
@@ -112,18 +90,58 @@ function table_filters_listeners(){
 
 	document.querySelector('#cats-variants').addEventListener('click', function(e){
 		if (!e.target.hasAttribute('data-cat-slug')) return;
-		sale_query.slug = e.target.getAttribute('data-cat-slug') ;
+		sale_query.slug = e.target.getAttribute('data-cat-slug');
+		try	{
+			document.querySelector('.active-cat').classList.remove('active-cat');
+		} catch (err) {}
+		e.target.classList.add('active-cat');
 		document.querySelector('#apply-variants').classList.add('active');
 	});
+
+
+
+document.querySelector('#whole-sale-table').addEventListener('click', function(e){
+	if (e.target.hasAttribute('data-wm-plus')) {
+		let newVal = ++document.querySelector('[data-wm-number-prod="'+e.target.getAttribute('data-wm-plus')+'"]').value;
+		document.querySelector('[data-wm-number-prod="'+e.target.getAttribute('data-wm-plus')+'"]').value = newVal;
+		document.querySelector('a[data-product_id="'+e.target.getAttribute('data-wm-plus')+'"]').setAttribute('data-quantity', newVal);
+		change_price_by_tr(e.target.closest('tr[data-price]'));
+	}
+	if (e.target.hasAttribute('data-wm-minus')) {
+		let newVal = document.querySelector('[data-wm-number-prod="'+e.target.getAttribute('data-wm-minus')+'"]').value - 1;
+		if (newVal < e.target.getAttribute('data-wm-minus-min')) return;
+		document.querySelector('[data-wm-number-prod="'+e.target.getAttribute('data-wm-minus')+'"]').value = newVal;
+		document.querySelector('a[data-product_id="'+e.target.getAttribute('data-wm-minus')+'"]').setAttribute('data-quantity', newVal);
+		change_price_by_tr(e.target.closest('tr[data-price]'));
+	}
+});
+
+document.querySelector('#applyed-filters').addEventListener('click', function(e){
+	if (e.target.hasAttribute('data-filter-name')) {
+		sale_query[e.target.getAttribute('data-filter-name')] = null;
+		do_sale_ajax();
+	}
+});
+
+document.querySelectorAll('[data-wm-number-prod][type="number"]').forEach(function(item){
+	item.addEventListener('change', function(e){
+		document.querySelector('a[data-product_id="'+e.target.getAttribute('data-wm-number-prod')+'"]').setAttribute('data-quantity', e.target.value);
+		change_price_by_tr(e.target.closest('tr[data-price]'));
+	});
+});
+
+
+
 	document.querySelector('#apply-variants').addEventListener('click', function(){
 		do_sale_ajax();
-	})
+	});
 	fill_query_params();
 }
 
 function fill_query_params(){
 	if (sale_query.slug != null && sale_query.slug){
 		document.querySelector('#applyed-filter-cat').classList.remove('wm-hid');
+		document.querySelector('[data-cat-slug="'+sale_query.slug+'"]').classList.add('active-cat');
 		document.querySelector('#applyed-filter-cat span.filter-value').innerText = document.querySelector('[data-cat-slug="'+sale_query.slug+'"]').innerText;
 	}
 	if (sale_query.id != null && sale_query.id){

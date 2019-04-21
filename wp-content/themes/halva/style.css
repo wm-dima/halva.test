@@ -1021,7 +1021,7 @@ select:after{
     font-weight: 800;
 }
 .nav--active {
-    background: #f5af40 !important;
+    background: #ff9c00 !important;
 }
 #city-form input[type="submit"] {
     height: 50px;
@@ -1060,7 +1060,7 @@ select:after{
 #whole-sale-table tbody > tr:first-child > td{
     font-weight: 700;
     /* margin-bottom: 20px; */
-    background: #f5af40;
+    background: #ff9c00;
     color: #313131;
     padding: 10px;
 }
@@ -1089,7 +1089,7 @@ span[data-wm-plus="48"] , span[data-wm-minus="48"] {
 #whole-sale-table.process, 
 #whole-sale-table.process td, 
 #whole-sale-table.process tr {
-    background-color: #3e3e3e7d;
+    opacity: 0.6;
 } 
 
 .page-id-258 [data-tab="price"] input[type="text"]{
@@ -1098,4 +1098,87 @@ span[data-wm-plus="48"] , span[data-wm-minus="48"] {
 
 #apply-variants.active{
     background-color: green;
+}
+
+
+#cats-variants {
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+#cats-variants .cat-variant {
+  border: 1px solid #d8d8d8;
+  border-radius: 5px;
+  line-height: 36px;
+  padding: 0px 20px;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  font-family: 'Museo Sans Cyrl 700';
+  font-size: 14px;
+  cursor: pointer;
+}
+#name-variants input,
+#id-variants input{
+  border: 1px solid #d8d8d8;
+}
+
+#name-variants,
+#id-variants,
+#apply-variants {
+  float: left;
+  margin-right: 20px;
+}
+
+#apply-variants {
+  margin-right: 0px;
+  line-height: 48px;
+  color: #fff;
+  background: #ff9c00 !important;
+  padding: 0px 40px;
+  border-radius: 30px;
+  font-family: 'Museo Sans Cyrl 700';
+  border: 1px solid #ff9c00;
+  transition: all 0.3s;
+  cursor: pointer;
+  float: right;
+}
+
+#apply-variants:hover {
+  background: transparent !important;
+  color: #ff9c00;
+}
+#id-variants {
+  margin-bottom: 7px;
+}
+#cats-variants .cat-variant:hover,
+#cats-variants .cat-variant--active {
+  border-color: #f5af40;
+  background: #f5af40;
+  color: #fff;
+}
+
+#whole-sale-table [data-total] {
+  font-weight: 700;
+  margin-left: 5px;
+}
+
+#applyed-filters {
+  display: flex;
+}
+
+#applyed-filters > *  {
+  margin-right: 10px;
+}
+
+.page-id-258  .filter-remove{
+    background-color: red;
+    padding: 2px 8px;
+    border-radius: 25px;
+    align-items: center;
+    cursor: pointer;
+}
+
+.active-cat{
+    border: 1px solid #FF9800 !important;
 }
