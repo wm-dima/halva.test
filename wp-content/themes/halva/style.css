@@ -1182,3 +1182,17 @@ span[data-wm-plus="48"] , span[data-wm-minus="48"] {
 .active-cat{
     border: 1px solid #FF9800 !important;
 }
+
+td .discount-column{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.out_of_stock{
+    border-bottom: 1px solid #ff6900;
+}
+
+.in_stock{
+    border-bottom: 1px solid #00c400;
+}

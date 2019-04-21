@@ -823,10 +823,12 @@ function get_cab_sale_html($res, $sale_cats, $salery_type, $disc_type){
             <td>Фото</td>
             <td>Мин. заказ</td>
             <td>Скидка</td>
+            <td>Наличие</td>
             <td>В корзину</td>
-            <td></td>
+            <td>Всего</td>
           </tr>';
     foreach ($res as $key => $value) {
+        $stock_status = get_post_meta( $value->post_id, '_stock_status', true );
         $html .= '<tr data-price="'.$value->price.'" data-value-discount="'.$value->discount.'">';
             $html .= "<td>";
                 $html .= $value->post_id;
@@ -842,13 +844,29 @@ function get_cab_sale_html($res, $sale_cats, $salery_type, $disc_type){
                 $html .= '</a>';
             $html .= "</td>";
             $html .= "<td>";
-                $html .= $value->qnt;
+                $html .= '<div class="discount-column">';
+                    $html .= $value->qnt;
+                $html .= '</div>';
             $html .= "</td>";
             $html .= "<td>";
-                $html .= $value->discount . ( $disc_type == 'percent' ? '%' : '');
+                $html .= '<div class="discount-column">';
+                    $html .= '<span>'.$value->discount . ( $disc_type == 'percent' ? '%' : '').'</span>';
+                    $html .= '<span class="wm-hid" data-disc-per-one="'.$value->discount.'"></span>';
+                    $html .= '<span class="wm-second-row wm-hid">на каждый товар)</span>';
+                $html .= '</div>';
             $html .= "</td>";
             $html .= "<td>";
-                $html .= cabinet_add_to_cart( $value->post_id, $value->qnt);
+                $html .= '<div class="discount-column">';
+                    $html .= '<span class="'.( $stock_status == 'instock' ? 'in_stock' : 'out_of_stock' ).'">';
+                        $html .= ( $stock_status == 'instock' ? 'В наличие' : 'На складе' );
+                    $html .= '</span>';
+                    $html .= '<span>'. ( $stock_status == 'instock' ? 'цеза за еденицу ' . $value->price : '' ). '</span>';
+                $html .= '</div>';
+            $html .= "</td>";
+            $html .= "<td>";
+                $html .= '<div class="discount-column"><div>';
+                  $html .= cabinet_add_to_cart( $value->post_id, $value->qnt, $stock_status);
+                $html .= '</div></div>';
             $html .= "</td>";
             $html .= "<td>";
                 $html .= "<p class='wm-hid' data-total-wrap>Всего:<span data-total></span></p>";
@@ -860,8 +878,8 @@ function get_cab_sale_html($res, $sale_cats, $salery_type, $disc_type){
     return $html;
 }
 
-function cabinet_add_to_cart ($id, $min){
-    if(get_post_meta( $id, '_stock_status', true ) == 'instock'){
+function cabinet_add_to_cart ($id, $min, $stock_status){
+    if($stock_status == 'instock'){
         $to_cart_html = '<a 
                     href="/shop/?add-to-cart='.$id.'" 
                     data-quantity="'.$min.'" 
@@ -869,7 +887,7 @@ function cabinet_add_to_cart ($id, $min){
                     data-product_id="'.$id.'" 
                     data-product_sku="" 
                     rel="nofollow"
-                >В корзину</a>';
+                >Добавить в корзину</a>';
         $to_cart_html .= '<span data-wm-plus="'.$id.'">+</span>';
         $to_cart_html .= '<input data-wm-number-prod="'.$id.'" type="number" min="'.$min.'" value="'.$min.'">';
         $to_cart_html .= '<span data-wm-minus="'.$id.'" data-wm-minus-min="'.$min.'">-</span>';
