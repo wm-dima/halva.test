@@ -260,8 +260,14 @@ class WWL_Public {
 			echo "<p class=\"any-wish-prods\">У Вас нет товаров в разделе желания.</p>";
 			return;
 		}
-		foreach ($ids as $key => $value) : $_product = wc_get_product( $value ); ?>
-
+		$ids[] = false;
+		foreach ($ids as $key => $value) : 
+			if ($value) {
+				$_product = wc_get_product( $value ) ; 
+			} else {
+				continue;
+			}
+			?>
                             <div class="want-item" data-wm-prod-id="<?php echo $value; ?>">
                                 <div class="wi">
 

@@ -46,11 +46,14 @@ function wm_qnt_controller(e){
 		if (e.target == add_numb) {
 			cart_quant_add();
 			unclock_update_btn(e);
+			e.target.closest('.basket-item').querySelector('.single-sub-total').innerText = 'Обновите корзину.';
 			// return;
 		}
 		if (e.target == rm_numb) {
 			cart_quant_rm();
 			unclock_update_btn(e);
+			e.target.closest('.basket-item').querySelector('.single-sub-total').innerText = 'Обновите корзину.';
+
 			// return;
 		}
 
