@@ -1,3 +1,5 @@
+document.addEventListener('DOMContentLoaded', function(){ 
+
 var wwl_last_added_product = null;
 var wwl_last_removed_product = null;
 
@@ -149,3 +151,5 @@ function setCookie(name, value, options) {
 
   document.cookie = updatedCookie;
 }
+
+});

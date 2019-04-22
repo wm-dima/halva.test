@@ -32,7 +32,15 @@ class WWL_Public {
 	}
 
 	public function enqueue_scripts() {
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wwl-public.js', array( 'jquery' ), $this->version, true );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wwl-public.js', array(), $this->version, false );
+		wp_localize_script( 
+		    $this->plugin_name, 
+		    'my_ajax_url', 
+		        array( 
+		            'ajax_url' => admin_url( 'admin-ajax.php' ),
+		            'is_log_in' => is_user_logged_in()
+		        ) 
+		    );
 	}
 
 	public function set_to_wish_controller() {
