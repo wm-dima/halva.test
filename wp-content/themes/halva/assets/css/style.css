@@ -3276,13 +3276,15 @@ RS */
 .calculate .calc {
     margin-top: 0;
 }
-#whole-sale-table span[data-wm-minus="48"] {
+#whole-sale-table span[data-wm-minus] {
     padding: 0px 7.059px;
     background: #ff6900;
     border-radius: 50%;    color: #fff;
+    cursor: pointer;
 }
-#whole-sale-table span[data-wm-plus="48"] {
+#whole-sale-table span[data-wm-plus] {
 	padding: 0px 5.9px;
     background: #00c400;
     border-radius: 50%;    color: #fff;
+    cursor: pointer;
 }

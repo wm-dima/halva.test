@@ -852,7 +852,7 @@ function get_cab_sale_html($res, $sale_cats, $salery_type, $disc_type){
                 $html .= '<div class="discount-column">';
                     $html .= '<span>'.$value->discount . ( $disc_type == 'percent' ? '%' : '').'</span>';
                     $html .= '<span class="wm-hid" data-disc-per-one="'.$value->discount.'"></span>';
-                    $html .= '<span class="wm-second-row wm-hid">на каждый товар)</span>';
+                    $html .= '<span class="wm-second-row wm-hid">за шт)</span>';
                 $html .= '</div>';
             $html .= "</td>";
             $html .= "<td>";
@@ -880,30 +880,39 @@ function get_cab_sale_html($res, $sale_cats, $salery_type, $disc_type){
 
 function cabinet_add_to_cart ($id, $min, $stock_status){
     if($stock_status == 'instock'){
-        $to_cart_html = '<a 
+        $to_cart_html = '<p 
                     href="/shop/?add-to-cart='.$id.'" 
                     data-quantity="'.$min.'" 
                     class="button product_type_simple add_to_cart_button ajax_add_to_cart" 
                     data-product_id="'.$id.'" 
                     data-product_sku="" 
                     rel="nofollow"
-                >Добавить в корзину</a>';
+                >Добавить в корзину</p>';
+                    // onclick="bulkDiscAddToCart"
         $to_cart_html .= '<span data-wm-plus="'.$id.'">+</span>';
         $to_cart_html .= '<input data-wm-number-prod="'.$id.'" type="number" min="'.$min.'" value="'.$min.'">';
         $to_cart_html .= '<span data-wm-minus="'.$id.'" data-wm-minus-min="'.$min.'">-</span>';
     } else {
-        // $to_cart_html = '<p>На складе</p>';
-        $to_cart_html = '<a 
-                    href="/shop/?add-to-cart='.$id.'" 
+        $to_cart_html = '<p 
                     data-quantity="'.$min.'" 
-                    class="button product_type_simple add_to_cart_button ajax_add_to_cart" 
                     data-product_id="'.$id.'" 
                     data-product_sku="" 
                     rel="nofollow"
-                >Добавить в корзину</a>';
+                    onclick="alert(\'Товар отсутствует\')"
+                >Добавить в корзину</p>';
         $to_cart_html .= '<span data-wm-plus="'.$id.'">+</span>';
         $to_cart_html .= '<input data-wm-number-prod="'.$id.'" type="number" min="'.$min.'" value="'.$min.'">';
         $to_cart_html .= '<span data-wm-minus="'.$id.'" data-wm-minus-min="'.$min.'">-</span>';
+        // $to_cart_html = '<p>На складе</p>';
+        // $to_cart_html = '<p 
+        //             data-quantity="'.$min.'" 
+        //             data-product_id="'.$id.'" 
+        //             data-product_sku="" 
+        //             rel="nofollow"
+        //         >Нет в наличие</p>';
+        // $to_cart_html .= '<span class="wm-hid" data-wm-plus="'.$id.'">+</span>';
+        // $to_cart_html .= '<input class="wm-hid" data-wm-number-prod="'.$id.'" type="number" min="'.$min.'" value="'.$min.'">';
+        // $to_cart_html .= '<span class="wm-hid" data-wm-minus="'.$id.'" data-wm-minus-min="'.$min.'">-</span>';
     }
     return $to_cart_html;
 }
@@ -946,3 +955,35 @@ function do_cabinet_sale_filters(){
 
 add_action("wp_ajax_apply_cabinet_sale_filters", "do_cabinet_sale_filters");
 add_action("wp_ajax_nopriv_apply_cabinet_sale_filters", "do_cabinet_sale_filters");
+
+add_action('wp_ajax_woocommerce_ajax_add_to_cart', 'woocommerce_ajax_add_to_cart');
+add_action('wp_ajax_nopriv_woocommerce_ajax_add_to_cart', 'woocommerce_ajax_add_to_cart');
+        
+function woocommerce_ajax_add_to_cart() {
+ 
+            $product_id = apply_filters('woocommerce_add_to_cart_product_id', absint($_POST['product_id']));
+            $quantity = empty($_POST['quantity']) ? 1 : wc_stock_amount($_POST['quantity']);
+            $variation_id = absint($_POST['variation_id']);
+            $passed_validation = apply_filters('woocommerce_add_to_cart_validation', true, $product_id, $quantity);
+            $product_status = get_post_status($product_id);
+ 
+            if ($passed_validation && WC()->cart->add_to_cart($product_id, $quantity, $variation_id) && 'publish' === $product_status) {
+ 
+                do_action('woocommerce_ajax_added_to_cart', $product_id);
+ 
+                if ('yes' === get_option('woocommerce_cart_redirect_after_add')) {
+                    wc_add_to_cart_message(array($product_id => $quantity), true);
+                }
+ 
+                WC_AJAX :: get_refreshed_fragments();
+            } else {
+ 
+                $data = array(
+                    'error' => true,
+                    'product_url' => apply_filters('woocommerce_cart_redirect_after_error', get_permalink($product_id), $product_id));
+ 
+                echo wp_send_json($data);
+            }
+ 
+            wp_die();
+        }

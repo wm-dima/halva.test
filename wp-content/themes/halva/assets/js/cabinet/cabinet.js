@@ -98,8 +98,6 @@ function table_filters_listeners(){
 		document.querySelector('#apply-variants').classList.add('active');
 	});
 
-
-
 	document.querySelector('#whole-sale-table').addEventListener('click', function(e){
 		if (e.target.hasAttribute('data-wm-plus')) {
 			let newVal = ++document.querySelector('[data-wm-number-prod="'+e.target.getAttribute('data-wm-plus')+'"]').value;
@@ -129,8 +127,6 @@ function table_filters_listeners(){
 			change_price_by_tr(e.target.closest('tr[data-price]'));
 		});
 	});
-
-
 
 	document.querySelector('#apply-variants').addEventListener('click', function(){
 		do_sale_ajax();
@@ -190,9 +186,27 @@ pretare_all_total_prices();
 function change_price_by_tr(tr){
 	let singlePrice = tr.getAttribute('data-price');
 	let discount = tr.getAttribute('data-value-discount');
-	let qnt = tr.querySelector('a.ajax_add_to_cart').getAttribute('data-quantity');
+	let qnt = tr.querySelector('[data-product_sku]').getAttribute('data-quantity');
 	tr.querySelector('span[data-total]').innerText = ( singlePrice * qnt ) - get_calc_discount(singlePrice, qnt, discount);
-	tr.querySelector('span[data-disc-per-one]').innerText = '('+get_calc_discount(singlePrice, 1, discount) + ' руб';
-	tr.querySelector('.wm-second-row').classList.remove('wm-hid');
+	tr.querySelector('span[data-disc-per-one]').innerText = '('+get_calc_discount(singlePrice, 1, discount) + ' руб за шт)';
+	// tr.querySelector('.wm-second-row').classList.remove('wm-hid');
 	tr.querySelector('span[data-disc-per-one]').classList.remove('wm-hid');
 }
+
+// function bulkDiscAddToCart(e){
+// 	console.log(e);
+// 	return;
+// 	$.ajax({
+// 	    type: 'post',
+// 	    url: wc_add_to_cart_params.ajax_url,
+// 	    data: data,
+// 	    success: function (response) {
+// 	        if (response.error & response.product_url) {
+// 	            window.location = response.product_url;
+// 	            return;
+// 	        } else {
+// 				alert('Товар был добавлен в корзину.');
+// 	        }
+// 	    },
+// 	});
+// }
