@@ -158,7 +158,7 @@ function fill_query_params(){
 }
 table_filters_listeners();
 
-function get_calc_price(singlePrice, qnt, discount){
+function get_calc_discount(singlePrice, qnt, discount){
 	switch (disc_type) {
 		case 'fixed':
 			return fixed_price_calc(singlePrice, qnt, discount);
@@ -191,8 +191,8 @@ function change_price_by_tr(tr){
 	let singlePrice = tr.getAttribute('data-price');
 	let discount = tr.getAttribute('data-value-discount');
 	let qnt = tr.querySelector('a.ajax_add_to_cart').getAttribute('data-quantity');
-	tr.querySelector('span[data-total]').innerText = get_calc_price(singlePrice, qnt, discount);
-	tr.querySelector('span[data-disc-per-one]').innerText = '('+get_calc_price(singlePrice, 1, discount) + ' руб';
+	tr.querySelector('span[data-total]').innerText = ( singlePrice * qnt ) - get_calc_discount(singlePrice, qnt, discount);
+	tr.querySelector('span[data-disc-per-one]').innerText = '('+get_calc_discount(singlePrice, 1, discount) + ' руб';
 	tr.querySelector('.wm-second-row').classList.remove('wm-hid');
 	tr.querySelector('span[data-disc-per-one]').classList.remove('wm-hid');
 }

@@ -860,7 +860,7 @@ function get_cab_sale_html($res, $sale_cats, $salery_type, $disc_type){
                     $html .= '<span class="'.( $stock_status == 'instock' ? 'in_stock' : 'out_of_stock' ).'">';
                         $html .= ( $stock_status == 'instock' ? 'В наличие' : 'На складе' );
                     $html .= '</span>';
-                    $html .= '<span>'. ( $stock_status == 'instock' ? 'цеза за еденицу ' . $value->price : '' ). '</span>';
+                    $html .= '<span> цеза за шт. ' . $value->price . '</span>';
                 $html .= '</div>';
             $html .= "</td>";
             $html .= "<td>";
@@ -892,7 +892,18 @@ function cabinet_add_to_cart ($id, $min, $stock_status){
         $to_cart_html .= '<input data-wm-number-prod="'.$id.'" type="number" min="'.$min.'" value="'.$min.'">';
         $to_cart_html .= '<span data-wm-minus="'.$id.'" data-wm-minus-min="'.$min.'">-</span>';
     } else {
-        $to_cart_html = '<p>На складе</p>';
+        // $to_cart_html = '<p>На складе</p>';
+        $to_cart_html = '<a 
+                    href="/shop/?add-to-cart='.$id.'" 
+                    data-quantity="'.$min.'" 
+                    class="button product_type_simple add_to_cart_button ajax_add_to_cart" 
+                    data-product_id="'.$id.'" 
+                    data-product_sku="" 
+                    rel="nofollow"
+                >Добавить в корзину</a>';
+        $to_cart_html .= '<span data-wm-plus="'.$id.'">+</span>';
+        $to_cart_html .= '<input data-wm-number-prod="'.$id.'" type="number" min="'.$min.'" value="'.$min.'">';
+        $to_cart_html .= '<span data-wm-minus="'.$id.'" data-wm-minus-min="'.$min.'">-</span>';
     }
     return $to_cart_html;
 }
