@@ -418,7 +418,7 @@ function wm_get_single_prod_galegy( $id ){
     // die;
     $html = '<ul>';
         foreach ($images as $key => $value) {
-            $html .= '<li><a class="fancybox2" rel="group" href="'.$value.'"><img src="' . $value . '"  alt=""></a></li>';
+            $html .= '<li><a class="fancybox2" rel="group" href="'.$value.'" onclick="event.preventDefault()"><img src="' . $value . '"  alt=""></a></li>';
         }
     $html .= '</ul>';
     return $html;
