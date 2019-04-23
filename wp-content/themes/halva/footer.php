@@ -6,7 +6,7 @@
                     <div class="foot-block1">
                         <div class="azart">
                             <ul>
-                                <li>АВТОАЗАРТ</li>
+                                <li>Покупателю</li>
                                 <li><a href="<?php echo get_permalink( 103 ); ?>">О компании</a></li>
                                 <li><a href="<?php echo get_permalink( 160 ); ?>">Контакты</a></li>
                                 <li><a href="<?php echo get_permalink( 114 ); ?>">Новости</a></li>

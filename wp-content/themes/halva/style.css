@@ -1196,3 +1196,14 @@ td .discount-column{
 .in_stock{
     border-bottom: 1px solid #00c400;
 }
+
+.fix-all-cats-position{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 50px;   
+}
+
+.fix-all-cats-position a{
+    position: inherit !important;
+}

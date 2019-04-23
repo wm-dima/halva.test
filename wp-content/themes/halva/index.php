@@ -205,7 +205,8 @@ Template Name: index
                         <?php endif ?>
                     <?php endforeach; ?>
                 </div>
-
+            </div>
+            <div class="fix-all-cats-position">
                 <a href="<?php echo get_permalink( wc_get_page_id( 'shop' ) ); ?>" class="all-categories">Все категории</a>
             </div>
             
