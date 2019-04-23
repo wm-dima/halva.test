@@ -1196,3 +1196,7 @@ td .discount-column{
 .in_stock{
     border-bottom: 1px solid #00c400;
 }
+
+[data-load-more]{
+    padding: 30px;
+}
