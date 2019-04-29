@@ -234,7 +234,7 @@ Template Name: index
 
                         foreach( $recent_posts as $recent ) :
                     ?>
-                        <a href="<?php echo $recent['guid']; ?>">
+                        <a href="<?php echo get_permalink( $recent['ID'] ); ?>">
                             <div class="article">
                                 <div class="article-logo">
                                     <img src="<?php echo wm_get_main_img($recent['ID']); ?>" alt="">
@@ -242,7 +242,7 @@ Template Name: index
                                 <div class="article-description">
                                     <p class="article-name"><?php echo $recent['post_title']; ?></p>
                                     <p class="article-min"> <?php echo get_the_excerpt( $recent['ID'] ); ?></p>
-                                    <a href="<?php echo $recent['guid']; ?>" class="article-more">Подробнее</a>   
+                                    <a href="<?php echo get_permalink( $recent['ID'] ); ?>" class="article-more">Подробнее</a>   
                                 </div>
                             </div>
                         </a>
