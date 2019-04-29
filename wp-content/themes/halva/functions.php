@@ -4,6 +4,18 @@ if (function_exists('add_theme_support')) {
   add_theme_support('menus');
 }
 
+function dd(...$args){
+    echo "<pre>";
+    echo "<hr>";
+    foreach ($args as $val) {
+        echo "<hr>";
+        var_dump($val);
+        echo "<hr>";
+    }
+    die;
+}
+
+
 add_action( 'widgets_init', 'register_my_widgets' );
 function register_my_widgets(){
     register_sidebar( array(
@@ -418,7 +430,7 @@ function wm_get_single_prod_galegy( $id ){
     // die;
     $html = '<ul>';
         foreach ($images as $key => $value) {
-            $html .= '<li><a class="fancybox2" rel="group" href="'.$value.'" onclick="event.preventDefault()"><img src="' . $value . '"  alt=""></a></li>';
+            $html .= '<li><a class="fancybox" rel="group" href="'.$value.'" onclick="event.preventDefault()"><img src="' . $value . '"  alt=""></a></li>';
         }
     $html .= '</ul>';
     return $html;
@@ -839,8 +851,10 @@ function get_cab_sale_html($res, $sale_cats, $salery_type, $disc_type){
                 $html .= '</a>';
             $html .= "</td>";
             $html .= "<td>";
-                $html .= '<a class="fancybox" rel="group" href="'.wm_get_main_img ( $value->post_id ).'">';
+                $html .= '<a class="fancybox" rel="group" href="'.wm_get_main_img ( $value->post_id ).'">';         
+                    $html .= '<div class="item-logo"> <div class="img-padding">';
                     $html .= '<img src="'.wm_get_main_img ( $value->post_id ).'" alt="">';
+                    $html .= '</div></div>';
                 $html .= '</a>';
             $html .= "</td>";
             $html .= "<td>";
@@ -858,9 +872,9 @@ function get_cab_sale_html($res, $sale_cats, $salery_type, $disc_type){
             $html .= "<td>";
                 $html .= '<div class="discount-column">';
                     $html .= '<span class="'.( $stock_status == 'instock' ? 'in_stock' : 'out_of_stock' ).'">';
-                        $html .= ( $stock_status == 'instock' ? 'В наличие' : 'На складе' );
+                        $html .= ( $stock_status == 'instock' ? 'В наличие' : 'Нет на складе' );
                     $html .= '</span>';
-                    $html .= '<span> цеза за шт. ' . $value->price . '</span>';
+                    $html .= '<span> цеза за шт. ' . ( $value->price - get_disc_val($value->price, $value->discount, 1, $disc_type) ) . '</span>';
                 $html .= '</div>';
             $html .= "</td>";
             $html .= "<td>";
@@ -878,6 +892,32 @@ function get_cab_sale_html($res, $sale_cats, $salery_type, $disc_type){
     return $html;
 }
 
+function get_disc_val($singlePrice, $qnt, $discount, $disc_type ){
+    switch ($disc_type) {
+        case 'fixed':
+            return fixed_price_calc($singlePrice, $qnt, $discount);
+        case 'flat':
+            return flat_price_calc($singlePrice, $qnt, $discount);
+        case 'percent':
+            return percent_price_calc($singlePrice, $qnt, $discount);
+    }
+}
+
+
+
+function fixed_price_calc($singlePrice, $qnt, $discount){
+    return $singlePrice * 1 * $qnt - $discount;
+}
+function flat_price_calc($singlePrice, $qnt, $discount){
+    return ( $singlePrice * 1 - $discount) * $qnt;
+}
+function percent_price_calc($singlePrice, $qnt, $discount){
+    return ( $singlePrice * 1 * $qnt ) / 100 * $discount; 
+}
+
+
+
+
 function cabinet_add_to_cart ($id, $min, $stock_status){
     if($stock_status == 'instock'){
         $to_cart_html = '<p 
@@ -889,9 +929,9 @@ function cabinet_add_to_cart ($id, $min, $stock_status){
                     rel="nofollow"
                 >Добавить в корзину</p>';
                     // onclick="bulkDiscAddToCart"
-        $to_cart_html .= '<span data-wm-plus="'.$id.'">+</span>';
-        $to_cart_html .= '<input data-wm-number-prod="'.$id.'" type="number" min="'.$min.'" value="'.$min.'">';
         $to_cart_html .= '<span data-wm-minus="'.$id.'" data-wm-minus-min="'.$min.'">-</span>';
+        $to_cart_html .= '<input data-wm-number-prod="'.$id.'" type="number" min="'.$min.'" value="'.$min.'">';
+        $to_cart_html .= '<span data-wm-plus="'.$id.'">+</span>';
     } else {
         $to_cart_html = '<p 
                     data-quantity="'.$min.'" 
@@ -900,10 +940,10 @@ function cabinet_add_to_cart ($id, $min, $stock_status){
                     rel="nofollow"
                     onclick="alert(\'Товар отсутствует\')"
                 >Добавить в корзину</p>';
-        $to_cart_html .= '<span data-wm-plus="'.$id.'">+</span>';
-        $to_cart_html .= '<input data-wm-number-prod="'.$id.'" type="number" min="'.$min.'" value="'.$min.'">';
         $to_cart_html .= '<span data-wm-minus="'.$id.'" data-wm-minus-min="'.$min.'">-</span>';
-        // $to_cart_html = '<p>На складе</p>';
+        $to_cart_html .= '<input data-wm-number-prod="'.$id.'" type="number" min="'.$min.'" value="'.$min.'">';
+        $to_cart_html .= '<span data-wm-plus="'.$id.'">+</span>';
+        // $to_cart_html = '<p>Нет на складе</p>';
         // $to_cart_html = '<p 
         //             data-quantity="'.$min.'" 
         //             data-product_id="'.$id.'" 

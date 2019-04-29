@@ -1065,7 +1065,7 @@ select:after{
     padding: 10px;
 }
 #whole-sale-table .product_type_simple {
-    margin-right: 20px;
+    /*margin-right: 20px;*/
 }
 #whole-sale-table  input[type="number"] {
     width: 40px;

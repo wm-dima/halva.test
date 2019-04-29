@@ -164,46 +164,68 @@ Template Name: index
                     $args = array(
                          'taxonomy'     => 'product_cat',
                          'orderby'      => 'term_id',
-                         'number'       => 8,
+                         'number'       => 14,
                          'parent' => 0,
                     );
                     $all_categories = get_categories( $args );
-                    $count = 0;
-                    foreach ($all_categories as $cat) : 
-                        $category_id = $cat->term_id; 
-                        $count++; 
-                        $thumbnail_id = get_woocommerce_term_meta( $cat->term_id, 'thumbnail_id', true ); 
-                        $image = wp_get_attachment_url( $thumbnail_id );
-                        $link = get_term_link( $cat->term_id, 'product_cat' );
+                    $div_for = count($all_categories) % 2 ? count($all_categories) / 2 + 1 : count($all_categories) / 2;
+                    $all_categories = array_chunk( $all_categories, $div_for);
                     ?>
-                        <?php if ($count == 1 ): ?>
-                            <div class="column">
-                        <?php elseif ($count == 5): ?>
-                            <div class="column col2">     
-                        <?php endif ?>
-
-                        <a href="<?php echo $link; ?>">
-                            <div class="item-column">
-                                <div class="item-about">
-                                    <p class="category"><?php echo $cat->name; ?></p>
+                    <div class="column">
+                        <?php 
+                        foreach ($all_categories[0] as $cat) : 
+                            $category_id = $cat->term_id; 
+                            $thumbnail_id = get_woocommerce_term_meta( $cat->term_id, 'thumbnail_id', true ); 
+                            $image = wp_get_attachment_url( $thumbnail_id );
+                            $link = get_term_link( $cat->term_id, 'product_cat' );
+                        ?>
+                            <a href="<?php echo $link; ?>">
+                                <div class="item-column">
+                                    <div class="item-about">
+                                        <p class="category"><?php echo $cat->name; ?></p>
+                                        <p class="description-item">
+                                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/more.png" alt="">
+                                        </p>
+                                    </div>
                                     <p class="description-item">
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/more.png" alt="">
+                                        <span class="the-desc"><?php echo $cat->category_description; ?></span>
                                     </p>
+                                    <div class="column-more">
+                                        <div class="show-all">Все товары...</div>
+                                        <img src="<?php echo $image; ?>" alt="">
+                                    </div>
                                 </div>
-                                <p class="description-item">
-                                    <span class="the-desc"><?php echo $cat->category_description; ?></span>
-                                </p>
-                                <div class="column-more">
-                                    <div class="show-all">Все товары...</div>
-                                    <img src="<?php echo $image; ?>" alt="">
-                                </div>
-                            </div>
-                        </a>
+                            </a>
 
-                        <?php if ($count == 4 || $count == 9 ): ?>
-                            </div> 
-                        <?php endif ?>
-                    <?php endforeach; ?>
+                        <?php endforeach; ?>
+                    </div> 
+                    <div class="column col2">     
+                        <?php 
+                        foreach ($all_categories[1] as $cat) : 
+                            $category_id = $cat->term_id; 
+                            $thumbnail_id = get_woocommerce_term_meta( $cat->term_id, 'thumbnail_id', true ); 
+                            $image = wp_get_attachment_url( $thumbnail_id );
+                            $link = get_term_link( $cat->term_id, 'product_cat' );
+                        ?>
+                            <a href="<?php echo $link; ?>">
+                                <div class="item-column">
+                                    <div class="item-about">
+                                        <p class="category"><?php echo $cat->name; ?></p>
+                                        <p class="description-item">
+                                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/more.png" alt="">
+                                        </p>
+                                    </div>
+                                    <p class="description-item">
+                                        <span class="the-desc"><?php echo $cat->category_description; ?></span>
+                                    </p>
+                                    <div class="column-more">
+                                        <div class="show-all">Все товары...</div>
+                                        <img src="<?php echo $image; ?>" alt="">
+                                    </div>
+                                </div>
+                            </a>
+                        <?php endforeach; ?>
+                    </div> 
                 </div>
             </div>
             <div class="fix-all-cats-position">
@@ -326,3 +348,7 @@ Template Name: index
         </div>
     </div>
 <?php get_footer(); ?>
+
+<?php 
+// dd( wc_get_product(4) );
+?>

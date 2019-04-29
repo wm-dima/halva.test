@@ -20,7 +20,9 @@ class WWL_Public {
 			unset( $this->all_prods );
 			$db_res = $wpdb->get_results( "SELECT product_id FROM " . $wpdb->prefix . "client_id_wishlist_id WHERE client_id = " . get_current_user_id(), ARRAY_A);
 			foreach ($db_res as $key => $value) {
-				$this->all_prods[] = $value['product_id']; 
+				if ( wc_get_product($value['product_id']) ) {
+					$this->all_prods[] = $value['product_id']; 
+				}
 			}	
 		} else {
 			$this->all_prods = json_decode( $_COOKIE['wwl_wish'], true );
@@ -163,14 +165,16 @@ class WWL_Public {
 			return;
 		}
 		foreach ($in_cookie as $key => $value) {
-			$sql = '
-				INSERT INTO ' . $wpdb->prefix . 'client_id_wishlist_id (client_id, product_id)
-				SELECT * FROM (SELECT ' . get_current_user_id() . ', '. (int)$value . ') AS tmp
-				WHERE NOT EXISTS (
-				    SELECT client_id FROM ' . $wpdb->prefix . 'client_id_wishlist_id WHERE client_id = ' . get_current_user_id() . ' AND product_id = '. (int)$value . '
-				) LIMIT 1;
-			';
-			$wpdb->query($sql);
+			if ( wc_get_product($value) ) {
+				$sql = '
+					INSERT INTO ' . $wpdb->prefix . 'client_id_wishlist_id (client_id, product_id)
+					SELECT * FROM (SELECT ' . get_current_user_id() . ', '. (int)$value . ') AS tmp
+					WHERE NOT EXISTS (
+					    SELECT client_id FROM ' . $wpdb->prefix . 'client_id_wishlist_id WHERE client_id = ' . get_current_user_id() . ' AND product_id = '. (int)$value . '
+					) LIMIT 1;
+				';
+				$wpdb->query($sql);
+			}
 		}
 		setcookie('wwl_wish', '', -1000);
 	}

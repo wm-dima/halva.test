@@ -4,7 +4,7 @@
                         Каталог товаров
                     </a>
                     <?php get_search_form(); ?>
-                    <div class="catalog-min">\
+                    <div class="catalog-min">
 
                     <?php 
 

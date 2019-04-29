@@ -34,12 +34,12 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="<?php echo get_theme_mod( 'vk' ); ?>">
+                                        <a href="<?php echo get_theme_mod( 'instagram' ); ?>">
                                             <img src="<?php echo get_template_directory_uri(); ?>/assets/images/instagram.png" alt="">
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="<?php echo get_theme_mod( 'instagram' ); ?>">
+                                        <a href="<?php echo get_theme_mod( 'vk' ); ?>">
                                             <img src="<?php echo get_template_directory_uri(); ?>/assets/images/vk.png" alt="">
                                         </a>
                                     </li>
@@ -149,7 +149,7 @@
                     <div class="foot-block4">  
                         <div class="fb4-line"></div>
                         <div class="fb4-text">
-                            <p>Cайт разработан командой Web Marketing</p>
+                            <a href="https://vk.com/webmarketingb2b" target="_blank" style="font-family: 'Museo Sans Cyrl 300';font-weight: 100;font-style: normal;color: #fff;font-size: 14px;">Cайт разработан командой Web Marketing</a>
                         </div>
                     </div>
                 </div>      

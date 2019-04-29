@@ -9,9 +9,9 @@ document.querySelector('body').addEventListener('compare_was_added', wcp_state_t
 
 function wcp_state_to_remove(){
 	alert('Пробукт был добавлен в сравнение!');
-	let items = document.querySelector('[data-item-id="' + wcp_last_added_product + '"][data-wm-wcp]');
+	let items = document.querySelectorAll('[data-item-id="' + wcp_last_added_product + '"][data-wm-wcp]');
 	items.map = [].map;
-	items.map(item => (item.setAttribute('data-wm-wwl', 'remove')));
+	items.map(item => (item.setAttribute('data-wm-wcp', 'remove')));
 	document.querySelector('.shop-icons .accept .number').innerText = document.querySelector('.shop-icons .accept .number').innerText * 1 + 1;
 }
 
@@ -19,9 +19,9 @@ document.querySelector('body').addEventListener('compare_was_removed', wcp_state
 
 function wcp_state_to_add(){
 	alert('Пробукт был удален из сравнения!');
-	let items = document.querySelector('[data-item-id="' + wcp_last_removed_product + '"][data-wm-wcp]');
+	let items = document.querySelectorAll('[data-item-id="' + wcp_last_removed_product + '"][data-wm-wcp]');
 	items.map = [].map;
-	items.map(item => (item.setAttribute('data-wm-wwl', 'add')));
+	items.map(item => (item.setAttribute('data-wm-wcp', 'add')));
 	document.querySelector('.shop-icons .accept .number').innerText = document.querySelector('.shop-icons .accept .number').innerText * 1 - 1;
 }
 

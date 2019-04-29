@@ -245,7 +245,7 @@ class Wcp {
 	}
 
 	public function cookie_set_up(){
-		if ( !isset( ($_COOKIE['wcp_compare']) ) ) {
+		if ( null !== ($_COOKIE['wcp_compare'])  ) {
 			setcookie( 'wcp_compare', '', time()+60*60*24*380 );
 		}
 	}
