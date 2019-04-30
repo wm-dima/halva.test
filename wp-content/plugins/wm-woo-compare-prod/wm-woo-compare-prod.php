@@ -54,5 +54,37 @@ require plugin_dir_path( __FILE__ ) . 'includes/wcp.php';
 function run_plugin_name() {
 	$wcp_compare = new Wcp();
 	$wcp_compare->run();
+	wcp_check_available();
 }
 add_action('init', 'run_plugin_name');
+
+
+function wcp_check_available()
+{
+	if ( is_user_logged_in() ) { 
+		global $wpdb; 
+		$db_res = $wpdb->get_results( "SELECT product_id FROM " . $wpdb->prefix . "client_id_product_id WHERE client_id = " . get_current_user_id(), ARRAY_A); 
+		foreach ($db_res as $key => $value) { 
+			if (wc_get_product( $value['product_id'] )->status == 'trash' || !wc_get_product( $value['product_id'] )) {
+				$wpdb->delete( $wpdb->prefix . "client_id_product_id", array('product_id' => $value['product_id'] ) ); 
+			}
+		}	 
+	} else { 
+		$in_cookie = json_decode( $_COOKIE['wcp_compare'], true );
+		foreach ($in_cookie as $key => $value) {
+			if (wc_get_product( $value )->status == 'trash' || !wc_get_product( $value )) {
+				unset($in_cookie[$key]);
+			}
+		}
+		if ( empty( $in_cookie ) ) { 
+			setcookie( 'wcp_compare', null, -1, '/' );
+		} else { 
+			setcookie(  
+				'wcp_compare',  
+				json_encode( array_values( $in_cookie) ), 
+				time()+60*60*24*380, 
+				'/' 
+			); 
+		} 
+	}
+}

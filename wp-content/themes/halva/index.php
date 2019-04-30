@@ -349,6 +349,3 @@ Template Name: index
     </div>
 <?php get_footer(); ?>
 
-<?php 
-// dd( wc_get_product(4) );
-?>

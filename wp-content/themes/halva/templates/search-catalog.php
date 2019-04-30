@@ -6,35 +6,51 @@
                     <?php get_search_form(); ?>
                     <div class="catalog-min">
 
-                    <?php 
+        <ul>
+            <li>
+                <a href="<?php echo get_permalink( wc_get_page_id( 'shop' ) ); ?>">Все товары</a>
+            </li>
+            <?php 
+            $args = array(
+            'taxonomy' => 'product_cat',
+            'hide_empty' => true,
+            'parent'   => 0
+            );
+            $product_cat = get_terms( $args );
+            foreach ($product_cat as $parent_product_cat) : ?>
+                <li>
+                    <a href="<?php echo get_term_link($parent_product_cat->term_id); ?>">
+                        <div class="parent-cat">
+                            <?php echo $parent_product_cat->name; ?>
+                            <?php 
+                            $child_args = array(
+                            'taxonomy' => 'product_cat',
+                            'hide_empty' => false,
+                            'parent'   => $parent_product_cat->term_id
+                            );
+                            $child_product_cats = get_terms( $child_args );
+                            ?>
+                        </div>
+                    </a> 
+                    <?php if ($child_product_cats) :?>
+                        <div class="catalog-additional">
+                            <ul>
+                                <?php
+                                foreach ($child_product_cats as $child_product_cat):
+                                ?>
+                                    <li>
+                                        <a href="<?php echo get_term_link($child_product_cat->term_id); ?>">
+                                            <?php echo $child_product_cat->name; ?>
+                                        </a>
+                                    </li>
+                                <?php 
+                                endforeach;?>
+                            </ul>
+                        </div>
+                    <?php endif;?>
+                </li>
+            <?php endforeach;?>
+        </ul>
 
-                    $args = array(
-                        'number'     => $number,
-                        'orderby'    => 'name',
-                        'order'      => 'ASC',
-                        'hide_empty' => $hide_empty,
-                        'include'    => $ids
-                    );
-
-                    $product_categories = get_terms( 'product_cat', $args );
-                    $product_categories = array_chunk($product_categories, ceil(count($product_categories)/2));
-                    echo '<div class="ct-min-1"> <ul>';
-                    echo "<li><a href=\"". get_permalink( wc_get_page_id( 'shop' ) )."\">Все категории</a></li>";
-                    foreach( $product_categories[0] as $cat )  {
-                        echo '<li><a href="'.get_term_link( $cat->slug, 'product_cat' ).'">'.
-                            $cat->name . '<span class="quantity-catalog">' . 
-                            $cat->count . '</span></a></li>'; 
-                    }
-                    echo '</div> </ul>';
-
-                    echo '<div class="ct-min-2"> <ul>';
-                    foreach( $product_categories[1] as $cat )  { 
-                        echo '<li><a href="'.get_term_link( $cat->slug, 'product_cat' ).'">'.
-                            $cat->name . '<span class="quantity-catalog">' . 
-                            $cat->count . '</span></a></li>'; 
-                    }
-                    echo '</div> </ul>';
-
-                    ?>
                     </div>
                 </div>

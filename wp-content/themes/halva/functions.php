@@ -732,7 +732,8 @@ function get_bulk_disc_prods($slug = false, $name = false, $id = false){
         FROM {$wpdb->prefix}postmeta t1
         INNER JOIN {$wpdb->prefix}postmeta t2 ON t1.post_id = t2.post_id
         INNER JOIN {$wpdb->prefix}postmeta t3 ON t1.post_id = t3.post_id 
-        LEFT JOIN {$wpdb->prefix}postmeta pm on t1.post_id = pm.post_id ";
+        LEFT JOIN {$wpdb->prefix}postmeta pm on t1.post_id = pm.post_id 
+        LEFT JOIN {$wpdb->prefix}posts p on t1.post_id = p.ID ";
         if ($slug) {
             $sql .= " LEFT JOIN {$wpdb->prefix}term_relationships tr on tr.object_id = t1.post_id ";
             $sql .= " LEFT JOIN {$wpdb->prefix}terms terms on terms.term_id = tr.term_taxonomy_id ";
@@ -750,7 +751,8 @@ function get_bulk_disc_prods($slug = false, $name = false, $id = false){
             t2.meta_key = '" . $type_get . "'
         AND 
             t3.meta_key = '_bulkdiscount_quantity_1'
-            ";
+        AND 
+            p.post_status = 'publish'";
     if ($id) {
         $id = esc_sql( $id );
         $sql .= " AND t1.post_id = $id ";
@@ -764,6 +766,7 @@ function get_bulk_disc_prods($slug = false, $name = false, $id = false){
         $name = esc_sql( $name );
         $sql .= " AND p.post_title LIKE '%$name%'";
     }
+    // dd($sql);
     $res = $wpdb->get_results( $sql );
     return get_cab_sale_html($res, $sale_cats, $salery_type, $disc_type);
 }
@@ -795,11 +798,44 @@ function get_cabinet_all_cats($type_get){
 function get_cab_sale_html($res, $sale_cats, $salery_type, $disc_type){
     $html = '';
     $cats_html = '';
-    foreach ($sale_cats as $key => $value) {
-        $cats_html .= '<span class="cat-variant" data-cat-slug="'.$value->slug.'">';
-        $cats_html .= $value->name;
-        $cats_html .= '</span>';
-    }
+    $html .= '<div id="cats-variants">';
+    $html .= '<ul>';
+            $args = array(
+            'taxonomy' => 'product_cat',
+            'hide_empty' => true,
+            'parent'   => 0
+            );
+            $product_cat = get_terms( $args );
+            foreach ($product_cat as $parent_product_cat) {
+                $html .= '<li class="parent-child-wrap">';
+                   $html .= '<div class="parent-cat-wrap">';
+                        $html .='<span class="cat-variant" data-cat-slug="'. $parent_product_cat->slug .'">'. $parent_product_cat->name .'</span>';
+                        $child_args = array(
+                        'taxonomy' => 'product_cat',
+                        'hide_empty' => false,
+                        'parent'   => $parent_product_cat->term_id
+                        );
+                        $child_product_cats = get_terms( $child_args );
+                    $html .='</div>';
+                    if ($child_product_cats) {
+                        $html .='<div class="catalog-additional-wrap">';
+                            $html .='<ul>';
+                                foreach ($child_product_cats as $child_product_cat) {
+                                    $html .='<li>';
+                                        $html .='<span class="cat-variant" data-cat-slug="'. $child_product_cat->slug .'">';
+                                            $html .= $child_product_cat->name;   
+                                        $html .='</span>';
+                                    $html .='</li>';
+                                }
+                            $html .='</ul>';
+                        $html .='</div>';
+                    }
+                $html .='</li>';
+            }
+        $html .='</ul>';
+
+                    $html .='</div>';
+
     $html .= $salery_type;
     $html .= '<div id="cats-variants">';
     $html .= $cats_html;
@@ -906,15 +942,14 @@ function get_disc_val($singlePrice, $qnt, $discount, $disc_type ){
 
 
 function fixed_price_calc($singlePrice, $qnt, $discount){
-    return $singlePrice * 1 * $qnt - $discount;
+    return @( $singlePrice * 1 * $qnt - $discount );
 }
 function flat_price_calc($singlePrice, $qnt, $discount){
-    return ( $singlePrice * 1 - $discount) * $qnt;
+    return @( ( $singlePrice * 1 - $discount) * $qnt );
 }
 function percent_price_calc($singlePrice, $qnt, $discount){
-    return ( $singlePrice * 1 * $qnt ) / 100 * $discount; 
+    return @( ( $singlePrice * 1 * $qnt ) / 100 * $discount ); 
 }
-
 
 
 
@@ -928,7 +963,6 @@ function cabinet_add_to_cart ($id, $min, $stock_status){
                     data-product_sku="" 
                     rel="nofollow"
                 >Добавить в корзину</p>';
-                    // onclick="bulkDiscAddToCart"
         $to_cart_html .= '<span data-wm-minus="'.$id.'" data-wm-minus-min="'.$min.'">-</span>';
         $to_cart_html .= '<input data-wm-number-prod="'.$id.'" type="number" min="'.$min.'" value="'.$min.'">';
         $to_cart_html .= '<span data-wm-plus="'.$id.'">+</span>';
@@ -943,16 +977,6 @@ function cabinet_add_to_cart ($id, $min, $stock_status){
         $to_cart_html .= '<span data-wm-minus="'.$id.'" data-wm-minus-min="'.$min.'">-</span>';
         $to_cart_html .= '<input data-wm-number-prod="'.$id.'" type="number" min="'.$min.'" value="'.$min.'">';
         $to_cart_html .= '<span data-wm-plus="'.$id.'">+</span>';
-        // $to_cart_html = '<p>Нет на складе</p>';
-        // $to_cart_html = '<p 
-        //             data-quantity="'.$min.'" 
-        //             data-product_id="'.$id.'" 
-        //             data-product_sku="" 
-        //             rel="nofollow"
-        //         >Нет в наличие</p>';
-        // $to_cart_html .= '<span class="wm-hid" data-wm-plus="'.$id.'">+</span>';
-        // $to_cart_html .= '<input class="wm-hid" data-wm-number-prod="'.$id.'" type="number" min="'.$min.'" value="'.$min.'">';
-        // $to_cart_html .= '<span class="wm-hid" data-wm-minus="'.$id.'" data-wm-minus-min="'.$min.'">-</span>';
     }
     return $to_cart_html;
 }
