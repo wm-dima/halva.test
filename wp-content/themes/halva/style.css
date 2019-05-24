@@ -1110,13 +1110,14 @@ span[data-wm-plus="48"] , span[data-wm-minus="48"] {
 #cats-variants .cat-variant {
   border: 1px solid #d8d8d8;
   border-radius: 5px;
-  line-height: 36px;
+  line-height: 30px;
   padding: 0px 20px;
   margin-right: 8px;
   margin-bottom: 8px;
   font-family: 'Museo Sans Cyrl 700';
   font-size: 14px;
   cursor: pointer;
+  display: block;
 }
 #name-variants input,
 #id-variants input{
@@ -1165,6 +1166,10 @@ span[data-wm-plus="48"] , span[data-wm-minus="48"] {
 
 #applyed-filters {
   display: flex;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  font-family: 'Museo Sans Cyrl 300';
 }
 
 #applyed-filters > *  {
@@ -1206,4 +1211,43 @@ td .discount-column{
 
 .fix-all-cats-position a{
     position: inherit !important;
+}
+
+
+#cats-variants ul ul {
+  padding-left: 20px;
+}
+
+#cats-variants ul ul .cat-variant {
+  font-size: 13px;
+}
+
+.catalog-min {
+    background: #fff;
+    position: absolute;
+    top: 100%;
+    left: 0px;
+    z-index: 10;
+    box-shadow: 0 0 7.2px 0.8px rgba(0,4,7,.15);
+    padding: 20px;
+}
+
+.catalog-min ul ul {
+    padding-left: 20px;
+    margin-bottom: 8px;
+}
+
+.catalog-min ul ul a {
+    text-transform: capitalize;
+    font-size: 15px;
+}
+
+@media screen and ( max-width: 1025px ) {
+  .catalog-min {
+    left: auto;
+    top: calc( 100% + 23px );
+    width: 100%;
+    max-width: 290px;
+    align-items: flex-start;
+  }
 }

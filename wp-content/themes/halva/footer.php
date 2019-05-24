@@ -149,7 +149,7 @@
                     <div class="foot-block4">  
                         <div class="fb4-line"></div>
                         <div class="fb4-text">
-                            <a href="https://vk.com/webmarketingb2b" target="_blank" style="font-family: 'Museo Sans Cyrl 300';font-weight: 100;font-style: normal;color: #fff;font-size: 14px;">Cайт разработан командой Web Marketing</a>
+                            <p>Cайт разработан командой Web Marketing</p>
                         </div>
                     </div>
                 </div>      
@@ -157,11 +157,5 @@
         </div>
     </footer>
     <?php wp_footer(); ?>
-    <script src='https://salebot.pro/js/salebot.js'></script> 
-    <script> 
-        SaleBotPro.init({ 
-            projectId: '3302' 
-        }); 
-    </script>
 </body>
 </html>
